@@ -13,12 +13,16 @@ export default function Main() {
     const [search, setSearch] = useState('')
 
     const selectArticle = (article) => {
-        console.log('AR', article)
         setCurrentArticle(article);
-        setPage('current');
     }
-    const selectArticlesPage = (event) => {
-        setArticlesPage(Number(event.target.outerText));
+    const selectArticlesPage = (value) => {
+        if(value === '+') {
+            const sum = articlesPage + 1;
+            setArticlesPage(sum);
+        } else {
+            const sum = articlesPage - 1;
+            setArticlesPage(sum);
+        }
     }
 
     const submitSearch = () => {
@@ -32,7 +36,7 @@ export default function Main() {
             {page === 'browse' ?
                 <AllArticles
                     submitSearch={submitSearch}
-                    setSearch={setSearch}
+                    setSearch={(e) => setSearch(e.target.value)}
                     handleChangePage={selectArticlesPage}
                     setCurrentArticle={selectArticle}
                     articlesPage={articlesPage}

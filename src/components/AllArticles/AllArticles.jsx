@@ -14,7 +14,10 @@ function AllArticles(props) {
 
     return (
         <Grid container className='all-articles-wrapper'>
+            <Grid item className='tools'>
             <Search setSearch={props.setSearch} submitSearch={props.submitSearch}/>
+            <ArticlesPagination articlesPage={props.articlesPage} handleChangePage={props.handleChangePage} count={count} />
+            </Grid>
             <Grid className='all-articles'>
                 {
                     articles.slice(start, end).map((article, i) => {
@@ -23,7 +26,6 @@ function AllArticles(props) {
                 }
 
             </Grid>
-            <ArticlesPagination articlesPage={props.articlesPage} handleChangePage={props.handleChangePage} count={count} />
         </Grid>
     )
 }

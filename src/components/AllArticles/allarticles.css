@@ -6,7 +6,6 @@
     max-width:90%;
     background-color: rgb(119, 196, 199);
     border-radius: 10px;
-    min-height: 100% !important;
 }
 
 .all-articles {
@@ -44,4 +43,13 @@
 .article:hover {
     background-color: rgb(92, 89, 89) !important;
     color: aliceblue
+}
+
+.tools {
+    display: flex;
+    flex-direction: row;
+    height: 40px !important;
+    align-items: center !important;
+    justify-content: center;
+    min-width: 100% !important;
 }

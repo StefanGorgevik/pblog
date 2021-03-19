@@ -1,11 +1,14 @@
 import React from 'react';
-import Pagination from '@material-ui/lab/Pagination';
+import './style.css'
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 
 export default function ArticlesPagination(props) {
   return (
     <div className='pagination-div'>
-      <Pagination className='pagination' hideNextButton={true} hidePrevButton={true} count={props.count} page={props.articlesPage}
-       onClick={props.handleChangePage}/>
+      <ChevronLeftIcon fontSize='large' className='arrow' onClick={() => props.handleChangePage('+')}/>
+      <ChevronRightIcon fontSize='large' className='arrow' onClick={() => props.handleChangePage('-')}/>
+     
     </div>
   );
 }
