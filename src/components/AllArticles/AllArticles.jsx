@@ -14,7 +14,7 @@ function AllArticles(props) {
 
     return (
         <Grid container className='all-articles-wrapper'>
-            <Search/>
+            <Search setSearch={props.setSearch} submitSearch={props.submitSearch}/>
             <Grid className='all-articles'>
                 {
                     articles.slice(start, end).map((article, i) => {

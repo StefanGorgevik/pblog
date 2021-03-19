@@ -4,15 +4,16 @@ import TextField from '@material-ui/core/TextField';
 import IconButton from '@material-ui/core/IconButton';
 import SearchIcon from '@material-ui/icons/Search';
 
-export default function Search() {
+export default function Search(props) {
   return (
     <Grid className="search-div">
       <TextField
+        onChange={props.setSearch}
         className='search'
         placeholder="Search articles"
         inputProps={{ 'aria-label': 'search-articles' }}
       />
-      <IconButton type="submit"  aria-label="search">
+      <IconButton onClick={props.submitSearch} type="submit"  aria-label="search">
         <SearchIcon />
       </IconButton>
     </Grid>

@@ -37,7 +37,7 @@
 
 .header {
     max-width: 90%;
-    height: 7.5% !important;
+    height: 5% !important;
     background-color: rgb(92, 89, 89) !important;
     text-align: center;
     display: flex;
@@ -49,8 +49,8 @@
 }
 
 .menu-item {
-    padding-top: 20px !important;
-    padding-bottom: 20px !important;
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
     width: 50% !important;
     font-family: 'Syne Mono', monospace !important;
     font-weight: bold !important;
@@ -94,7 +94,6 @@
 
 .pagination-div nav ul li button {
     font-weight: 900 !important;
-    font-family: 'MuseoModerno', cursive !important;
     font-size: 16px !important;
 }
 .pagination-div nav ul li button:hover {
@@ -110,4 +109,8 @@
 
 .search {
     width: 60%;
+}
+
+.text { 
+    font-family: 'Syne Mono', monospace !important;
 }

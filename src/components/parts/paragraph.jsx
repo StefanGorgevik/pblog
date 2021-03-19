@@ -11,19 +11,20 @@ function Paragraph(props) {
         <Grid item className="paragraph-wrapper" >
             <Grid onClick={() => setOpened(!opened)} item className='paragraph-dropdown'>
                 <Typography
+                    className='text'
                     style={{ fontWeight: 'bold' }}
-                    variant='p' color="initial">{props.bold}</Typography>
+                     color="initial">{props.bold}</Typography>
                 {!opened ? <KeyboardArrowDownIcon /> : <KeyboardArrowUpIcon />}
             </Grid>
             {opened &&
                 <Grid className='paragraph-text' item>
-                    <Typography
-                        variant='p' color="initial">{props.text}</Typography>
+                    <Typography className='text'
+                        color="initial">{props.text}</Typography>
                     {
                         props.include &&
                         <Grid className='include-grid' item md={6}>
                             {props.include.map((item, i) => {
-                                return <Typography key={i} variant="subtitle" color="initial">{item}</Typography>
+                                return <Typography key={i} variant="subtitle1" color="initial">{item}</Typography>
                             })}
                         </Grid>
                     }

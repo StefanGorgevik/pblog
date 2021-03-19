@@ -10,6 +10,7 @@ export default function Main() {
     const [page, setPage] = useState('browse');
     const [articlesPage, setArticlesPage] = useState(1);
     const [currentArticle, setCurrentArticle] = useState(null)
+    const [search, setSearch] = useState('')
 
     const selectArticle = (article) => {
         console.log('AR', article)
@@ -20,12 +21,19 @@ export default function Main() {
         setArticlesPage(Number(event.target.outerText));
     }
 
+    const submitSearch = () => {
+        console.log('search', search)
+    }
+
     return (
         <Grid>
             <TopHeader />
             <Header setPage={setPage} page={page} />
             {page === 'browse' ?
-                <AllArticles handleChangePage={selectArticlesPage}
+                <AllArticles
+                    submitSearch={submitSearch}
+                    setSearch={setSearch}
+                    handleChangePage={selectArticlesPage}
                     setCurrentArticle={selectArticle}
                     articlesPage={articlesPage}
                     currentArticle={currentArticle} />

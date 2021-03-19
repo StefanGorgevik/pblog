@@ -3,14 +3,15 @@
     flex-direction: column;
     justify-content: space-between;
     margin: 0 auto;
-    max-width: 75%;
-    background-color: cadetblue;
+    max-width:90%;
+    background-color: rgb(119, 196, 199);
     border-radius: 10px;
+    min-height: 100% !important;
 }
 
 .all-articles {
-    display: flex;                       
-    flex-wrap: wrap;                  
+    display: flex;  
+    flex-direction: row;                     
     justify-content: space-around;    
     text-align: left;
     padding: 2%;
@@ -22,32 +23,25 @@
     flex-direction: column;
     cursor: pointer;
     background-color: darkgrey;
-    flex: 0 0 32%;               
-    min-height: 250px !important;
     margin: 5px !important;
-    padding: 2%;
+    padding: 1%;
     border-radius: 10px;
     font-size: 16px;
     letter-spacing: 0.5px;
     font-weight: bold;
+    font-family: 'Syne Mono', monospace !important;
+}
+
+.text-articles,
+.title-articles {
+    font-family: 'Syne Mono', monospace !important;
+    font-size: 1rem;
+}
+.text { 
+    font-family: 'Syne Mono', monospace !important;
 }
 
 .article:hover {
     background-color: rgb(92, 89, 89) !important;
     color: aliceblue
-}
-
-@media only screen and (max-width: 1280px) {
-    .article {
-        flex: 0 0 32%;                       
-        min-height: 125px !important;
-        letter-spacing: 0px;
-        font-weight: 600;
-    }
-    .title-articles {
-        font-size: 18px !important;
-    }
-    .text-articles {
-        font-size: 12px !important;
-    }
 }

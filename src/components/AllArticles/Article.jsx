@@ -7,7 +7,7 @@ export default function Article(props) {
     return (
        <Grid item onClick={() => props.setCurrentArticle(props.article)} className='article'>
          <Typography className="title-articles" variant="h5" color="initial">{props.article.title}</Typography>
-         <Typography className="text-articles" variant="p" color="initial">{props.article.text.substr(0, 250)}...</Typography>
+         <Typography className="text-articles" variant="subtitle1" color="initial">{props.article.text.substr(0, 250)}...</Typography>
        </Grid>
     )
 }
