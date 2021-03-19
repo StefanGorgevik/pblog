@@ -101,3 +101,13 @@
     background-color: rgb(92, 89, 89) !important;
     color: aliceblue;
 }
+.search-div {
+    margin: 0 auto;
+    margin: 5px !important;
+    margin-bottom: -25px !important;
+    max-width: 80%;
+}
+
+.search {
+    width: 60%;
+}
