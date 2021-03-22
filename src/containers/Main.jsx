@@ -17,7 +17,7 @@ export default function Main() {
     useEffect(() => {
         const count = Math.floor(Number(articles.length) / 6 + 1);
         setCount(count);
-    }, [ articles])
+    }, [ ])
 
     const selectArticle = (article) => {
         setActiveArticle(article.id)
@@ -45,7 +45,7 @@ export default function Main() {
             <Header setPage={setPage} page={page} />
             {page === 'browse' ?
                 <AllArticles
-                    activeArticle
+                    activeArticle={activeArticle}
                     count
                     submitSearch={submitSearch}
                     setSearch={(e) => setSearch(e.target.value)}
@@ -54,7 +54,6 @@ export default function Main() {
                     articlesPage={articlesPage}
                     currentArticle={currentArticle} />
                 : <CurrentArticle 
-                activeArticle
                 selectArticle={selectArticle}
                 currentArticle={currentArticle} />}
         </Grid>
