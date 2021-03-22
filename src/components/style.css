@@ -87,12 +87,6 @@
     display: none;
 }
 
-.pagination-div {
-    height: 40px;
-    max-width: 10% !important;
-    margin-top:40px;
-}
-
 .search-div {
     display: flex;
     align-items: center;
@@ -117,14 +111,4 @@
 .paragraph-title {
     font-weight: 900 !important;
 
-}
-
-.arrow {
-    cursor: pointer;
-}
-
-.arrow:hover {
-    background-color: cadetblue;
-    border-radius: 50%;
-    color: white;
 }

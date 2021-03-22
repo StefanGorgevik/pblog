@@ -4,39 +4,28 @@ import Header from '../components/Header'
 import TopHeader from '../components/TopHeader'
 import CurrentArticle from '../components/CurrentArticle'
 import AllArticles from '../components/AllArticles/AllArticles'
-import { articles } from '../data/data'
+import {allArticles } from '../data/data'
 
 export default function Main() {
     const [page, setPage] = useState('browse');
-    const [articlesPage, setArticlesPage] = useState(1);
-    const [currentArticle, setCurrentArticle] = useState(null)
-    const [search, setSearch] = useState('')
-    const [activeArticle, setActiveArticle] = useState(null)
-    const [count, setCount] = useState('')
-
+    const [articles, setArticles] = useState([]);
+    const [currentArticle, setCurrentArticle] = useState(null);
+    const [activeArticle, setActiveArticle] = useState(null);
+    
     useEffect(() => {
-        const count = Math.floor(Number(articles.length) / 6 + 1);
-        setCount(count);
-    }, [ ])
-
+        setArticles(allArticles)
+    }, [])
+    
     const selectArticle = (article) => {
         setActiveArticle(article.id)
         setCurrentArticle(article);
         setPage('current');
     }
 
-    const selectArticlesPage = (value) => {
-        if (value === '+' && articlesPage < count && count > 1) {
-            const sum = articlesPage + 1;
-            setArticlesPage(sum);
-        } else if (value === '-' && articlesPage > 1) {
-                const sum = articlesPage - 1;
-                setArticlesPage(sum);
-            }
-    }
-
-    const submitSearch = () => {
-        console.log('search', search)
+    const saveSearchValue = (search) => {
+        if(search === '') return setArticles(allArticles);
+        let filtered = articles.filter(article => article.title.toLowerCase().includes(search.toLowerCase()))
+        setArticles(filtered);
     }
 
     return (
@@ -45,15 +34,13 @@ export default function Main() {
             <Header setPage={setPage} page={page} />
             {page === 'browse' ?
                 <AllArticles
+                    articles={articles}
                     activeArticle={activeArticle}
-                    count
-                    submitSearch={submitSearch}
-                    setSearch={(e) => setSearch(e.target.value)}
-                    handleChangePage={selectArticlesPage}
+                    setSearch={(e) => saveSearchValue(e.target.value)}
                     setCurrentArticle={selectArticle}
-                    articlesPage={articlesPage}
                     currentArticle={currentArticle} />
                 : <CurrentArticle 
+                articles={articles}
                 selectArticle={selectArticle}
                 currentArticle={currentArticle} />}
         </Grid>

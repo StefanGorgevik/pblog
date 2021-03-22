@@ -196,7 +196,7 @@ export const article2Data = {
 }
 
 
-export const articles = [article1Data, article2Data, article1Data, article2Data, article1Data, article2Data, article1Data, article2Data,]
+export const allArticles = [article1Data, article2Data, article1Data, article2Data, article1Data, article2Data, article1Data, article2Data,article1Data, article2Data, article1Data, article2Data, article1Data, article2Data, article1Data, article2Data,]
 
 
 
