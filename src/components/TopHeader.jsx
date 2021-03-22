@@ -8,7 +8,7 @@ function TopHeader() {
     return (
         <Grid className='top-header' container>
             <img className="logo-image-1" src={Logo} alt="logo"/>
-            <Typography className='main-title' variant="h2" color="initial">Programming Blog</Typography>
+            <Typography className='main-title' variant="h2" color="initial">The Javascript Supply</Typography>
             <img className="logo-image-2" src={Logo2} alt="second logo"/>
         </Grid>
     )

@@ -14,7 +14,13 @@ function CurrentArticle(props) {
             <Title variant='h3' title={article.title} />
             <Intro intro={article.text} />
             {article.article.map((item, i) => {
-                return <Paragraph key={i} bold={item.title} text={item.text} include={item.include ? item.include : false} />
+                return <Paragraph key={i} 
+                dropdown={article.dropdown} 
+                bold={item.title} 
+                text={item.text} 
+                include={item.include ? item.include : false} 
+                more={item.more ? item.more : false} 
+                selectArticle={() => props.selectArticle(item)}/>
             })}
         </Grid>
     )

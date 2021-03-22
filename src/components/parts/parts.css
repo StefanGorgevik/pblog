@@ -21,7 +21,10 @@
     border-radius: 10px;
     margin-bottom: 5px;
     font-size: 18px;
+    min-width: 100% !important;
 }
+
+
 .paragraph-dropdown:hover {
     background-color: rgba(92, 89, 89, 0.822);
 }
@@ -37,4 +40,23 @@
     font-size: 16px;
     letter-spacing: 0.5px;
     font-weight: bold;
+}
+
+.paragraph-title-drop {
+    display: flex;
+    min-width: 100% !important;
+}
+
+.more-button {
+    background-color: rgb(92, 89, 89) !important;
+    height: 100%;
+    border-radius: 10px !important;
+    font-weight: bold !important;
+    color: aliceblue !important;
+}
+
+
+.dropdown-smaller {
+    min-width: 87.5% !important;
+    margin-right: 10px !important; 
 }

@@ -53,3 +53,7 @@
     justify-content: center;
     min-width: 100% !important;
 }
+
+.active-article {
+    background-color: aliceblue;
+}

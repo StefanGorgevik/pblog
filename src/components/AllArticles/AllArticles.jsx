@@ -7,26 +7,25 @@ import ArticlesPagination from '../Pagination'
 import Search from '../Search'
 
 function AllArticles(props) {
-    const count = Math.floor(Number(articles.length) / 6 + 1);
-    console.log(count, 'count')
     let end = props.articlesPage * 6;
     let start = end - 6;
 
     return (
         <Grid container className='all-articles-wrapper'>
-            <Grid item className='tools'>
-            <Search setSearch={props.setSearch} submitSearch={props.submitSearch}/>
-            <ArticlesPagination articlesPage={props.articlesPage} handleChangePage={props.handleChangePage} count={count} />
-            </Grid>
-            <Grid className='all-articles'>
-                {
-                    articles.slice(start, end).map((article, i) => {
-                        return <Article setCurrentArticle={props.setCurrentArticle} article={article} key={i} />
-                    })
-                }
-
-            </Grid>
+            < Grid item className = 'tools' >
+                <Search setSearch={props.setSearch} submitSearch={props.submitSearch} />
+                <ArticlesPagination articlesPage={props.articlesPage} handleChangePage={props.handleChangePage} count={props.count} />
+            </Grid >
+        <Grid className='all-articles'>
+            {
+                articles.slice(start, end).map((article, i) => {
+                    return <Article active={props.activeArticle}
+                        setCurrentArticle={props.setCurrentArticle}
+                        article={article} key={i} />
+                })
+            }
         </Grid>
+        </Grid >
     )
 }
 
