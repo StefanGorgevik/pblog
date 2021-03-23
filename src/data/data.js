@@ -5,7 +5,7 @@ export const article1 = [{
 {
     title: "Event Bubbling",
     text: [" Event bubbling is connected to the sequence in which events are called when one element is nested inside a second element, and both elements have the same event listener.",
-    "It is also known as propagation, and it means that events on an element can “bubble up” and also fire on all parents. When an event happens on an element, it first runs the handlers on it, then on its parent, then all the way up on other ancestors. This can be avoided by adding an event listener to the parent element and then check what the event.target matches to."]
+        "It is also known as event propagation, and it means that events on an element can “bubble up” and also fire on all parents. When an event occurs on an inner element, it first runs the handlers on itself, then on its parent, then all the way up on other ancestors (maybe even all the way to the body). This can be avoided by adding an event listener to the parent element and then check what the event.target matches to."]
 },
 {
     title: "IIFE – Immediately Invoked Function Expression",
@@ -20,8 +20,8 @@ export const article1 = [{
     title: "Difference between function definition and expression",
     text: ["Expressions resolve in a value even if it is undefined, and a function definition is only a statement. MDN: an expression is any valid unit of code resolves to a value. A definition actually creates a reference, but not a value."],
     include: [
-            "function foo() { }  // definition that creates a reference but not a value",
-            "var foo = () { } // expression that creates a value"]
+        "function foo() { }  // definition that creates a reference but not a value",
+        "var foo = () { } // expression that creates a value"]
 },
 {
     title: 'Hoisting',
@@ -35,9 +35,9 @@ export const article1 = [{
 {
     title: 'Dot vs Bracket notation',
     text: ['There are two ways to access properties in a object. With dot and bracket notation. Dot notation is usually used when you are certain of they object key, and bracket notation can be used for a more dynamic access to the objects.'],
-    include: ["let object = {person: 'Mike'};", 
-    "let person = object.person; //dot notation", 
-    "let person = object[person]; //bracket notation"]
+    include: ["let object = {person: 'Mike'};",
+        "let person = object.person; //dot notation",
+        "let person = object[person]; //bracket notation"]
 },
 {
     title: "Ternary operator",
@@ -72,9 +72,9 @@ export const article1 = [{
     text: ["The purpose of use strict is to activate the strict mode in JavaScript that wasn’t recognized before. It is a declaration to look for mistakes in your code, like undeclared variables."]
 },
 {
-    title: "Asynchronus vs syncronous operations",
-    text: ["When you execute something synchronously, you wait for it to finish before moving on to another task. When you execute something asynchronously, you can move on to another task before it finishes. Synchronous or Synchronized means 'connected', or 'dependent' in some way. In other words, two synchronous tasks must be aware of one another, and one task must execute in some way that is dependent on the other, such as wait to start until the other task has completed.",
-        " Asynchronous means they are totally independent and neither one must consider the other in any way, either in the initiation or in execution. In asynchronous programming a unit of work runs separately from the main application thread and notifies the calling thread of its completion, failure or progress."],
+    title: "Asynchronus vs synchronous operations",
+    text: ["When you execute something synchronously, you wait for it to finish before moving on to another task. When you execute something asynchronously, you can move on to another task before it finishes. Synchronous or Synchronized means 'connected', or 'dependent' in some way. In other words, two synchronous tasks must be aware of one another, and one task must execute in some way that is dependent on the other, such as wait to start until the other task has completed. A synchronous function is read line-by-line and can be dependable on the previous statement.",
+        " Asynchronous means they are totally independent and neither one must consider the other in any way, either in the initiation or in execution. In asynchronous programming a unit of work runs separately from the main application thread and notifies the calling thread of its completion, failure or progress. All in all, asynchronous functions execute their code without waiting for a value from a function to be return. For asynchronous programming in Javascript we usually use callbacks, but with ES6 promises/async-await/try-catch are really famous."],
     more: true
 },
 {
@@ -162,14 +162,23 @@ export const article1 = [{
         "var count = 0;",
         "return function () {return count += num}",
         "})();",
-        "addRandom(1); //addRandom is a self-incoking function that returns a function",
+        "addRandom(1); //addRandom is a self-invoking function that returns a function",
         "addRandom(2); //adds + num every time",
         "addRandom(3); //count is now the sum of 1 + 2 + 3",
     ]
 },
 {
-    title: "",
-    text: [""],
+    title: "Javascript Scope",
+    text: ["The scope defines the area of your application where a variable is defined. Javascript has three scopes: global, local and block."],
+    include: [
+        "Global Scope − variables can be visible everywhere in your code",
+        "Local Scope - visible only within a function where variables are defined. (function arguments are local variables)",
+        "Block scope - the scope between ifs, loops. Block scope is the region between curly brackets",
+    ]
+},
+{
+    title: "The meaning of the this keyword",
+    text: ["When you write 'this' in your application you are actually referring to the parent object where the code is located at. For example, in a script tag in HTML, it refers to the window object."]
 }]
 
 export const article2 = [
@@ -177,6 +186,37 @@ export const article2 = [
         title: "Event Loop",
         text: ["The event loop helps us create asynchrounous code. As we know, javascript is a single threaded language and the event loop helps us with multi-threading or it is simply giving us the illusion of multi-thread. There is one thread, one call stack which means that JS can only do one thing at a time. The Call stack is a data structure which records where in the program we are. When we return from a function or when we get to the end of the function, the function gets popped of the stackits.",
             "The browser is really helpful when we are trying to deal with async code with the help of the Web APIs which are actually threads and the async code is moved there. Another helpful tool is the Task Queue which accepts the callbacks that are sent from the web APIs after they are completed. As for the event loop, its job is to look at the stack and task queue. If the stack is empty, the first item from the Task Queue is moved to the stack and completed."]
+    }
+]
+export const article3 = [
+    {
+        title: "How react works with the virtual DOM?",
+        text: ["Because nowadays we are using the dynamic approach of creating website, it is really hard to communicate directly with the DOM and it takes a lot more time to accomplish something. In order for React to work properly when creating a website, there is a virtual DOM (not created by and for React), that compares if anything changed between the DOM and the React elements. If anything changes in your components, the difference between the DOM and your app will be applied by the Virtual DOM."]
+    },
+    {
+        title: "What is JSX?",
+        text: ["JSX stands for Javascript XML and it is a syntax improvement for JS. For React, it helps with creating React elements and any JS expression can be wrapped in curly braces in between your elements. With the help of JSX, you can render elements and components inside of loops, assign them to variables, and a lot more, which makes everything a lot more dynamic."]
+    },
+    {
+        title: "What is ReactDOM",
+        text: ["ReactDOM actually connects React with the DOM. Before, they were together, as a part of one library, but later on they were split. Nowadays, it is mostly used for mounting your main component onto the DOM."]
+    },
+    {
+        title: "Controlled vs. Uncontrolled Components",
+        text: ["Controlled Elements are elements that have their value controlled by React. This means that the parent element containing for example an input, will keep track of the onChange callback function and will rerender the component each time the callback is fired. All in all, with controlled components, every state mutation will result in an associated handler function.",
+            "As for the uncontrolled components, the form data is handled by the actual DOM. This means that with uncontrolled elements, you can write a handler that gets the refs values directly from the DOM, and not for each state update."]
+    },
+    {
+        title: "Higher-order component (HOC)",
+        text: ["It is a function that receives a component and returns a new one. With HOC, you can reuse a lot of code and avoid repeating logic. For example, maybe you didn't know that, but Redux's connect function is actually a HOC."]
+    },
+    {
+        title: "Redux Thunk",
+        text: ["It is a helpful middleware that can help you write action creators that return a function instead of an action. Why is this useful? Well, you can use Thunk for asyncronous programming because a dispatch of an action can be delayed until a condition is met. The function that we create receives two methods as parameters from the store: dispatch and getState. Thunk is a middleware so you need to apply it with applyMiddleware() in your store file."]
+    },
+    {
+        title: "setState() actions",
+        text: ["setState actions are asynchronous because they are not directly mutating the state but they send a transition. Mainly, setState is asynchrounous because it rerenders parts of your application. Making it syncronous will freeze the browser. setState can also take a callback function that is invoked after setState finishes and the component finished its re-render. This makes setState() to be asynchronous."]
     }
 ]
 
@@ -194,15 +234,22 @@ export const article2Data = {
     intro: "The event loop helps us create asynchrounous code. As we know, javascript is a single threaded language and the event loop helps us with multi-threading or it is simply giving us the illusion of multi-thread. There is one thread, one call stack which means that JS can only do one thing at a time. The Call stack is a data structure which records where in the program we are. When we return from a function or when we get to the end of the function, the function gets popped of the stackits. The browser is really helpful when we are trying to deal with async code with the help of the Web APIs which are actually threads and the async code is moved there. Another helpful tool is the Task Queue which accepts the callbacks that are sent from the web APIs after they are completed. As for the event loop, its job is to look at the stack and task queue. If the stack is empty, the first item from the Task Queue is moved to the stack and completed.",
     article: article2
 }
+export const article3Data = {
+    id: '3',
+    dropdown: true,
+    title: "ReactJS Interview Questions",
+    intro: "No matter how much Javascript you know, learning a framework can confuse you on so many levels. If ahead of you awaits a Javascript/ReactJS interview, this article can help you a lot. I did my research and made a collection of the most important things that a React developer should know.",
+    article: article3,
+}
 
 
-export const allArticles = [article1Data, article2Data, article1Data, article2Data, article1Data, article2Data, article1Data, article2Data,article1Data, article2Data, article1Data, article2Data, article1Data, article2Data, article1Data, article2Data,]
+export const allArticles = [article1Data, article2Data, article3Data]
 
 
 
 
 
-
+// , article2Data, article1Data, article2Data, article1Data, article3Data,article1Data, article3Data, article1Data, article2Data, article3Data, article2Data, article1Data, article3Data,
 
 
 
