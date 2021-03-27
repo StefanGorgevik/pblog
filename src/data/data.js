@@ -1,5 +1,5 @@
 export const article1 = [{
-    title: "Event Delegation",
+    title: "Event Capturing",
     text: ["JS event listeners fire not only on a single DOM element but on all its descendants. So, every event listener put on a parent will be triggered for its children too. With event delegation, you don't have to add event listener to each descendant, you can simply add it to the parent, capture the event and check the event.target that comes with the event."]
 },
 {

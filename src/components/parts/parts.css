@@ -1,11 +1,11 @@
 .include-grid {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     min-width: 90% !important;
     margin: 0 auto;
     padding: 1%;
     background-color: #140b20;
-    flex-direction: column;
+    flex-direction: row;
     border: 1px solid aliceblue;
     color: aliceblue;
     margin: 5px auto !important;
@@ -60,4 +60,21 @@
 .dropdown-smaller {
     min-width: 87.5% !important;
     margin-right: 10px !important; 
+}
+
+.copy-to-clipboard {
+    display: flex;
+    align-items: center;
+    max-height: 15%;
+    max-width: 15% !important;
+    margin: 0 !important;
+    color: white !important;
+    cursor: pointer;
+    padding: 5px !important;
+    font-size: 2em !important;
+}
+
+.copy-to-clipboard:hover {
+    background-color: rgb(119, 196, 199) !important;
+    color: #000 !important;
 }
