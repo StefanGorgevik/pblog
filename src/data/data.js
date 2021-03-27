@@ -158,8 +158,8 @@ export const article1 = [{
     title: "Closures",
     text: ["As we know, global variables belong to the window object. They can be accessed in functions, but if a variable is created in a function, it can't be accessed outside the function. In order for a inner function to have access to a outer function we can use Closures.  The inner function has access to the scope and variables of the outer function"],
     include: [
-        "let addRandom = ( function (num) {",
         "var count = 0;",
+        "let addRandom = ( function (num) {",
         "return function () {return count += num}",
         "})();",
         "addRandom(1); //addRandom is a self-invoking function that returns a function",
