@@ -8,6 +8,7 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import Button from '@material-ui/core/Button';
 import MenuItem from '@material-ui/core/MenuItem';
+import InputLabel from '@material-ui/core/InputLabel';
 
 const useStyles = makeStyles((theme) => ({
     modal: {
@@ -19,7 +20,6 @@ const useStyles = makeStyles((theme) => ({
 
 export default function ReportModal(props) {
     const classes = useStyles();
-    console.log(props)
     return (
         <div>
             <Modal
@@ -31,10 +31,10 @@ export default function ReportModal(props) {
             >
                 <Grid className='modal'>
                     <div>
-                        <Typography style={{marginBottom: '10px'}}
-                         className='text' variant="h4" color="initial">Report a mistake</Typography>
+                        <Typography style={{ marginBottom: '20px', borderBottom: '1px solid rgb(219, 219, 80)' }}
+                            className='text' variant="h4" color="initial">Report a mistake</Typography>
                         <FormControl className='select-article-report' fullWidth>
-                            <label htmlFor='demo-simple-select'>Choose an article</label>
+                            <InputLabel style={{ color: 'rgb(219, 219, 80)' }}>Choose the article</InputLabel>
                             <Select
                                 labelId="demo-simple-select-label"
                                 id="demo-simple-select"

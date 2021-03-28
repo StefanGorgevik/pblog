@@ -4,10 +4,11 @@ import { Grid } from '@material-ui/core'
 import Title from './parts/title'
 import Intro from './parts/intro'
 import Paragraph from './parts/paragraph'
+import { allArticles } from '../data/data'
 
 function CurrentArticle(props) {
     console.log('props', props)
-    const article = props.currentArticle ? props.currentArticle : props.articles[0];
+    const article = props.currentArticle ? props.currentArticle : allArticles[0];
     return (
         <Grid className='current-article'>
             <Title variant='h3' title={article.title} />

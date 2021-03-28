@@ -11,7 +11,6 @@ import { allArticles } from '../data/data'
 
 export default function Main() {
     const [page, setPage] = useState('browse');
-    const [articles, setArticles] = useState([]);
     const [currentArticle, setCurrentArticle] = useState(null);
     const [activeArticle, setActiveArticle] = useState(null);
     const [reportClicked, setReportClicked] = useState(false);
@@ -21,27 +20,19 @@ export default function Main() {
     const [comments, setComments] = useState('');
     const [modalText, setModalText] = useState('');
 
-    const saveSearchValue = useCallback((search) => {
-            if (search === '') return setArticles(allArticles);
-            const filtered = articles.filter(article => article.title.toLowerCase().includes(search.toLowerCase()))
-            setArticles(filtered);
-        }, [articles],)
-
     const setPageContent = useCallback(() => {
         let content = null;
         switch (page) {
             case 'browse': {
                 content = <AllArticles
-                    articles={articles}
+                    allArticles={allArticles}
                     activeArticle={activeArticle}
-                    setSearch={(e) => saveSearchValue(e.target.value)}
                     setCurrentArticle={selectArticle}
                     currentArticle={currentArticle} />
                 break;
             }
             case 'current': {
                 content = <CurrentArticle
-                    articles={articles}
                     selectArticle={selectArticle}
                     currentArticle={currentArticle} />
                 break;
@@ -54,10 +45,9 @@ export default function Main() {
                 break;
         }
         setContent(content);
-    }, [activeArticle, saveSearchValue, page, articles, currentArticle],)
+    }, [activeArticle, page, currentArticle, allArticles])
 
     useEffect(() => {
-        setArticles(allArticles)
         setPageContent()
     }, [page, setPageContent])
 
@@ -101,7 +91,7 @@ export default function Main() {
             setMessageModal(false);
             setReportClicked(false);
             setPage('browse')
-        }, 1000)
+        }, 1500)
     }
 
     const closeReportModal = () => {
@@ -114,7 +104,7 @@ export default function Main() {
             {showMessageModal && <ReportSuccessModal text={modalText}
                 setOpened={() => setMessageModal(!showMessageModal)}
                 opened={showMessageModal} />}
-            {reportClicked && <ReportModal articles={articles}
+            {reportClicked && <ReportModal articles={allArticles}
                 setArticleToReport={setArticleToReport}
                 submitReportedArticle={submitReportedArticle}
                 selectValue={articleToReport}
