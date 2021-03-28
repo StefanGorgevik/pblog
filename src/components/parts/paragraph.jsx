@@ -18,8 +18,9 @@ function Paragraph(props) {
         fetch(url)
             .then(res => res.json())
             .then(result => {
-                navigator.clipboard.writeText(result.files[gist].content)
-                console.log('res',);
+                if (result.files[gist].content) {
+                    navigator.clipboard.writeText(result.files[gist].content)
+                }
             });
     }
 
@@ -46,7 +47,7 @@ function Paragraph(props) {
                     {
                         props.include && <Grid className='include-grid'>
                             <Gist id="gist-div" url={props.gist} file={props.include} />
-                            <Tooltip title="Copy to clipboard"  placement="left-start" >
+                            <Tooltip title="Copy to clipboard" placement="left-start" >
                                 <FileCopyIcon className='copy-to-clipboard'
                                     onClick={() => copyToClipboard(props.include)}>copy</FileCopyIcon>
                             </Tooltip>
