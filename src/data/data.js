@@ -1,3 +1,5 @@
+let gistUrl = 'https://gist.github.com/StefanGorgevik/1e74543011068bba4c8addab43f0b56a#file-'
+
 export const article1 = [{
     title: "Event Capturing",
     text: ["JS event listeners fire not only on a single DOM element but on all its descendants. So, every event listener put on a parent will be triggered for its children too. With event delegation, you don't have to add event listener to each descendant, you can simply add it to the parent, capture the event and check the event.target that comes with the event."]
@@ -10,18 +12,12 @@ export const article1 = [{
 {
     title: "IIFE – Immediately Invoked Function Expression",
     text: ["The code gets executed as soon as it is created. They don’t pollute the global object and you can isolate your functions easily by creating an IIFE."],
-    include: [
-        "(function hello() {",
-        ":s1 console.log('hello');",
-        "})(); // it will be invoked immediately after creation",
-    ]
+    include: 'iife.txt'
 },
 {
     title: "Difference between function definition and expression",
     text: ["Expressions resolve in a value even if it is undefined, and a function definition is only a statement. MDN: an expression is any valid unit of code resolves to a value. A definition actually creates a reference, but not a value."],
-    include: [
-        "function foo() { }  // definition that creates a reference but not a value",
-        "var foo = () { } // expression that creates a value"]
+    include: 'function-expression'
 },
 {
     title: 'Hoisting',
@@ -30,42 +26,22 @@ export const article1 = [{
 {
     title: 'Difference between == and ===',
     text: ["It is a well-known fact that using === is better than ==, however, if you know exactly what you are comparing, using == is completely okay. Let's see the difference."],
-    include: ["== checks equality and doesn’t do type coercion", "=== checks for equality and type (does type coercion)"]
+    include: 'type-coercion'
 },
 {
     title: 'Dot vs Bracket notation',
     text: ['There are two ways to access properties in a object. With dot and bracket notation. Dot notation is usually used when you are certain of they object key, and bracket notation can be used for a more dynamic access to the objects.'],
-    include: ["let object = {person: 'Mike'};",
-        "let person = object.person; //dot notation",
-        "let person = object[person]; //bracket notation"]
+    include: 'dots-vs-bracket'
 },
 {
     title: "Ternary operator",
     text: ["Ternary operators help us write smoother code while avoiding ifs and elses all the time. You can have a conditional that is only one line of code. Also, one ternary operation can be inside another ternary operation and so on."],
-    include: [
-        "let age = 15;",
-        "if(age > 15) {",
-        "console.log('age is bigger')",
-        "} else {",
-        "console.log('age is smaller')",
-        "}",
-        " ",
-        "//with ternary operator",
-        "console.log((age > 15) ? 'age is bigger' : 'age is smaller ) // '?' is your if, ':' is your else "
-    ]
+    include: 'ternary'
 },
 {
     title: "Destructuring",
     text: ["Destructuring assignment allows you to assign the properties of an array or object to variables using syntax that looks similar to array or object literals."],
-    include: [
-        "//Object Destructuring",
-        "let person = {name: 'Mike', country: 'France'};",
-        "let {name, country} = person;",
-        "//Array Destructuring",
-        "let people = ['Mike', 'Geoffrey'];",
-        "let [person1, person2] = people; //person1 is Mike, person2 is Geoffrey"
-
-    ]
+    include: 'destructuring'
 },
 {
     title: "Use strict",
@@ -80,51 +56,29 @@ export const article1 = [{
 {
     title: "Promises",
     text: ["With the help of promises, we can deal with asynchronous code in our application more easily. When you make a promise, that can be fulfilled in the future, you have to return something because it is a promise. That being said, a promise can return three outcomes:"],
-    include: ["pending (working) - the result is undefined", "fulfilled - the result is a value.", "rejected - the result is an error objects"]
+    include: 'promises'
 },
 {
     title: "Callbacks",
     text: ["Callbacks are mainly needed for asynchronous operations.Async callbacks are functions that are specified as arguments when calling a function which will start executing code in the background. Because they are passed as a parameter to another function and they are used when one function has to wait for another function to end and give back the result.",
         " Callbacks are used when you need to wait and return something, but without stopping the application from working."
     ],
-    include: ["function sayHello(name) { alert('Hello ' + name); }", "function welcomeUser(callback) {", "var name = prompt('Please enter your name.');", "callback(name); }", "welcomeUser(sayHello);"]
+    include: 'callbacks'
 },
 {
     title: "Async - await",
     text: ["When you add the word 'async' before a function, it means that a function always returns a promise. Other values are wrapped in a resolved promise automatically. Async ensures that the function returns a promise, and wraps non-promises in it. On the other hand, the word 'await' makes JavaScript wait until that promise settles and returns its result."],
-    include: [
-        "async function getResult() { ",
-        "let promise = new Promise((resolve, reject) => {",
-        "       setTimeout(() => resolve('done!'), 1000)",
-        " }); ",
-        "let result = await promise; // wait until the promise resolves (*)  ",
-        "return result; // will return result after the promise is fulfilled ",
-        "} ",
-        "getResult()"
-    ]
+    include: 'async-await'
 },
 {
     title: "Try – Catch – Finally",
     text: ["With the help of the ‘try’ statement you can define a block of code to be tested for errors while it is being executed. If by any reason there is an error in the try block, the ‘catch’ statement is there to return the error, and stop the code execution. The ‘finally’ statement executes at the end and after the ‘try’ and ‘catch’ statements are executed. It is executed regardless the outcome from the ‘try-catch’ block."],
-    include: [
-        "try {",
-        "//make some calls here, for example, you can use promises and wait for them to be fulfilled",
-        "} catch (error) {",
-        "console.log(error) //you can throw the Error here and stop the code execution",
-        "}finally () {",
-        "//this will be executed regardless the outcome of the try-catch block",
-        "}"
-    ]
+    include: 'try-catch-finally'
 },
 {
     title: "Anonymous functions",
     text: ["They are functions that have no name, and can’t be accessed after their initial creation. Functions stored in variables do not require naming. They are always executed using the name of the variable. Example:"],
-    include: [
-        "const alertMe = function() {",
-        "alert(‘You have been alerted’);",
-        "}",
-        "alertMe();"
-    ]
+    include: 'anonymous-functions'
 },
 {
     title: "Event Loop",
@@ -138,43 +92,17 @@ export const article1 = [{
         "Object-oriented programming gave us a powerful tool - inheritance, which is implemented through Javascript. Nowadays, the most famous are classes, brought to us since ES6.",
         "Classes help us avoid repetetive code, and let us use methods and constructors from another class. Every class can be extended to another one and that one, will inherit those methods and constructors. Let's see the example"
     ],
-    include: [
-        "class Student {",
-        ":s constuctor(name,age) {",
-        ":s2 this.name = name;",
-        ":s2 this.age = age;",
-        ":s1}",
-        "register() { console.log(name + 'is registered!) }",
-        "}",
-        "class Teacher extends Student {",
-        ":s1 grade(name) { console.log(name + 'is graded!) }",
-        "}",
-        "let mike = new Teacher('mike', 30)  //we create a new teacher with the teacher class",
-        "mike.register(); //with class Teacher, mike has access to the constructor, register and grade method",
-        "mike.grade('iva');"
-    ]
+    include: 'inheritance'
 },
 {
     title: "Closures",
     text: ["As we know, global variables belong to the window object. They can be accessed in functions, but if a variable is created in a function, it can't be accessed outside the function. In order for a inner function to have access to a outer function we can use Closures.  The inner function has access to the scope and variables of the outer function"],
-    include: [
-        "var count = 0;",
-        "let addRandom = ( function (num) {",
-        "return function () {return count += num}",
-        "})();",
-        "addRandom(1); //addRandom is a self-invoking function that returns a function",
-        "addRandom(2); //adds + num every time",
-        "addRandom(3); //count is now the sum of 1 + 2 + 3",
-    ]
+    include: 'closures'
 },
 {
     title: "Javascript Scope",
     text: ["The scope defines the area of your application where a variable is defined. Javascript has three scopes: global, local and block."],
-    include: [
-        "Global Scope − variables can be visible everywhere in your code",
-        "Local Scope - visible only within a function where variables are defined. (function arguments are local variables)",
-        "Block scope - the scope between ifs, loops. Block scope is the region between curly brackets",
-    ]
+    include: 'js-scope'
 },
 {
     title: "The meaning of the this keyword",
@@ -225,7 +153,8 @@ export const article1Data = {
     dropdown: true,
     title: "Javascript interview preparation",
     intro: "Every interview will make you question your skills and knowledge as a developer. For all of you javascript developers out there, i prepared a cheatsheet containing everything you need to get reminded about Javascript in depth. I have collected the data by myself and I did a research about every interview I've been to. Hopefully, this will help you. (Mistakes can be reported too :) )",
-    article: article1
+    article: article1,
+    gist: 'https://gist.github.com/StefanGorgevik/1e74543011068bba4c8addab43f0b56a'
 }
 export const article2Data = {
     id: '2',

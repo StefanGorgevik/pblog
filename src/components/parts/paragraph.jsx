@@ -4,9 +4,7 @@ import { Typography, Grid, Button } from '@material-ui/core'
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import FileCopyIcon from '@material-ui/icons/FileCopy';
-
-let s1 = '    ';
-let sArr = [{ id: 1, arr: [1, 2] }];
+import Gist from 'super-react-gist'
 
 function Paragraph(props) {
     const [opened, setOpened] = useState(false);
@@ -14,8 +12,12 @@ function Paragraph(props) {
         if (!props.dropdown) setOpened(true)
     }, [props.dropdown])
 
-    const copyToClipboard = (value) => {
-        navigator.clipboard.writeText(value)
+    const copyToClipboard = (gist, include) => {
+        let url = gist + '#file-' + include;
+        console.log('url', url)
+        fetch(url)
+        .then(res => console.log('res', res))
+        // navigator.clipboard.writeText(value)
     }
 
     return (
@@ -43,22 +45,7 @@ function Paragraph(props) {
                     })}
                     {
                         props.include &&
-                        <Grid className='include-grid' item md={8}>
-                            <Grid style={{ width: "90%" }}>
-                                {props.include.map((item, i) => {
-                                    return <Typography className='text' key={i} variant="subtitle1" color="initial">
-                                        {item.substr(0, 2) !== ':s' ? item :
-                                            item.substr(0, 2) === ':s' ? (s1 + item.substr(3)) :
-                                                sArr.find(s => s.id === item.substr(2, 3)).map(item => {
-                                                    return s1 * Number(item.substr(2, 3))
-                                                })
-                                        }
-                                    </Typography>
-                                })}
-                            </Grid>
-                            <FileCopyIcon onClick={() => copyToClipboard(props.include)}
-                                className='copy-to-clipboard'></FileCopyIcon>
-                        </Grid>
+                            <Gist className="gist-div" url={props.gist} file={props.include} />
                     }
                 </Grid>}
 

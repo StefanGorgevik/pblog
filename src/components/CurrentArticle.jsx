@@ -19,7 +19,8 @@ function CurrentArticle(props) {
                 text={item.text} 
                 include={item.include ? item.include : false} 
                 more={item.more ? item.more : false} 
-                selectArticle={() => props.selectArticle(item, 'more')}/>
+                selectArticle={() => props.selectArticle(item, 'more')}
+                gist={article.gist ? article.gist : ''}/>
             })}
         </Grid>
     )
