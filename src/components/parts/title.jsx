@@ -1,12 +1,24 @@
 import React from 'react'
+import { makeStyles } from '@material-ui/core/styles';
 import { Typography } from '@material-ui/core'
 
+const useStyles = makeStyles({
+  title: {
+    paddingTop: '1%',
+    paddingBottom: '1%',
+    fontFamily: 'Syne Mono',
+    margin: '0 auto',
+    color: 'white',
+    borderBottom: '1px solid white'
+  },
+});
+
 function Title(props) {
-    return (
-        <Typography variant={props.variant}
-          style={{ paddingTop: '1%', paddingBottom: '1%', fontFamily: 'Syne Mono', margin: '0 auto'}} 
-        className='intro' color="initial">{props.title}</Typography>
-    )
+  const classes = useStyles();
+  return (
+    <Typography variant={props.variant}
+      className={classes.title} color="initial">{props.title}</Typography>
+  )
 }
 
 export default Title

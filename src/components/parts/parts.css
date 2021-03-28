@@ -3,50 +3,61 @@
     flex-direction: row;
     align-items: center;
     cursor: pointer;
-    background-color: #140b20 !important;
+    background-color: #2d3a5f !important;
     padding: 1%;
     border-radius: 10px;
     margin-bottom: 5px;
     font-size: 18px;
     min-width: 100% !important;
-    color: rgb(34, 233, 16);
+    color: rgb(219, 219, 80) !important;
 }
 
-
 .paragraph-dropdown:hover {
-    background-color: #140b20b6 !important;
+    background-color: #61576eb4 !important;
 }
 
 .paragraph-wrapper{ 
+    max-width: 100% !important;
     padding:1%;
 }
 
 .paragraph-text {
-    background-color: rgba(133, 126, 126, 0.822);
     border-radius: 10px;
     padding: 1%;
     font-size: 16px;
     letter-spacing: 0.5px;
-    font-weight: bold;
 }
 
 .paragraph-title-drop {
     display: flex;
+    justify-content: space-between;
     min-width: 100% !important;
 }
 
-.more-button {
-    background-color: rgb(92, 89, 89) !important;
-    min-height: 100%;
-    min-width: 60px !important;
-    border-radius: 10px !important;
-    font-weight: bold !important;
-    color: aliceblue !important;
+.paragraph-typo {
+    color: rgb(219, 219, 80) !important;
+    font-weight: 500 !important;
 }
 
+.more-button {
+    background-color: #2d3a5f !important;
+    min-height: 100%;
+    width: 150px !important;
+    border-radius: 10px !important;
+    font-weight: bold !important;
+    color: rgb(219, 219, 80) !important;
+    font-family: 'Syne Mono', monospace !important;
+    letter-spacing: 1.5px !important;
+    font-size: 17px !important;
+    text-transform: lowercase !important;
+}
+
+.more-button:hover {
+    background-color: #61576eb4 !important;
+}
 
 .dropdown-smaller {
-    min-width: 87.5% !important;
+    min-width: 80% !important;
     margin-right: 10px !important; 
 }
 
@@ -56,20 +67,24 @@
     max-height: 15%;
     max-width: 15% !important;
     margin: 0 !important;
-    color: white !important;
+    color: rgb(219, 219, 80) !important;
     cursor: pointer;
     padding: 5px !important;
     font-size: 2em !important;
+    border-radius: 25% !important;
+    margin-left: 25px !important;
+    margin-bottom: 5px !important;
 }
 
 .copy-to-clipboard:hover {
-    background-color: rgb(119, 196, 199) !important;
-    color: #000 !important;
+    background-color: #61576eb4 !important;
 }
-
-.gist-div {
+.gist {
+    width: 100% !important;
+}
+#gist-div {
     margin: 5px !important;
-    width: 90% !important;
+    min-width: 100% !important;
 }
 
 .gist-meta {
@@ -80,28 +95,40 @@
     color: white !important;
     border: none !important;
     padding: 1% !important;
+    padding-bottom: 0 !important;
+    width: 100% !important;
 }
 
 .gist-data {
     border: none !important;
     border-radius: 10px !important;
     padding: 1% !important;
-    background-color: #140b20 !important;
+    background-color: #01023f !important;
+    width: 100% !important;
 }
 
 .gist-data tbody{
-    background-color: #140b20 !important;
+    background-color: #01023f !important;
     border: none !important;
     color: white !important;
     padding: 5% !important;
+    padding-bottom: 0 !important;
+    width: 100% !important;
 }
 .gist-data tbody tr td {
     font-family: 'Syne Mono', monospace !important;
     border: none !important;
-    color: rgb(34, 233, 16) !important;
+    color: rgb(219, 219, 80) !important;
     font-size: 14px !important;
 }
 .gist-data table tbody tr td td{
     padding: 5% !important;
+}
 
+.include-grid {
+    display: flex;
+    flex-direction: column;
+    background-color: #01023f !important;
+    border-radius: 10px;
+    width: 100%;
 }
