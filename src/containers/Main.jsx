@@ -19,7 +19,6 @@ export default function Main() {
     const [showMessageModal, setMessageModal] = useState(false);
     const [comments, setComments] = useState('');
     const [modalText, setModalText] = useState('');
-    const [openedAllClicked, setOpenedAllClicked] = useState(true);
 
     const setPageContent = useCallback(() => {
         let content = null;
@@ -36,7 +35,6 @@ export default function Main() {
                 content = <CurrentArticle
                     selectArticle={selectArticle}
                     currentArticle={currentArticle}
-                    allOpened={openedAllClicked}
                 />
                 break;
             }
@@ -86,7 +84,6 @@ export default function Main() {
             comments,
             articleToReport
         }
-        console.log('ticket', ticket)
         //send it somewhere and close the modal in the response
         setMessageModal(true);
         setModalText('Thank you for submitting the mistake!');
@@ -101,8 +98,6 @@ export default function Main() {
         setReportClicked(false);
         setPage('browse');
     }
-
-    console.log('MAIn', openedAllClicked)
 
     return (
         <Grid>
@@ -121,8 +116,7 @@ export default function Main() {
             <TopHeader />
             <Grid className='bottom'>
                 <Header setPage={setPage} page={page}
-                    openAll={setOpenedAllClicked}
-                    allOpened={openedAllClicked}
+                    shouldShow={currentArticle ? currentArticle.dropdown : false}
                 />
                 {content}
             </Grid>

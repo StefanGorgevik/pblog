@@ -7,7 +7,6 @@ import Paragraph from './parts/paragraph'
 import { allArticles } from '../data/data'
 
 function CurrentArticle(props) {
-    console.log('props', props)
     const article = props.currentArticle ? props.currentArticle : allArticles[0];
     return (
         <Grid className='current-article'>
@@ -22,7 +21,6 @@ function CurrentArticle(props) {
                 more={item.more ? item.more : false} 
                 selectArticle={() => props.selectArticle(item, 'more')}
                 gist={article.gist ? article.gist : ''}
-                allOpened={props.allOpened}
                 />
             })}
         </Grid>

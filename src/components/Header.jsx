@@ -5,7 +5,7 @@ import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import {GlobalContext} from '../context/GlobalState'
 
-function Header({ page, setPage }) {
+function Header({ page, setPage, shouldShow }) {
     const {openAllParagraphs, opened} = useContext(GlobalContext);
     console.log(openAllParagraphs, opened)
     return (
@@ -19,7 +19,7 @@ function Header({ page, setPage }) {
                     className={page === "report" ? "menu-item menu-item-active" : "menu-item"}>Report</MenuItem>
             </Grid>
             {
-                page === 'current' &&
+                page === 'current' && shouldShow &&
                 <Button onClick={openAllParagraphs}
                     className='open-button'>{opened ? 'Close all' : 'Open all'}
                     {!opened ? <KeyboardArrowDownIcon className='open-arrow' /> :

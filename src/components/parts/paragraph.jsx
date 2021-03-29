@@ -11,10 +11,11 @@ import {GlobalContext} from '../../context/GlobalState'
 function Paragraph({ dropdown, allOpened, more, text, include, selectArticle, bold, gist }) {
     const [paragraphOpened, setParagraphOpened] = useState(false);
     const {opened} = useContext(GlobalContext)
-    console.log('opne', opened);
 
     useEffect(() => {
-        if(!dropdown) setParagraphOpened(true)
+        if(!dropdown){
+            console.log('dropw', dropdown)
+            setParagraphOpened(true)}
         if(opened) setParagraphOpened(true) 
         else setParagraphOpened(false) 
     }, [dropdown, opened])
@@ -59,7 +60,15 @@ function Paragraph({ dropdown, allOpened, more, text, include, selectArticle, bo
                             </Tooltip>
                         </Grid>
                     }
-                </Grid>}
+                </Grid>
+                }
+                {
+                    !dropdown && 
+                    text.map((text, i) => {
+                        return <Typography key={i}
+                            className='paragraph-typo text'>{text}</Typography>
+                    })
+                }
         </Grid>
 
     )
