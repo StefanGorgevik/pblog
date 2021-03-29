@@ -32,8 +32,8 @@ export const article3Data = {
 export const article4Data = {
     id: '4',
     dropdown: true,
-    title: "Javascript must-know methods",
-    intro: "Javascript owns several included methods that are available to us all the time, but ES6 brought several that can really ease our job. This is especially important when you are trying to write understandable and clean code. Let's take a look at 15 javascript methods",
+    title: "Javascript methods",
+    intro: "Javascript owns several methods that are available to us all the time, but ES6 brought several that eases our job even more. This is especially important when we are trying to write understandable and clean code. Let's take a look.",
     article: article4,
     gist: 'https://gist.github.com/StefanGorgevik/9c9db408fc17126148057f562446f7ad'
 }

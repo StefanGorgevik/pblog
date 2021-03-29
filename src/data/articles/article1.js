@@ -105,4 +105,10 @@ export const article1 = [{
 {
     title: "The meaning of the this keyword",
     text: ["When you write 'this' in your application you are actually referring to the parent object where the code is located at. For example, in a script tag in HTML, it refers to the window object."]
-}]
+},
+{
+    title: "Javascript methods",
+    text: ["You need to keep up with the new things that Javascript offers. There are a lot of methods that will help you write less loops and you need to get familiar with those. There is a separate article for Javascript methods that you need to know."],
+    more: true
+},
+]

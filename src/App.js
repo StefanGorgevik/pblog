@@ -1,10 +1,13 @@
 import './index.css';
 import Main from './containers/Main';
+import { GlobalContextProvider } from './context/GlobalState'
 
 function App() {
   return (
     <div className="App">
-      <Main />
+      <GlobalContextProvider> 
+        <Main />
+      </GlobalContextProvider>
     </div>
   );
 }

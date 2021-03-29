@@ -19,6 +19,7 @@ export default function Main() {
     const [showMessageModal, setMessageModal] = useState(false);
     const [comments, setComments] = useState('');
     const [modalText, setModalText] = useState('');
+    const [openedAllClicked, setOpenedAllClicked] = useState(true);
 
     const setPageContent = useCallback(() => {
         let content = null;
@@ -34,7 +35,9 @@ export default function Main() {
             case 'current': {
                 content = <CurrentArticle
                     selectArticle={selectArticle}
-                    currentArticle={currentArticle} />
+                    currentArticle={currentArticle}
+                    allOpened={openedAllClicked}
+                />
                 break;
             }
             case 'report': {
@@ -99,6 +102,8 @@ export default function Main() {
         setPage('browse');
     }
 
+    console.log('MAIn', openedAllClicked)
+
     return (
         <Grid>
             {showMessageModal && <ReportSuccessModal text={modalText}
@@ -115,7 +120,10 @@ export default function Main() {
                 comments={comments} />}
             <TopHeader />
             <Grid className='bottom'>
-                <Header setPage={setPage} page={page} />
+                <Header setPage={setPage} page={page}
+                    openAll={setOpenedAllClicked}
+                    allOpened={openedAllClicked}
+                />
                 {content}
             </Grid>
         </Grid>

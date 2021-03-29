@@ -39,6 +39,14 @@
     margin-left: 10px;
 }
 
+.header-wrapper {
+    display: flex;
+    flex-direction: row;
+    max-width: 15% !important;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
 .header {
     display: flex;
     flex-direction: column;
@@ -47,11 +55,33 @@
     margin: 0 auto;
     border-radius: 10px !important;
     text-align: center !important;
-    max-width: 15% !important;
     cursor: pointer;
     max-height: 15vh !important;
     color: rgb(219, 219, 80) !important;
     margin-top: 170px !important;
+}
+
+.open-button {
+    width: 130px !important;
+    margin-top: 350px !important;
+    color: rgb(219, 219, 80) !important;
+    text-transform: lowercase !important;
+    left: 30px !important;
+    background-color: #2d3a5f !important;
+    border-radius: 10px !important;
+    margin-left: 20px !important;
+    position: fixed !important;
+}
+
+.open-button:hover {
+    background-color: #61576eb4 !important;
+}
+
+.open-arrow {
+    background-color: #1f2947 !important;
+    height: 100% !important;
+    margin-left: 20px !important;
+    border-radius: 10px !important;
 }
 
 .menu-item {
