@@ -2,7 +2,7 @@ import {article1} from './articles/article1'
 import {article2} from './articles/article2'
 import {article3} from './articles/article3'
 import article4 from './articles/article4'
-// let gistUrl = 'https://gist.github.com/StefanGorgevik/1e74543011068bba4c8addab43f0b56a#file-' //js interview questions
+import article5 from './articles/article5'
 
 export const article1Data = {
     id: '1',
@@ -38,8 +38,17 @@ export const article4Data = {
     gist: 'https://gist.github.com/StefanGorgevik/9c9db408fc17126148057f562446f7ad'
 }
 
+export const article5Data = {
+    id: '5',
+    dropdown: true,
+    title: "React Class - Lifecycle methods",
+    intro: "If you create a class component in React, you get several methods that have a certain order in execution. Knowing this order is crucial if you want to stop your React app from doing unnecessary re-renders. We will cover every life-cycle method there is, but there only a couple of them that you truly need to know. A lot of them are deprecated or changed, and it is really rare to find a good use for them.",
+    article: article5,
+    gist: 'https://gist.github.com/StefanGorgevik/0e8fd36df0f13b46f810d29eee9611ba'
+}
 
-export const allArticles = [article1Data, article2Data, article3Data, article4Data]
+
+export const allArticles = [article1Data, article2Data, article3Data, article4Data, article5Data]
 
 
 

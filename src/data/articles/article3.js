@@ -1,6 +1,12 @@
 
 export const article3 = [
     {
+        title: "What is React?",
+        text: ["React was created by Facebook in 2011 and it serves as a front-end library. It is used for building dynamic pages, single-page websites. It can be used for both mobile and web applications. Every component in React can be reused, and you can create complex and dynamic user interfaces.",
+            "React supports server-side rendering (which is a technique that renders the client-side application on the server and then it sends it directly to the user.",
+            "React uses the virtual DOM instead of the browser DOM"],
+    },
+    {
         title: "How react works with the virtual DOM?",
         text: ["Because nowadays we are using the dynamic approach of creating website, it is really hard to communicate directly with the DOM and it takes a lot more time to accomplish something. In order for React to work properly when creating a website, there is a virtual DOM (not created by and for React), that compares if anything changed between the DOM and the React elements. If anything changes in your components, the difference between the DOM and your app will be applied by the Virtual DOM."]
     },
@@ -18,6 +24,11 @@ export const article3 = [
             "As for the uncontrolled components, the form data is handled by the actual DOM. This means that with uncontrolled elements, you can write a handler that gets the refs values directly from the DOM, and not for each state update."]
     },
     {
+        title: "Difference between a component and element",
+        text: ["Elements are plain objects that are actually returned from the components. An element is what describes the DOM nodes that a component represents.",
+            "On the other side, a component can be a function or a Class, which comes with several methods, like render(), componentDidMount(), etc. The class components return an element in their render() method, and functional components return the element as a normal function."]
+    },
+    {
         title: "Higher-order component (HOC)",
         text: ["It is a function that receives a component and returns a new one. With HOC, you can reuse a lot of code and avoid repeating logic. For example, maybe you didn't know that, but Redux's connect function is actually a HOC."]
     },
@@ -28,5 +39,10 @@ export const article3 = [
     {
         title: "setState() actions",
         text: ["setState actions are asynchronous because they are not directly mutating the state but they send a transition. Mainly, setState is asynchrounous because it rerenders parts of your application. Making it syncronous will freeze the browser. setState can also take a callback function that is invoked after setState finishes and the component finished its re-render. This makes setState() to be asynchronous."]
+    },
+    {
+        title: "React Class - Lifecycle methods",
+        text: ["Every class component provides several methods including componentDidMount, componentDidUpdate, shouldComponentUpdate, render, etc. As for the functional components, you have hooks that you can use, like useEffect. Take a look at the article if you want to learn more."],
+        more: true
     }
 ]

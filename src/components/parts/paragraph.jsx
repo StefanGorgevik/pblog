@@ -48,9 +48,10 @@ function Paragraph({ dropdown, more, text, include, selectArticle, bold, gist })
             { dropdown && paragraphOpened &&
                 <Grid className='paragraph-text' item>
                     {text.map((text, i) => {
-                        return <Typography key={i}
-                            className='paragraph-typo text'>{text}</Typography>
+                        return (<Typography key={i}
+                            className='paragraph-typo text'>{text}</Typography>)
                     })}
+
                     {
                         include && <Grid className='include-grid'>
                             <Gist className="gist-div" url={gist} file={include} />
