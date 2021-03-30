@@ -10,7 +10,7 @@ function CurrentArticle(props) {
     const article = props.currentArticle ? props.currentArticle : allArticles[0];
     return (
         <Grid className='current-article'>
-            <Title variant='h3' title={article.title} />
+            <Title variant='h4' title={article.title} />
             <Intro intro={article.intro} />
             {article.article.map((item, i) => {
                 return <Paragraph key={i} 

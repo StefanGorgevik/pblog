@@ -116,6 +116,7 @@ export default function Main() {
             <TopHeader />
             <Grid className='bottom'>
                 <Header setPage={setPage} page={page}
+                    disableCurrent={currentArticle === null}
                     shouldShow={currentArticle ? currentArticle.dropdown : false}
                 />
                 {content}

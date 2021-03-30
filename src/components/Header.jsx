@@ -5,15 +5,14 @@ import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import {GlobalContext} from '../context/GlobalState'
 
-function Header({ page, setPage, shouldShow }) {
+function Header({ page, setPage, shouldShow, disableCurrent }) {
     const {openAllParagraphs, opened} = useContext(GlobalContext);
-    console.log(openAllParagraphs, opened)
     return (
         <Grid className='header-wrapper'>
             <Grid className='header' >
                 <MenuItem onClick={() => setPage('browse')}
                     className={page === "browse" ? "menu-item menu-item-active" : "menu-item"}>Browse all</MenuItem>
-                <MenuItem onClick={() => setPage('current')}
+                <MenuItem disabled={disableCurrent} onClick={() => setPage('current')}
                     className={page === "current" ? "menu-item menu-item-active" : "menu-item"}>Current</MenuItem>
                 <MenuItem onClick={() => setPage('report')}
                     className={page === "report" ? "menu-item menu-item-active" : "menu-item"}>Report</MenuItem>

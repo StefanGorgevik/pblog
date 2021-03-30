@@ -2,7 +2,7 @@ import React, { createContext, useReducer } from 'react'
 import { MainReducer, SET_PARAGRAPH_OPENED} from '../reducers/MainReducer'
 
 const initState = {
-    opned: true
+    opened: true
 }
 
 export const GlobalContext = createContext(initState)

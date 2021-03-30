@@ -6,18 +6,19 @@ import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import Gist from 'super-react-gist'
 import FileCopyIcon from '@material-ui/icons/FileCopy';
 import Tooltip from '@material-ui/core/Tooltip';
-import {GlobalContext} from '../../context/GlobalState'
+import { GlobalContext } from '../../context/GlobalState'
 
 function Paragraph({ dropdown, allOpened, more, text, include, selectArticle, bold, gist }) {
     const [paragraphOpened, setParagraphOpened] = useState(false);
-    const {opened} = useContext(GlobalContext)
+    const { opened } = useContext(GlobalContext)
 
     useEffect(() => {
-        if(!dropdown){
+        if (!dropdown) {
             console.log('dropw', dropdown)
-            setParagraphOpened(true)}
-        if(opened) setParagraphOpened(true) 
-        else setParagraphOpened(false) 
+            setParagraphOpened(true)
+        }
+        if (opened) setParagraphOpened(true)
+        else setParagraphOpened(false)
     }, [dropdown, opened])
 
     const copyToClipboard = (gist) => {
@@ -45,7 +46,7 @@ function Paragraph({ dropdown, allOpened, more, text, include, selectArticle, bo
                     {more && <Button onClick={selectArticle} className='more-button'>Read more</Button>}
                 </Grid>}
 
-            { paragraphOpened && 
+            { dropdown && paragraphOpened &&
                 <Grid className='paragraph-text' item>
                     {text.map((text, i) => {
                         return <Typography key={i}
@@ -53,22 +54,21 @@ function Paragraph({ dropdown, allOpened, more, text, include, selectArticle, bo
                     })}
                     {
                         include && <Grid className='include-grid'>
-                            <Gist id="gist-div" url={gist} file={include} />
+                            <Gist className="gist-div" url={gist} file={include} />
                             <Tooltip title="Copy to clipboard" placement="left-start" >
                                 <FileCopyIcon className='copy-to-clipboard'
                                     onClick={() => copyToClipboard(include)}>copy</FileCopyIcon>
                             </Tooltip>
                         </Grid>
                     }
-                </Grid>
-                }
-                {
-                    !dropdown && 
-                    text.map((text, i) => {
-                        return <Typography key={i}
-                            className='paragraph-typo text'>{text}</Typography>
-                    })
-                }
+                </Grid>}
+            {
+                !dropdown &&
+                text.map((text, i) => {
+                    return <Typography key={i}
+                        className='paragraph-typo text'>{text}</Typography>
+                })
+            }
         </Grid>
 
     )

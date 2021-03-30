@@ -65,13 +65,15 @@
     display: flex;
     align-items: center;
     max-height: 15%;
-    max-width: 15% !important;
+    max-width: 100% !important;
     margin: 0 !important;
     color: rgb(219, 219, 80) !important;
     cursor: pointer;
     padding: 5px !important;
     font-size: 2em !important;
     border-radius: 25% !important;
+    border-top: 1px solid white;
+    border-bottom: 1px solid white;
     margin-left: 25px !important;
     margin-bottom: 5px !important;
 }
@@ -82,9 +84,11 @@
 .gist {
     width: 100% !important;
 }
-#gist-div {
+
+.gist-div {
     margin: 5px !important;
     min-width: 100% !important;
+
 }
 
 .gist-meta {
@@ -97,6 +101,7 @@
     padding: 1% !important;
     padding-bottom: 0 !important;
     width: 100% !important;
+    margin-bottom: 5px !important;
 }
 
 .gist-data {
@@ -116,7 +121,7 @@
     width: 100% !important;
 }
 .gist-data tbody tr td {
-    font-family: 'Syne Mono', monospace !important;
+    font-family: 'Cormorant Garamond', serif;
     border: none !important;
     color: rgb(219, 219, 80) !important;
     font-size: 14px !important;
