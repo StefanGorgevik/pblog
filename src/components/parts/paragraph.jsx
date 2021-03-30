@@ -6,15 +6,14 @@ import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import Gist from 'super-react-gist'
 import FileCopyIcon from '@material-ui/icons/FileCopy';
 import Tooltip from '@material-ui/core/Tooltip';
-import { GlobalContext } from '../../context/GlobalState'
+import { GlobalContext } from '../../context/Global'
 
-function Paragraph({ dropdown, allOpened, more, text, include, selectArticle, bold, gist }) {
+function Paragraph({ dropdown, more, text, include, selectArticle, bold, gist }) {
     const [paragraphOpened, setParagraphOpened] = useState(false);
-    const { opened } = useContext(GlobalContext)
-
+    const { state } = useContext(GlobalContext)
+    const { opened } = state;
     useEffect(() => {
         if (!dropdown) {
-            console.log('dropw', dropdown)
             setParagraphOpened(true)
         }
         if (opened) setParagraphOpened(true)

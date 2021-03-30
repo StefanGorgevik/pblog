@@ -1,6 +1,6 @@
 import './index.css';
 import Main from './containers/Main';
-import { GlobalContextProvider } from './context/GlobalState'
+import { GlobalContextProvider } from './context/Global'
 
 function App() {
   return (

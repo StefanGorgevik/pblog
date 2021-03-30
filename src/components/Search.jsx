@@ -8,15 +8,13 @@ import SearchIcon from '@material-ui/icons/Search';
 export default function Search(props) {
   return (
     <Grid className="search-div">
+      <SearchIcon />
       <TextField
         onChange={(e) => props.setSearch(e.target.value)}
         className='search'
         placeholder="Search articles"
         inputProps={{ 'aria-label': 'search-articles' }}
       />
-      <IconButton onClick={props.submitSearch} type="submit"  aria-label="search">
-        <SearchIcon />
-      </IconButton>
     </Grid>
   );
 }
