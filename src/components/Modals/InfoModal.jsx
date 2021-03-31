@@ -1,10 +1,10 @@
 import React from 'react';
-import './style.css'
+import './modals.css'
+import { GlobalContext } from '../../context/Global';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
-import { GlobalContext } from '../context/Global';
 import PriorityHighIcon from '@material-ui/icons/PriorityHigh';
 import BeenhereIcon from '@material-ui/icons/Beenhere';
 

@@ -13,7 +13,7 @@
 }
 
 .paragraph-dropdown:hover {
-    background-color: #61576eb4 !important;
+    background-color: #455b99 !important;
 }
 
 .paragraph-wrapper{ 
@@ -54,7 +54,7 @@
 }
 
 .more-button:hover {
-    background-color: #61576eb4 !important;
+    background-color: #455b99 !important;
 }
 
 .dropdown-smaller {
@@ -80,7 +80,7 @@
 }
 
 .copy-to-clipboard:hover {
-    background-color: #61576eb4 !important;
+    background-color: #455b99 !important;
 }
 .gist {
     width: 100% !important;

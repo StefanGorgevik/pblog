@@ -1,12 +1,11 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import './containers.css'
 import { Grid } from '@material-ui/core'
-import Header from '../components/Header'
-import TopHeader from '../components/TopHeader'
+import TopHeader from '../components/Header/TopHeader'
 import CurrentArticle from '../components/CurrentArticle'
 import AllArticles from '../components/AllArticles/AllArticles'
-import ReportModal from '../components/ReportModal'
-import InfoModal from '../components/InfoModal'
+import ReportModal from '../components/Modals/ReportModal'
+import InfoModal from '../components/Modals/InfoModal'
 import { GlobalContext } from '../context/Global'
 
 export default function Main() {
@@ -27,6 +26,7 @@ export default function Main() {
             }
             case 'report': {
                 setReportClicked(true);
+                content = null;
                 break;
             }
             default:
@@ -45,7 +45,6 @@ export default function Main() {
             {reportClicked && <ReportModal/>}
             <TopHeader />
             <Grid className='bottom'>
-                <Header />
                 {content}
             </Grid>
         </Grid>

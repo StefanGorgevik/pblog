@@ -1,0 +1,102 @@
+.header-main {
+    display: flex;
+    flex-direction: row !important;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+}
+
+.top-header {
+    max-width: 50% !important;
+    max-height: 100px !important;
+    padding: 0 !important;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 5px auto;
+    color: aliceblue;
+    background-color: #2d3a5f;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.main-title {
+    padding: 5px;
+    padding-bottom: 0px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    font-family: 'Syne Mono', cursive !important;
+    border-radius: 10px;
+    color: rgb(219, 219, 80) !important;
+}
+
+.logo-image-1, .logo-image-2 {
+    color: aliceblue;
+    width: 60px;
+    height: 60px;
+    margin: 2px;
+    padding: 1%;
+    border-radius: 10px;
+}
+
+.logo-image-1 {
+    margin-right: 10px;
+}
+
+.logo-image-2 {
+    margin-left: 10px;
+}
+
+.header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    border-radius: 10px !important;
+    text-align: center !important;
+    cursor: pointer;
+    max-height: 10vh !important;
+    color: rgb(219, 219, 80) !important;
+    margin-left: 15px !important;
+    min-width: 50% !important;
+}
+
+.menu-item {
+    font-family: 'Syne Mono', monospace !important;
+    font-weight: bold !important;
+    text-transform: uppercase;
+    font-size: 18px !important;
+    background-color: #2d3a5f !important;
+    width: 100% !important;
+    border-radius: 10px !important;
+    height: 100% !important;
+    color: rgb(219, 219, 80) !important;
+    letter-spacing: 1px !important;
+    margin: 5px !important
+}
+
+.menu-item-active, 
+.menu-item:hover {
+    background-color: #455b99 !important;
+    border: 1px solid white !important;
+}
+
+.title-span {
+    font-size: 0.5rem !important;
+    padding-top: 7px !important;
+    padding-bottom: 7px !important;
+}
+
+.tool-tip {
+    margin: 0 auto;
+    background-color: #455b99 !important;
+    padding: 10px !important;
+    min-width: 250px !important;
+    position: absolute !important;
+    left: -20px !important;
+    bottom: -5px !important;
+    border-radius: 10px !important;
+    font-size: 0.8rem;
+}

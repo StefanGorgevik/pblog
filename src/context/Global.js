@@ -12,7 +12,7 @@ const initState = {
     showMessageModal: false,
     comments: '',
     modalText: '',
-    opened: true
+    opened: false
 }
 
 export const GlobalContext = createContext(initState)
@@ -25,7 +25,15 @@ export const GlobalContextProvider = ({ children }) => {
     }
 
     const setPage = (page) => {
-        dispatch({ type: SET_PAGE, payload: page });
+        if(page === 'current-random') {
+            let random = Math.floor(Math.random() * allArticles.length);
+            let article = allArticles[random];
+            dispatch({ type: SET_ACTIVE_ARTICLE, payload: article.id });
+            dispatch({ type: SET_CURRENT_ARTICLE, payload: article });
+            dispatch({ type: SET_PAGE, payload: 'current' });
+        } else {
+            dispatch({ type: SET_PAGE, payload: page });
+        }
     }
 
     const selectArticle = (article, type) => {
@@ -38,13 +46,14 @@ export const GlobalContextProvider = ({ children }) => {
         } else if (type === 'all') {
             current = article;
         }
+        window.localStorage.setItem('article', JSON.stringify(current));
         dispatch({ type: SET_ACTIVE_ARTICLE, payload: current.id });
         dispatch({ type: SET_CURRENT_ARTICLE, payload: current });
         setPage('current');
     }
 
     const setReportClicked = () => {
-        setPage('browse');
+        setPage(null);
         dispatch({ type: SET_REPORT_CLICKED, payload: !state.reportClicked });
     }
     

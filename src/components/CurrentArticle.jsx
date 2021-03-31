@@ -1,16 +1,26 @@
 import React from 'react'
 import './style.css'
-import { Grid } from '@material-ui/core'
+import { Grid, Button } from '@material-ui/core'
 import Title from './parts/title'
 import Intro from './parts/intro'
 import Paragraph from './parts/paragraph'
+import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
+import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import { GlobalContext } from '../context/Global'
 
 function CurrentArticle() {
-    const { selectArticle, state } = React.useContext(GlobalContext);
-    const { currentArticle } = state;
+    const { openAllParagraphs, selectArticle, state } = React.useContext(GlobalContext);
+    const { currentArticle, opened } = state;
     return (
         <Grid className='current-article'>
+            {
+                currentArticle && currentArticle.dropdown &&
+                <Button onClick={openAllParagraphs}
+                    className='open-button'>{opened ? 'Close all' : 'Open all'}
+                    {!opened ? <KeyboardArrowDownIcon className='open-arrow' />
+                        : <KeyboardArrowUpIcon className='open-arrow' />}
+                </Button>
+            }
             <Title variant='h4' title={currentArticle.title} />
             <Intro intro={currentArticle.intro} />
             {currentArticle.article.map((item, i) => {

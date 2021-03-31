@@ -48,7 +48,7 @@ export const article1 = [{
 {
     title: "Asynchronus vs synchronous operations",
     text: ["When you execute something synchronously, you wait for it to finish before moving on to another task. When you execute something asynchronously, you can move on to another task before it finishes. Synchronous or Synchronized means 'connected', or 'dependent' in some way. In other words, two synchronous tasks must be aware of one another, and one task must execute in some way that is dependent on the other, such as wait to start until the other task has completed. A synchronous function is read line-by-line and can be dependable on the previous statement.",
-        " Asynchronous means they are totally independent and neither one must consider the other in any way, either in the initiation or in execution. In asynchronous programming a unit of work runs separately from the main application thread and notifies the calling thread of its completion, failure or progress. All in all, asynchronous functions execute their code without waiting for a value from a function to be return. For asynchronous programming in Javascript we usually use callbacks, but with ES6 promises/async-await/try-catch are really famous."],
+    "Asynchronous means they are totally independent and neither one must consider the other in any way, either in the initiation or in execution. In asynchronous programming a unit of work runs separately from the main application thread and notifies the calling thread of its completion, failure or progress. All in all, asynchronous functions execute their code without waiting for a value from a function to be return. For asynchronous programming in Javascript we usually use callbacks, but with ES6 promises/async-await/try-catch are really famous."],
     more: true
 },
 {
@@ -59,7 +59,7 @@ export const article1 = [{
 {
     title: "Callbacks",
     text: ["Callbacks are mainly needed for asynchronous operations.Async callbacks are functions that are specified as arguments when calling a function which will start executing code in the background. Because they are passed as a parameter to another function and they are used when one function has to wait for another function to end and give back the result.",
-        " Callbacks are used when you need to wait and return something, but without stopping the application from working."
+    "Callbacks are used when you need to wait and return something, but without stopping the application from working."
     ],
     include: 'callbacks'
 },
