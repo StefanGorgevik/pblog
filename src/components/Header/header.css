@@ -89,14 +89,14 @@
     padding-bottom: 7px !important;
 }
 
-.tool-tip {
+/* .tool-tip {
     margin: 0 auto;
     background-color: #455b99 !important;
     padding: 10px !important;
     min-width: 250px !important;
     position: absolute !important;
     left: -20px !important;
-    bottom: -5px !important;
     border-radius: 10px !important;
     font-size: 0.8rem;
-}
+    padding-bottom: 10px !important;
+} */

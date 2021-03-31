@@ -61,7 +61,21 @@ const article4 = [
         title: 'componentWillUnmount',
         text: ["componentWillUnmount() is the only method that runs when the component is unmounting from the HTML. "],
         include: 'componentWillUnmount',
-    }
+    }, 
+    {
+        type: 'between',
+        text:[ "A few more worth mentioning."]
+    },
+    {
+        title: 'componentWillMount',
+        text: ["componentWillMount() is executed right before render occurs, bonth on server and client side."],
+        include: 'componentWillUnmount',
+    },
+    {
+        title: 'componentWillReceiveProps',
+        text: ["componentWillReceiveProps() runs when props are received and before render takes place. "],
+        include: 'componentWillReceiveProps',
+    },
 ]
 
 export default article4;

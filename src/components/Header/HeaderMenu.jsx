@@ -11,15 +11,12 @@ function HeaderMenu() {
         <Grid className='header' >
             <MenuItem onClick={() => setPage('browse')}
                 className={page === "browse" ? "menu-item menu-item-active" : "menu-item"}>Browse all</MenuItem>
-                <Tooltip enterDelay={300}
-                    title={currentArticle && <span className="tool-tip">{currentArticle.title}</span>}>
                     <MenuItem
                         onClick={() => currentArticle === null ? setPage('current-random') : setPage('current')}
                         className={page === "current" ? `menu-item menu-item-active ${currentArticle !== null && 'title-span'}` : `menu-item ${currentArticle !== null && 'title-span'}  `}>
                         {currentArticle === null ? 'Random' : 'Current:'}
                         {currentArticle !== null && <span className='title-span'>{currentArticle.title}</span>}
                     </MenuItem>
-                </Tooltip>
             <MenuItem onClick={() => setPage('report')}
                 className={page === "report" ? "menu-item menu-item-active" : "menu-item"}>Report</MenuItem>
         </Grid>

@@ -8,7 +8,7 @@ export const article1Data = {
     id: '1',
     dropdown: true,
     title: "Javascript interview preparation",
-    intro: "Every interview will make you question your skills and knowledge as a developer. For all of you javascript developers out there, I prepared a cheatsheet containing everything you need to get reminded about Javascript in depth. I have collected the data by myself and I did a research about every interview I've been to. Hopefully, this will help you.)",
+    intro: "Every interview will make you question your skills and knowledge as a developer. For all of you javascript developers out there, I prepared a cheatsheet containing everything you need to get reminded about Javascript in depth. I have collected the data by myself and I did a research about every interview I've been to. Hopefully, this will help you.",
     article: article1,
     gist: 'https://gist.github.com/StefanGorgevik/1e74543011068bba4c8addab43f0b56a'
 }
@@ -27,6 +27,7 @@ export const article3Data = {
     title: "ReactJS Interview Questions",
     intro: "No matter how much Javascript you know, learning a framework can confuse you on so many levels. If ahead of you awaits a Javascript/ReactJS interview, this article can help you a lot. I did my research and made a collection of the most important things that a React developer should know.",
     article: article3,
+    gist: 'https://gist.github.com/StefanGorgevik/9ac9fb50393bdaea8517a4c01bdb6199'
 }
 
 export const article4Data = {

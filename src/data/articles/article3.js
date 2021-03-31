@@ -44,5 +44,26 @@ export const article3 = [
         title: "React Class - Lifecycle methods",
         text: ["Every class component provides several methods including componentDidMount, componentDidUpdate, shouldComponentUpdate, render, etc. As for the functional components, you have hooks that you can use, like useEffect. Take a look at the article if you want to learn more."],
         more: true
+    },
+    {
+        title: "Redux Saga",
+        text: ["Redux Saga is a library that acts as a middleware for the Redux store and allows outside resources to be interacted with asynchronously. With this middleware, you can make HTTP request, access browser storages without waiting for the operation to finish. Sagas are actually asynchronous functions that wait for actions that trigger them."],
+    },
+    {
+        title: "Arrow functions in React",
+        text: ["With ES6, arrow functions made a simpler syntax for writing functions. Because auto binding in ES6 is disabled, arrow functions let you bind the contenxt of the components properly."],
+        include: 'arrow-functions'
+    },
+    {
+        title: "Ref",
+        text: ["Ref stands for reference and it helps with storing a reference to an element, which will be returned by the render method of that element. They are good for managin focus on your page, or to start animations. Ref is a function that can access the DOM element and the React element created by you. Usually, refs are used when you want a child component's value to be changed without changing any props."],
+    },
+    {
+        title: "Modularizing code in react",
+        text: ["Code modularization can be done with creating separate components in separate files, and then export them and import them where needed."],
+    },
+    {
+        title: "Pure components",
+        text: ["Pure functions accept an input and return a value without making any modifications outside of the scope.That being said, pure components compares the props and state, and in sense, it handles the shouldComponentUpdate method for you. Pure components are used for performance optimization."],
     }
 ]
