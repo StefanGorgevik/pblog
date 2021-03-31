@@ -8,7 +8,7 @@ import FileCopyIcon from '@material-ui/icons/FileCopy';
 import Tooltip from '@material-ui/core/Tooltip';
 import { GlobalContext } from '../../context/Global'
 
-function Paragraph({ dropdown, more, text, include, selectArticle, bold, gist }) {
+function Paragraph({ dropdown, more, text, include, selectArticle, bold, gist, between }) {
     const [paragraphOpened, setParagraphOpened] = useState(false);
     const { state } = useContext(GlobalContext)
     const { opened } = state;
@@ -18,7 +18,7 @@ function Paragraph({ dropdown, more, text, include, selectArticle, bold, gist })
         }
         if (opened) setParagraphOpened(true)
         else setParagraphOpened(false)
-    }, [dropdown, opened])
+    }, [dropdown, opened, between])
 
     const copyToClipboard = (gist) => {
         let url = 'https://api.github.com/gists/1e74543011068bba4c8addab43f0b56a';
@@ -47,10 +47,10 @@ function Paragraph({ dropdown, more, text, include, selectArticle, bold, gist })
 
             { dropdown && paragraphOpened &&
                 <Grid className='paragraph-text' item>
-                    {text.map((text, i) => {
+                    {text.map((item, i) => {
                         return (<Typography key={i}
-                            className='paragraph-typo text'>{text}</Typography>)
-                    })}
+                            className='paragraph-typo text'>{item}</Typography>)})
+                    }
 
                     {
                         include && <Grid className='include-grid'>
@@ -65,11 +65,10 @@ function Paragraph({ dropdown, more, text, include, selectArticle, bold, gist })
             {
                 !dropdown &&
                 text.map((text, i) => {
-                    return <Typography key={i}
-                        className='paragraph-typo text'>{text}</Typography>
+                    return <Typography key={i} className={between ? 'between-text text' : 'paragraph-typo text'}>{text}</Typography>
                 })
             }
-        </Grid>
+        </Grid >
 
     )
 }

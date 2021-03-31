@@ -15,13 +15,14 @@ function CurrentArticle() {
             <Intro intro={currentArticle.intro} />
             {currentArticle.article.map((item, i) => {
                 return <Paragraph key={i}
-                    dropdown={currentArticle.dropdown}
+                    dropdown={!item.type ? currentArticle.dropdown : false}
                     bold={item.title}
                     text={item.text}
                     include={item.include ? item.include : false}
                     more={item.more ? item.more : false}
                     selectArticle={() => selectArticle(item, 'more')}
                     gist={currentArticle.gist ? currentArticle.gist : ''}
+                    between={item.type && item.type === 'between'}
                 />
             })}
         </Grid>
