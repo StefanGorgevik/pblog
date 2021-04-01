@@ -12,7 +12,7 @@ export default function Search(props) {
       <TextField
         onChange={(e) => props.setSearch(e.target.value)}
         className='search'
-        placeholder="Search articles"
+        placeholder="Search articles by title"
         inputProps={{ 'aria-label': 'search-articles' }}
       />
     </Grid>
