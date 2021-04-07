@@ -6,13 +6,12 @@ import Search from '../Search'
 import { GlobalContext } from '../../context/Global'
 
 function AllArticles() {
-    const { state, allArticles } = useContext(GlobalContext);
-    const { activeArticle } = state;
+    const { allArticles } = useContext(GlobalContext);
     const [articles, setArticles] = useState([]);
 
     useEffect(() => {
         setArticles(allArticles)
-    }, [])
+    }, [allArticles])
 
     const saveSearchValue = (search) => {
         if (search === '') return setArticles(allArticles);

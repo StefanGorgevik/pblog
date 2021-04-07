@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import './header.css'
-import { Grid, MenuItem, Tooltip } from '@material-ui/core'
+import { Grid, MenuItem } from '@material-ui/core'
 import { GlobalContext } from '../../context/Global'
 
 function HeaderMenu() {

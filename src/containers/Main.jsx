@@ -33,7 +33,7 @@ export default function Main() {
                 break;
         }
         setContent(content);
-    }, [page])
+    }, [page, setReportClicked])
 
     useEffect(() => {
         setPageContent()
