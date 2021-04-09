@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react'
+import React, { useState, useEffect, useContext, useRef } from 'react'
 import './parts.css'
 import { Typography, Grid, Button } from '@material-ui/core'
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
@@ -8,17 +8,25 @@ import FileCopyIcon from '@material-ui/icons/FileCopy';
 import Tooltip from '@material-ui/core/Tooltip';
 import { GlobalContext } from '../../context/Global'
 
-function Paragraph({ dropdown, more, text, include, selectArticle, bold, gist, between }) {
+function Paragraph({ dropdown, more, text, include, selectArticle, bold, gist, between, shouldJump, tempJump, setJump }) {
     const [paragraphOpened, setParagraphOpened] = useState(false);
     const { state } = useContext(GlobalContext)
     const { opened } = state;
+    const paragraphRef = useRef(null)
+
     useEffect(() => {
+        if(tempJump && shouldJump) { 
+            console.log('PARAGRAPH REF', paragraphRef)
+            console.log('PARAGRAPH REF current', paragraphRef.current)
+            paragraphRef.current.scrollIntoView()
+            setJump(false)
+        }
         if (!dropdown) {
             setParagraphOpened(true)
         }
         if (opened) setParagraphOpened(true)
         else setParagraphOpened(false)
-    }, [dropdown, opened, between])
+    }, [dropdown, opened, between, tempJump, setJump, shouldJump])
 
     const copyToClipboard = (gist) => {
         let url = 'https://api.github.com/gists/1e74543011068bba4c8addab43f0b56a';
@@ -36,7 +44,8 @@ function Paragraph({ dropdown, more, text, include, selectArticle, bold, gist, b
             {dropdown &&
                 <Grid item className='paragraph-title-drop'>
                     <Grid onClick={() => setParagraphOpened(!paragraphOpened)} item
-                        className={more ? 'paragraph-dropdown dropdown-smaller' : 'paragraph-dropdown'}>
+                        className={more ? 'paragraph-dropdown dropdown-smaller' : 'paragraph-dropdown'}
+                         ref={shouldJump ? paragraphRef : null}  >
                         <Typography
                             className='paragraph-title text'
                             color="initial">{bold}</Typography>
@@ -45,11 +54,12 @@ function Paragraph({ dropdown, more, text, include, selectArticle, bold, gist, b
                     {more && <Button onClick={selectArticle} className='more-button'>Read more</Button>}
                 </Grid>}
 
-            { dropdown && paragraphOpened &&
+            {dropdown && paragraphOpened &&
                 <Grid className='paragraph-text' item>
                     {text.map((item, i) => {
                         return (<Typography key={i}
-                            className='paragraph-typo text'>{item}</Typography>)})
+                            className='paragraph-typo text'>{item}</Typography>)
+                    })
                     }
 
                     {

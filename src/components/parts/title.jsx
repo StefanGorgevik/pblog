@@ -9,7 +9,9 @@ const useStyles = makeStyles({
     fontFamily: 'Syne Mono',
     margin: '0 auto',
     color: 'white',
-    borderBottom: '1px solid white'
+    borderBottom: '1px solid white',
+    position: 'fixed',
+    marginBottom: '20px'
   },
 });
 

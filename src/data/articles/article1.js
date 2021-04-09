@@ -8,12 +8,12 @@ export const article1 = [{
         "It is also known as event propagation, and it means that events on an element can “bubble up” and also fire on all parents. When an event occurs on an inner element, it first runs the handlers on itself, then on its parent, then all the way up on other ancestors (maybe even all the way to the body). This can be avoided by adding an event listener to the parent element and then check what the event.target matches to."]
 },
 {
-    title: "IIFE – Immediately Invoked Function Expression",
-    text: ["The code gets executed as soon as it is created. They don’t pollute the global object and you can isolate your functions easily by creating an IIFE."],
+    title: "IIFE",
+    text: ["IIFE stands for Immediately Invoked Function Expression. The code gets executed as soon as it is created. They don’t pollute the global object and you can isolate your functions easily by creating an IIFE."],
     include: 'iife'
 },
 {
-    title: "Difference between function definition and expression",
+    title: "Function definition and expression",
     text: ["Expressions resolve in a value even if it is undefined, and a function definition is only a statement. MDN: an expression is any valid unit of code resolves to a value. A definition actually creates a reference, but not a value."],
     include: 'function-expression'
 },
@@ -46,7 +46,7 @@ export const article1 = [{
     text: ["The purpose of use strict is to activate the strict mode in JavaScript that wasn’t recognized before. It is a declaration to look for mistakes in your code, like undeclared variables."]
 },
 {
-    title: "Asynchronus vs synchronous operations",
+    title: "Asynchronus vs synchronous",
     text: ["When you execute something synchronously, you wait for it to finish before moving on to another task. When you execute something asynchronously, you can move on to another task before it finishes. Synchronous or Synchronized means 'connected', or 'dependent' in some way. In other words, two synchronous tasks must be aware of one another, and one task must execute in some way that is dependent on the other, such as wait to start until the other task has completed. A synchronous function is read line-by-line and can be dependable on the previous statement.",
     "Asynchronous means they are totally independent and neither one must consider the other in any way, either in the initiation or in execution. In asynchronous programming a unit of work runs separately from the main application thread and notifies the calling thread of its completion, failure or progress. All in all, asynchronous functions execute their code without waiting for a value from a function to be return. For asynchronous programming in Javascript we usually use callbacks, but with ES6 promises/async-await/try-catch are really famous."],
     more: true

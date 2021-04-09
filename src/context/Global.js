@@ -1,5 +1,5 @@
 import React, { createContext, useReducer } from 'react'
-import { MainReducer, SET_PAGE, SET_ACTIVE_ARTICLE, SET_CURRENT_ARTICLE, SET_PARAGRAPH_OPENED, SET_REPORT_CLICKED, SET_INFO_MODAL, CLOSE_INFO_MODAL } from '../reducers/MainReducer'
+import { MainReducer, SET_PAGE, SET_ACTIVE_ARTICLE, SET_CURRENT_ARTICLE, SET_PARAGRAPH_OPENED, SET_REPORT_CLICKED, SET_INFO_MODAL, CLOSE_INFO_MODAL, JUMP_TO_PARAGRAPH } from '../reducers/MainReducer'
 import { allArticles } from '../data/data'
 
 const initState = {
@@ -12,7 +12,8 @@ const initState = {
     showMessageModal: false,
     comments: '',
     modalText: '',
-    opened: false
+    opened: false,
+    jumpParagraph: ''
 }
 
 export const GlobalContext = createContext(initState)
@@ -70,10 +71,14 @@ export const GlobalContextProvider = ({ children }) => {
         dispatch({ type: CLOSE_INFO_MODAL, payload: false });
     };
 
+    const jumpToParagraph = (title) => {
+        dispatch({ type: JUMP_TO_PARAGRAPH, payload: title });
+    }
+
     return (
         <GlobalContext.Provider value={{
             state, allArticles, dispatch, openAllParagraphs, setPage, selectArticle, setReportClicked, closeReportModal,
-            setInfoModal, closeInfoModal
+            setInfoModal, closeInfoModal, jumpToParagraph
         }}>
             {children}
         </GlobalContext.Provider>

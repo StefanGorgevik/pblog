@@ -5,6 +5,7 @@ export const SET_REPORT_CLICKED = "SET_REPORT_CLICKED"
 export const SET_INFO_MODAL = "SET_INFO_MODAL"
 export const CLOSE_INFO_MODAL = "CLOSE_INFO_MODAL"
 export const SET_PARAGRAPH_OPENED = "SET_PARAGRAPH_OPENED"
+export const JUMP_TO_PARAGRAPH = "JUMP_TO_PARAGRAPH"
 
 export const MainReducer = (state, action) => {
     switch (action.type) {
@@ -44,6 +45,11 @@ export const MainReducer = (state, action) => {
         case SET_PARAGRAPH_OPENED: {
             return {
                 ...state, opened: action.payload
+            }
+        }
+        case JUMP_TO_PARAGRAPH: {
+            return {
+                ...state, jumpParagraph: action.payload
             }
         }
         default: {
