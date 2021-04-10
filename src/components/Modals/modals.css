@@ -9,11 +9,14 @@
     color: rgb(219, 219, 80) !important;
 }
 
-.report-buttons {
+.close-buttons {
     display: flex;
     justify-content: center;
     min-width: 100% !important;
     margin: 0 auto !important;
+    margin-top: auto;
+    align-self: flex-end;
+
 }
 
 .report-button {
@@ -62,4 +65,26 @@
     padding: 2%;
     border-radius: 10px;
     resize: none;
+}
+
+.settings-modal {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.themes {
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+}
+
+.theme {
+    cursor: pointer;
+}
+
+.settings-buttons {
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
 }

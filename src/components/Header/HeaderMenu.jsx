@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import './header.css'
 import { Grid, MenuItem } from '@material-ui/core'
 import { GlobalContext } from '../../context/Global'
-
+import SettingsIcon from '@material-ui/icons/Settings';
 function HeaderMenu() {
     const { state, setPage } = useContext(GlobalContext);
     const { page, currentArticle } = state;
@@ -19,6 +19,10 @@ function HeaderMenu() {
                     </MenuItem>
             <MenuItem onClick={() => setPage('report')}
                 className={page === "report" ? "menu-item menu-item-active" : "menu-item"}>Report</MenuItem>
+            <MenuItem onClick={() => setPage('settings')}
+                className={page === "settings" ? "settings-button menu-item menu-item-active" : "menu-item settings-button "}>
+                    <SettingsIcon/>
+                </MenuItem>
         </Grid>
     )
 }

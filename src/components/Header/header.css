@@ -61,7 +61,7 @@
     max-height: 10vh !important;
     color: rgb(219, 219, 80) !important;
     margin-left: 15px !important;
-    min-width: 50% !important;
+    min-width: 55% !important;
 }
 
 .menu-item {
@@ -90,14 +90,12 @@
     padding-bottom: 7px !important;
 }
 
-/* .tool-tip {
-    margin: 0 auto;
-    background-color: #455b99 !important;
-    padding: 10px !important;
-    min-width: 250px !important;
-    position: absolute !important;
-    left: -20px !important;
-    border-radius: 10px !important;
-    font-size: 0.8rem;
-    padding-bottom: 10px !important;
-} */
+.settings-button {
+    display: flex;
+    justify-content: center !important;
+    width: 50px !important;
+    text-align: center !important;
+    margin: 0 auto !important;
+    padding-right: 10px !important;
+    padding-left: 20px !important;
+}

@@ -16,8 +16,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
   height: 100vh;
   width: 100vw;
-  background-color: #1f2947;
-  background-image: url("https://www.transparenttextures.com/patterns/az-subtle.png");
 }
 
 code {
@@ -29,5 +27,9 @@ code {
   height: 100vh;
   font-family: 'Syne Mono', monospace !important;
   overflow: hidden;
+  height: 100vh;
+  width: 100vw;
 }
+
+
 

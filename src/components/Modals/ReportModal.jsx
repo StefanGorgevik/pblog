@@ -11,6 +11,7 @@ import Button from '@material-ui/core/Button';
 import MenuItem from '@material-ui/core/MenuItem';
 import InputLabel from '@material-ui/core/InputLabel';
 import CloseIcon from '@material-ui/icons/Close';
+import CloseButtons from './CloseButtons';
 
 const useStyles = makeStyles(() => ({
     modal: {
@@ -84,10 +85,7 @@ export default function ReportModal() {
                             <textarea onChange={(e) => setComments(e.target.value)} id='textarea' placeholder='Comments' className='text-area' rows="20" cols="50">
                             </textarea>
                         </Grid>
-                        <Grid className='report-buttons'>
-                            <Button className='report-button' onClick={closeReportModal}>Cancel</Button>
-                            <Button className='report-button' onClick={submitReportedArticle}>Submit</Button>
-                        </Grid>
+                        <CloseButtons close={closeReportModal} submit={submitReportedArticle} />
                     </div>
                 </Grid>
             </Modal>

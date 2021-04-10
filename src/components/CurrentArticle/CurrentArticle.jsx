@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useCallback } from 'react'
 import './current.css'
-import { Grid, Button } from '@material-ui/core'
+import { Grid  } from '@material-ui/core'
 import Intro from '../parts/intro'
 import ParagraphScroll from './ParagraphScroll'
 import Paragraph from '../parts/paragraph'
@@ -11,24 +11,25 @@ function CurrentArticle() {
     const { currentArticle, jumpParagraph } = state;
     const [tempJump, setJump] = useState(false);
 
-    const handleScroll = (event) => {
-        console.log('event on scroll', event)
-        // let scrollTop = event.srcElement.body.scrollTop,
-        //     itemTranslate = Math.min(0, scrollTop/3 - 60);
+    // const handleScroll = (event) => {
+    //     console.log('event on scroll', event)
+    //     getScroll()
+    //     // let scrollTop = event.srcElement.body.scrollTop,
+    //     //     itemTranslate = Math.min(0, scrollTop/3 - 60);
 
-        // this.setState({
-        //   transform: itemTranslate
-        // });
-    }
+    //     // this.setState({
+    //     //   transform: itemTranslate
+    //     // });
+    // }
 
     const executeScroll = useCallback(() => {
         setJump(true)
-        window.addEventListener('scroll', handleScroll);
     },
         [setJump],
     )
 
     useEffect(() => {
+        // window.addEventListener('scroll', handleScroll);
         if (jumpParagraph !== '') {
             executeScroll()
             jumpToParagraph('')
@@ -42,7 +43,7 @@ function CurrentArticle() {
                    
                     <ParagraphScroll />
                 </Grid>}
-            <Grid className='article-scroll' onScroll={handleScroll}>
+            <Grid className='article-scroll'>
                 <Intro intro={currentArticle.intro} />
                 {currentArticle.article.map((item, i) => {
                     return <Paragraph key={i}

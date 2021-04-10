@@ -1,10 +1,19 @@
 import React, { useState } from 'react'
 import './current.css'
-import { Grid, MenuItem, Button } from '@material-ui/core'
+import { Grid, MenuItem, Tooltip } from '@material-ui/core'
 import { GlobalContext } from '../../context/Global'
 import OpenButton from '../Buttons/OpenButton'
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles((theme) => ({
+    customWidth: {
+      fontSize: '16px'
+    }
+  }));
 
 function ParagraphScroll({ active }) {
+    const classes = useStyles();
+
     const { openAllParagraphs, state, jumpToParagraph } = React.useContext(GlobalContext);
     const { currentArticle, allParagraphsOpened, jumpParagraph } = state;
     const [jumpToOpened, setJumpToOpened] = useState(false)
@@ -14,18 +23,19 @@ function ParagraphScroll({ active }) {
                 <OpenButton click={openAllParagraphs}
                     opened={allParagraphsOpened}
                     text={allParagraphsOpened ? 'Close paragraphs' : 'Open paragraphs'} />
-                <OpenButton click={() => setJumpToOpened(!jumpToOpened)} opened={jumpToOpened} text='Jump To' />
+                <OpenButton click={() => setJumpToOpened(!jumpToOpened)} opened={jumpToOpened} text='Jump to Paragraph' />
             </Grid>
             {jumpToOpened &&
                 <Grid item className='paragraph-scroll'>
                     {
                         currentArticle && currentArticle.article.map((article, index) => {
-                            return <MenuItem key={index}
+                            return  ( <Tooltip title={article.title} classes={{ tooltip: classes.customWidth }}>
+                            <MenuItem key={index}
                                 className={jumpToParagraph !== article.title ? 'paragraph-scroll-to' :
                                     'paragraph-scroll-to paragraph-scroll-to-active'}
                                 onClick={() => jumpToParagraph(article.title)}
-                                variant="h5"
-                                color="initial">{article.title.substr(0, 20)}</MenuItem>
+                                >{article.title.substr(0, 20)}</MenuItem>
+                                </Tooltip>)
                         })
                     }
                 </Grid>}

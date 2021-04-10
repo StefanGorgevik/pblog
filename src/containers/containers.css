@@ -8,3 +8,9 @@
 .text {
     font-family: 'Syne Mono', monospace !important;
 }
+
+.main {
+    height: 100vh !important;
+    width: 100vw !important;
+    background-image: url("https://www.transparenttextures.com/patterns/az-subtle.png");
+}

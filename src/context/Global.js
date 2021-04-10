@@ -1,5 +1,5 @@
 import React, { createContext, useReducer } from 'react'
-import { MainReducer, SET_PAGE, SET_ACTIVE_ARTICLE, SET_CURRENT_ARTICLE, SET_PARAGRAPH_OPENED, SET_REPORT_CLICKED, SET_INFO_MODAL, CLOSE_INFO_MODAL, JUMP_TO_PARAGRAPH } from '../reducers/MainReducer'
+import { MainReducer, SET_PAGE, SET_ACTIVE_ARTICLE, SET_CURRENT_ARTICLE, SET_PARAGRAPH_OPENED, SET_REPORT_CLICKED, SET_INFO_MODAL, CLOSE_INFO_MODAL, JUMP_TO_PARAGRAPH, SETTINGS_CLICKED } from '../reducers/MainReducer'
 import { allArticles } from '../data/data'
 
 const initState = {
@@ -13,7 +13,8 @@ const initState = {
     comments: '',
     modalText: '',
     allParagraphsOpened: false,
-    jumpParagraph: ''
+    jumpParagraph: '',
+    settingsClicked: false,
 }
 
 export const GlobalContext = createContext(initState)
@@ -25,13 +26,19 @@ export const GlobalContextProvider = ({ children }) => {
         dispatch({ type: SET_PARAGRAPH_OPENED, payload: !state.allParagraphsOpened });
     }
 
+    const handleSettingsModal = () => {
+        dispatch({ type: SETTINGS_CLICKED, payload: !state.settingsClicked })
+    }
+
     const setPage = (page) => {
-        if(page === 'current-random') {
+        if (page === 'current-random') {
             let random = Math.floor(Math.random() * allArticles.length);
             let article = allArticles[random];
             dispatch({ type: SET_ACTIVE_ARTICLE, payload: article.id });
             dispatch({ type: SET_CURRENT_ARTICLE, payload: article });
             dispatch({ type: SET_PAGE, payload: 'current' });
+        } else if (page === 'settings') {
+            handleSettingsModal();
         } else {
             dispatch({ type: SET_PAGE, payload: page });
         }
@@ -57,7 +64,7 @@ export const GlobalContextProvider = ({ children }) => {
         setPage(null);
         dispatch({ type: SET_REPORT_CLICKED, payload: !state.reportClicked });
     }
-    
+
     const closeReportModal = () => {
         setReportClicked(false);
         setPage('browse');
@@ -75,10 +82,11 @@ export const GlobalContextProvider = ({ children }) => {
         dispatch({ type: JUMP_TO_PARAGRAPH, payload: title });
     }
 
+
     return (
         <GlobalContext.Provider value={{
             state, allArticles, dispatch, openAllParagraphs, setPage, selectArticle, setReportClicked, closeReportModal,
-            setInfoModal, closeInfoModal, jumpToParagraph
+            setInfoModal, closeInfoModal, jumpToParagraph, handleSettingsModal
         }}>
             {children}
         </GlobalContext.Provider>
