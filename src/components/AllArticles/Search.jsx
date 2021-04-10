@@ -1,5 +1,5 @@
 import React from 'react';
-import './style.css'
+import './allarticles.css'
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import SearchIcon from '@material-ui/icons/Search';

@@ -44,7 +44,7 @@ export const MainReducer = (state, action) => {
         }
         case SET_PARAGRAPH_OPENED: {
             return {
-                ...state, opened: action.payload
+                ...state, allParagraphsOpened: action.payload
             }
         }
         case JUMP_TO_PARAGRAPH: {

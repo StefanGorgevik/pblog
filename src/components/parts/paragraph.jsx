@@ -11,7 +11,7 @@ import { GlobalContext } from '../../context/Global'
 function Paragraph({ dropdown, more, text, include, selectArticle, bold, gist, between, shouldJump, tempJump, setJump }) {
     const [paragraphOpened, setParagraphOpened] = useState(false);
     const { state } = useContext(GlobalContext)
-    const { opened } = state;
+    const { allParagraphsOpened } = state;
     const paragraphRef = useRef(null)
 
     useEffect(() => {
@@ -24,9 +24,9 @@ function Paragraph({ dropdown, more, text, include, selectArticle, bold, gist, b
         if (!dropdown) {
             setParagraphOpened(true)
         }
-        if (opened) setParagraphOpened(true)
+        if (allParagraphsOpened) setParagraphOpened(true)
         else setParagraphOpened(false)
-    }, [dropdown, opened, between, tempJump, setJump, shouldJump])
+    }, [dropdown, allParagraphsOpened, between, tempJump, setJump, shouldJump])
 
     const copyToClipboard = (gist) => {
         let url = 'https://api.github.com/gists/1e74543011068bba4c8addab43f0b56a';

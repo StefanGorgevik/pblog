@@ -91,3 +91,48 @@
     background-color: #5f7ac4;
     color: black !important;
 }
+
+
+.search-div {
+    display: flex;
+    align-items: center;
+    margin: 0 auto;
+    margin: 5px !important;
+    margin-bottom: -25px !important;
+    width: 50%;
+    background-color: #61576eb4 !important;
+    border-radius: 10px !important;
+    padding-left: 10px !important;
+    color: rgb(219, 219, 80) !important;
+    background-color: #2d3a5f !important;
+    font-family: 'Syne Mono', monospace !important;
+}
+
+.MuiSvgIcon-root {
+    color: rgb(219, 219, 80) !important;
+    margin-right: 10px !important;
+}
+
+.search {
+    width: 100%;
+    margin-right: 10px !important;
+}
+
+.MuiInput-input {
+    color: rgb(219, 219, 80) !important;
+    border-bottom:none !important;
+    margin-right: 10px !important;
+}
+
+.MuiInput-underline::after {
+    border-bottom:1px solid rgb(219, 219, 80) !important;
+}
+
+.MuiInput-underline::before {
+    border-bottom:none !important;
+}
+
+.MuiInput-input::placeholder {
+    opacity: 1;
+    color: yellow !important;
+}

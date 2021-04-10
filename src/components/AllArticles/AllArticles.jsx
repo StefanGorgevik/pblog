@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react'
 import './allarticles.css'
 import Grid from '@material-ui/core/Grid'
 import Article from './Article'
-import Search from '../Search'
+import Search from './Search'
 import { GlobalContext } from '../../context/Global'
 
 function AllArticles() {

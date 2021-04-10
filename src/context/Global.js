@@ -12,7 +12,7 @@ const initState = {
     showMessageModal: false,
     comments: '',
     modalText: '',
-    opened: false,
+    allParagraphsOpened: false,
     jumpParagraph: ''
 }
 
@@ -22,7 +22,7 @@ export const GlobalContextProvider = ({ children }) => {
     const [state, dispatch] = useReducer(MainReducer, initState);
 
     const openAllParagraphs = () => {
-        dispatch({ type: SET_PARAGRAPH_OPENED, payload: !state.opened });
+        dispatch({ type: SET_PARAGRAPH_OPENED, payload: !state.allParagraphsOpened });
     }
 
     const setPage = (page) => {

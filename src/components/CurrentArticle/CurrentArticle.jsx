@@ -1,23 +1,21 @@
 import React, { useEffect, useState, useCallback } from 'react'
-import './style.css'
+import './current.css'
 import { Grid, Button } from '@material-ui/core'
-import Intro from './parts/intro'
+import Intro from '../parts/intro'
 import ParagraphScroll from './ParagraphScroll'
-import Paragraph from './parts/paragraph'
-import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
-import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
-import { GlobalContext } from '../context/Global'
+import Paragraph from '../parts/paragraph'
+import { GlobalContext } from '../../context/Global'
 
 function CurrentArticle() {
-    const { openAllParagraphs, selectArticle, state, jumpToParagraph } = React.useContext(GlobalContext);
-    const { currentArticle, opened, jumpParagraph } = state;
+    const {  selectArticle, state, jumpToParagraph } = React.useContext(GlobalContext);
+    const { currentArticle, jumpParagraph } = state;
     const [tempJump, setJump] = useState(false);
-    
+
     const handleScroll = (event) => {
         console.log('event on scroll', event)
         // let scrollTop = event.srcElement.body.scrollTop,
         //     itemTranslate = Math.min(0, scrollTop/3 - 60);
-    
+
         // this.setState({
         //   transform: itemTranslate
         // });
@@ -39,7 +37,11 @@ function CurrentArticle() {
 
     return (
         <Grid className='current-article'>
-           
+            {currentArticle && currentArticle.dropdown &&
+                <Grid className='left-menu'>
+                   
+                    <ParagraphScroll />
+                </Grid>}
             <Grid className='article-scroll' onScroll={handleScroll}>
                 <Intro intro={currentArticle.intro} />
                 {currentArticle.article.map((item, i) => {
@@ -58,17 +60,7 @@ function CurrentArticle() {
                     />;
                 })}
             </Grid>
-            {
-               currentArticle.dropdown && <ParagraphScroll />
-            }
-             {
-                currentArticle && currentArticle.dropdown &&
-                <Button onClick={openAllParagraphs}
-                    className='open-button'>{opened ? 'Close all' : 'Open all'}
-                    {!opened ? <KeyboardArrowDownIcon className='open-arrow' />
-                        : <KeyboardArrowUpIcon className='open-arrow' />}
-                </Button>
-            }
+
         </Grid>
     )
 }
