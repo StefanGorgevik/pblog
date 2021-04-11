@@ -9,31 +9,6 @@
     color: rgb(219, 219, 80) !important;
 }
 
-.close-buttons {
-    display: flex;
-    justify-content: center;
-    min-width: 100% !important;
-    margin: 0 auto !important;
-    margin-top: auto;
-    align-self: flex-end;
-
-}
-
-.close-button {
-    min-height: 100%;
-    width: 150px !important;
-    border-radius: 10px !important;
-    font-weight: bold !important;
-    color: rgb(219, 219, 80) !important;
-    font-family: 'Syne Mono', monospace !important;
-    letter-spacing: 1.5px !important;
-    font-size: 17px !important;
-    text-transform: lowercase !important;
-    margin-right: 10px !important;
-    margin-left: 10px !important;
-}
-
-
 .select-article-report {
     display: flex;
     flex-direction: column;
@@ -52,7 +27,6 @@
 .text-area {
     background-color: #242424;
     color: rgb(219, 219, 80);
-    /* min-width: 100%; */
     margin: 0 auto;
     margin-top: 10px;
     padding: 2%;

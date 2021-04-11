@@ -23,14 +23,12 @@ function Paragraph({ dropdown, more, text, include, selectArticle, bold, gist, b
 
         if (paragraphRef.current === null ) {
             return jumpToParagraph(jumpParagraph);
-        }
-        if (tempJump && shouldJump) {
+        } else if (paragraphRef.current && tempJump && shouldJump) {
             setParagraphOpened(true)
             paragraphRef.current.scrollIntoView()
             setJump(false)
         }
-
-    }, [dropdown, allParagraphsOpened, between, tempJump, setJump, shouldJump, jumpParagraph, jumpToParagraph])
+    }, [dropdown, allParagraphsOpened, between, tempJump, setJump, shouldJump, jumpParagraph])
 
     const copyToClipboard = (gist) => {
         let url = 'https://api.github.com/gists/1e74543011068bba4c8addab43f0b56a';

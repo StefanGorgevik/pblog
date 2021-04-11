@@ -32,9 +32,9 @@ function ParagraphScroll({ active }) {
                 <Grid item className='paragraph-scroll'>
                     {
                         currentArticle && currentArticle.article.map((article, index) => {
-                            return  ( <Tooltip title={article.title} classes={{ tooltip: classes.customWidth }}>
-                            <MenuItem key={index}
-                                style={{backgroundColor: ui.second}}
+                            return  ( <Tooltip  key={index} title={article.title} classes={{ tooltip: classes.customWidth }}>
+                            <MenuItem
+                                style={{backgroundColor: ui.second, color: ui.fontColor1}}
                                 className={jumpToParagraph !== article.title ? 'paragraph-scroll-to' :
                                     'paragraph-scroll-to paragraph-scroll-to-active'}
                                 onClick={() => jumpToParagraph(article.title)}

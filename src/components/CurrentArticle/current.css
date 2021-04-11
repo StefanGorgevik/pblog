@@ -73,17 +73,12 @@
 }
 
 /* scrolls */
-
+.paragraph-scroll::-webkit-scrollbar-track,
+.article-scroll::-webkit-scrollbar-track,
 .paragraph-scroll::-webkit-scrollbar,
 .article-scroll::-webkit-scrollbar {
     background-color: #61576eb4 !important;
-    max-height: 80vh !important;
-    margin-bottom: 10px !important;
-}
-
-.paragraph-scroll::-webkit-scrollbar-track,
-.article-scroll::-webkit-scrollbar-track {
-    background-color: #61576eb4 !important;
+   
 }
 
 .paragraph-scroll::-webkit-scrollbar-thumb,

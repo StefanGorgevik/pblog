@@ -62,8 +62,8 @@ export default function ReportModal() {
                 open={reportClicked}
                 onClose={closeReportModal}
             >
-                <Grid className='modal' style={{backgroundColor: ui.main}}>
-                        <CloseIcon onClick={closeReportModal} className='close-modal-icon'/>
+                <Grid className='modal' style={{ backgroundColor: ui.main }}>
+                    <CloseIcon onClick={closeReportModal} className='close-modal-icon' />
                     <div>
                         <Typography style={{ marginBottom: '20px', borderBottom: '1px solid rgb(219, 219, 80)' }}
                             className='text' variant="h4" color="initial">Report a mistake</Typography>

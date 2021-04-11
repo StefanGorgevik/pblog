@@ -1,0 +1,14 @@
+.write {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    height: 90vh;
+    margin-top: 85px !important;
+}
+
+.write-items { 
+    min-height: 90% !important;
+    display: flex;
+    padding: 2% !important;
+}

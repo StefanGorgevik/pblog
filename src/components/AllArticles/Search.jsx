@@ -6,13 +6,13 @@ import SearchIcon from '@material-ui/icons/Search';
 import { ThemeContext } from '../../context/Theme'
 
 export default function Search({ setSearch }) {
-  const { ui } = React.useContext(ThemeContext);
+  const { ui } = useContext(ThemeContext);
 
   return (
-    <Grid className="search-div" style={{ backgroundColor: ui.main }}>
+    <Grid className="search-div" style={{ backgroundColor: ui.second }}>
       <SearchIcon />
       <TextField
-        style={{ color: ui.fontColor1 }}
+        style={{ backgroundColor: ui.second, color: ui.fontColor1 }}
         onChange={(e) => setSearch(e.target.value)}
         className='search'
         placeholder="Search articles by title"
