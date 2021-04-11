@@ -1,6 +1,7 @@
 import React from 'react';
 import './modals.css'
 import { GlobalContext } from '../../context/Global';
+import { ThemeContext } from '../../context/Theme';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import Grid from '@material-ui/core/Grid';
@@ -21,7 +22,6 @@ const useStyles = makeStyles((theme) => ({
         minWidth: '30%',
         height: '10%',
         textAlign: 'center',
-        backgroundColor: '#1f2947',
         color: 'rgb(219, 219, 80)',
         borderRadius: '10px',
         paddingLeft: '30px',
@@ -35,6 +35,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function InfoModal() {
     const { state, closeInfoModal } = React.useContext(GlobalContext)
+    const { ui } = React.useContext(ThemeContext)
     const { showMessageModal, modalText, type } = state;
     const classes = useStyles();
 
@@ -47,7 +48,7 @@ export default function InfoModal() {
                 open={showMessageModal}
                 onClose={closeInfoModal}
             >
-                <Grid className={classes.success}>
+                <Grid className={classes.success} style={{backgroundColor: ui.main}}>
                     {type === 'warning' ? <PriorityHighIcon className={classes.icon} />
                         : <BeenhereIcon className={classes.icon} />}
                     <Typography variant="subtitle1" color="initial">{modalText}</Typography>

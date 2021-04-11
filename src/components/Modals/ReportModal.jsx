@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
 import './modals.css'
 import { GlobalContext } from '../../context/Global'
+import { ThemeContext } from '../../context/Theme'
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography'
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
-import Button from '@material-ui/core/Button';
 import MenuItem from '@material-ui/core/MenuItem';
 import InputLabel from '@material-ui/core/InputLabel';
 import CloseIcon from '@material-ui/icons/Close';
-import CloseButtons from './CloseButtons';
+import CloseButtons from '../Buttons/CloseButtons';
 
 const useStyles = makeStyles(() => ({
     modal: {
@@ -23,6 +23,7 @@ const useStyles = makeStyles(() => ({
 
 export default function ReportModal() {
     const { state, setPage, setReportClicked, closeReportModal, setInfoModal, closeInfoModal, allArticles } = React.useContext(GlobalContext);
+    const { ui } = React.useContext(ThemeContext);
     const { reportClicked } = state;
     const classes = useStyles();
     const [comments, setComments] = useState('');
@@ -61,9 +62,9 @@ export default function ReportModal() {
                 open={reportClicked}
                 onClose={closeReportModal}
             >
-                <Grid className='modal'>
-                    <div>
+                <Grid className='modal' style={{backgroundColor: ui.main}}>
                         <CloseIcon onClick={closeReportModal} className='close-modal-icon'/>
+                    <div>
                         <Typography style={{ marginBottom: '20px', borderBottom: '1px solid rgb(219, 219, 80)' }}
                             className='text' variant="h4" color="initial">Report a mistake</Typography>
                         <FormControl className='select-article-report' fullWidth>

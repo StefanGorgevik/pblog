@@ -7,15 +7,15 @@ const useStyles = makeStyles({
         fontWeight: "bold",
         padding: "1%",
         fontSize: "18px",
-        color: "white",
         fontFamily: "'Syne Mono', monospace"
     }
 })
 
-function Intro(props) {
+function Intro({intro,  fontColor}) {
     const classes = useStyles();
+    console.log('fontco', fontColor)
     return (
-        <Typography className={classes.intro}>{props.intro}</Typography>
+        <Typography style={{color: fontColor}} className={classes.intro}>{intro}</Typography>
     )
 }
 

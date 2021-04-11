@@ -1,32 +1,36 @@
-import React, { useEffect, useState, createContext, useReducer } from 'react'
+import React, {  useState, createContext, useReducer } from 'react'
 import { ThemeReducer, SET_THEME, } from '../reducers/ThemeReducer'
 
 const initState = {
-    currentTheme: 'themeBlue',
+    theme: 'themeBlue',
     themes: [{
         name: 'themeBlue',
         main: '#1f2947',
         second: '#2d3a5f',
-        hover: '#455b99'
+        fontColor1: 'rgb(219, 219, 80)',
+        fontColor2: 'white'
     },
     {
         name: 'themeBlack',
-        main: 'black',
-        second: '#2d3a5f',
-        hover: '#455b99'
+        main: 'rgb(15, 15, 15)',
+        second: 'rgba(39, 37, 37, 0.938)',
+        fontColor1: 'rgb(219, 219, 80)',
+        fontColor2: 'white'
     },
-    {
-        name: 'themeLight',
-        main: 'whitesmoke',
-        second: '#2d3a5f',
-        hover: '#455b99'
-    },
-    {
-        name: 'themeWhite',
-        main: 'white',
-        second: '#2d3a5f',
-        hover: '#455b99'
-    }
+    // {
+    //     name: 'themeLight',
+    //     main: 'whitesmoke',
+    //     second: '#2d3a5f',
+    //     fontColor1: 'rgb(219, 219, 80)',
+    //     fontColor2: 'white'
+    // },
+    // {
+    //     name: 'themeWhite',
+    //     main: 'white',
+    //     second: '#2d3a5f',
+    //     fontColor1: 'rgb(219, 219, 80)',
+    //     fontColor2: 'white'
+    // }
     ]
 }
 
@@ -34,19 +38,15 @@ export const ThemeContext = createContext(initState)
 
 export const ThemeContextProvider = ({ children }) => {
     const [state, dispatch] = useReducer(ThemeReducer, initState);
-    const [ui, setUI] = useState('themeBlue')
+    const [ui, setUI] = useState(state.themes[0])
 
-    useEffect(() => {
-        setUI(state.themes[0])
-       
-    }, [state.currentTheme])
+    // useEffect(() => {
+    //     setUI(state.themes[0])
+    // }, [state.themes])
 
-    const setCurrentTheme = (name) => {
-        console.log('UI', name);
-        let theme = state.themes.find(t => t.name === name);
-        console.log("THEME", theme)
+    const setCurrentTheme = (theme) => {
         setUI(theme)
-        dispatch({ type: SET_THEME, payload: name })
+        dispatch({ type: SET_THEME, payload: theme })
     }
 
     return (

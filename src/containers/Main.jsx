@@ -9,6 +9,7 @@ import InfoModal from '../components/Modals/InfoModal'
 import Settings from '../components/Modals/Settings'
 import { GlobalContext } from '../context/Global'
 import { ThemeContext } from '../context/Theme'
+import Write from '../components/Write/Write'
 
 export default function Main() {
     const { state, setReportClicked,  } = React.useContext(GlobalContext);
@@ -25,6 +26,10 @@ export default function Main() {
             }
             case 'current': {
                 content = <CurrentArticle />
+                break;
+            }
+            case 'write': {
+                content = <Write />
                 break;
             }
             case 'report': {

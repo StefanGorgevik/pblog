@@ -6,27 +6,31 @@ import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import Gist from 'super-react-gist'
 import FileCopyIcon from '@material-ui/icons/FileCopy';
 import Tooltip from '@material-ui/core/Tooltip';
-import { GlobalContext } from '../../context/Global'
+import { GlobalContext } from '../../../context/Global'
+import { ThemeContext } from '../../../context/Theme'
 
 function Paragraph({ dropdown, more, text, include, selectArticle, bold, gist, between, shouldJump, tempJump, setJump }) {
     const [paragraphOpened, setParagraphOpened] = useState(false);
-    const { state } = useContext(GlobalContext)
-    const { allParagraphsOpened } = state;
+    const { state, jumpToParagraph } = useContext(GlobalContext)
+    const { ui } = useContext(ThemeContext)
+    const { allParagraphsOpened, jumpParagraph } = state;
     const paragraphRef = useRef(null)
 
     useEffect(() => {
-        if(tempJump && shouldJump) { 
-            console.log('PARAGRAPH REF', paragraphRef)
-            console.log('PARAGRAPH REF current', paragraphRef.current)
+        if (!dropdown) setParagraphOpened(true)
+        if (allParagraphsOpened) setParagraphOpened(true)
+        else setParagraphOpened(false)
+
+        if (paragraphRef.current === null ) {
+            return jumpToParagraph(jumpParagraph);
+        }
+        if (tempJump && shouldJump) {
+            setParagraphOpened(true)
             paragraphRef.current.scrollIntoView()
             setJump(false)
         }
-        if (!dropdown) {
-            setParagraphOpened(true)
-        }
-        if (allParagraphsOpened) setParagraphOpened(true)
-        else setParagraphOpened(false)
-    }, [dropdown, allParagraphsOpened, between, tempJump, setJump, shouldJump])
+
+    }, [dropdown, allParagraphsOpened, between, tempJump, setJump, shouldJump, jumpParagraph, jumpToParagraph])
 
     const copyToClipboard = (gist) => {
         let url = 'https://api.github.com/gists/1e74543011068bba4c8addab43f0b56a';
@@ -44,20 +48,24 @@ function Paragraph({ dropdown, more, text, include, selectArticle, bold, gist, b
             {dropdown &&
                 <Grid item className='paragraph-title-drop'>
                     <Grid onClick={() => setParagraphOpened(!paragraphOpened)} item
+                        style={{ backgroundColor: ui.second, color: ui.fontColor1  }}
                         className={more ? 'paragraph-dropdown dropdown-smaller' : 'paragraph-dropdown'}
-                         ref={shouldJump ? paragraphRef : null}  >
+                        ref={shouldJump ? paragraphRef : null}  >
                         <Typography
                             className='paragraph-title text'
                             color="initial">{bold}</Typography>
                         {!paragraphOpened ? <KeyboardArrowDownIcon /> : <KeyboardArrowUpIcon />}
                     </Grid>
-                    {more && <Button onClick={selectArticle} className='more-button'>Read more</Button>}
+                    {more && <Button style={{ backgroundColor: ui.second, color: ui.fontColor1 }}
+                        onClick={selectArticle}
+                        className='more-button'>Read more</Button>}
                 </Grid>}
 
             {dropdown && paragraphOpened &&
                 <Grid className='paragraph-text' item>
                     {text.map((item, i) => {
                         return (<Typography key={i}
+                            style={{ color: ui.fontColor1 }}
                             className='paragraph-typo text'>{item}</Typography>)
                     })
                     }
@@ -67,6 +75,7 @@ function Paragraph({ dropdown, more, text, include, selectArticle, bold, gist, b
                             <Gist className="gist-div" url={gist} file={include} />
                             <Tooltip title="Copy to clipboard" placement="left-start" >
                                 <FileCopyIcon className='copy-to-clipboard'
+                                    style={{color: ui.fontColor1}}
                                     onClick={() => copyToClipboard(include)}>copy</FileCopyIcon>
                             </Tooltip>
                         </Grid>
@@ -75,7 +84,9 @@ function Paragraph({ dropdown, more, text, include, selectArticle, bold, gist, b
             {
                 !dropdown &&
                 text.map((text, i) => {
-                    return <Typography key={i} className={between ? 'between-text text' : 'paragraph-typo text'}>{text}</Typography>
+                    return <Typography key={i} 
+                    style={{color: ui.fontColor1}}
+                    className={between ? 'between-text text' : 'paragraph-typo text'}>{text}</Typography>
                 })
             }
         </Grid >

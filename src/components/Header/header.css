@@ -69,18 +69,16 @@
     font-weight: bold !important;
     text-transform: uppercase;
     font-size: 18px !important;
-    background-color: #2d3a5f !important;
     width: 100% !important;
     border-radius: 10px !important;
     height: 100% !important;
-    color: rgb(219, 219, 80) !important;
     letter-spacing: 1px !important;
     margin: 5px !important
 }
 
 .menu-item-active, 
 .menu-item:hover {
-    background-color: #455b99 !important;
+    background-color: rgba(246, 246, 246, 0.342) !important;
     border: 1px solid white !important;
 }
 
@@ -98,4 +96,5 @@
     margin: 0 auto !important;
     padding-right: 10px !important;
     padding-left: 20px !important;
+    margin-right: 2px !important;
 }

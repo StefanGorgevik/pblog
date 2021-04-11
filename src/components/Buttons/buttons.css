@@ -4,7 +4,6 @@
     width: 100% !important;
     color: rgb(219, 219, 80) !important;
     text-transform: lowercase !important;
-    background-color: #2d3a5f !important;
     border-radius: 10px !important;
     font-weight: bold !important;
     font-size: 16px !important;
@@ -14,13 +13,40 @@
     padding-left: 10px !important;
 }
 
+.close-button:hover,
 .open-button:hover {
-    background-color: #455b99 !important;
+    background-color: rgba(246, 246, 246, 0.342) !important;
+    border: 1px solid white !important;
+    /* color: rgba(39, 37, 37, 0.938); */
 }
 
 .open-arrow {
-    background-color: #1f2947 !important;
     height: 100% !important;
     margin-left: 5px !important;
     border-radius: 10px !important;
+}
+
+
+.close-buttons {
+    display: flex;
+    justify-content: center;
+    min-width: 100% !important;
+    margin: 0 auto !important;
+    margin-top: auto;
+    align-self: flex-end;
+
+}
+
+.close-button {
+    min-height: 100%;
+    width: 150px !important;
+    border-radius: 10px !important;
+    font-weight: bold !important;
+    color: rgb(219, 219, 80) !important;
+    font-family: 'Syne Mono', monospace !important;
+    letter-spacing: 1.5px !important;
+    font-size: 17px !important;
+    text-transform: lowercase !important;
+    margin-right: 10px !important;
+    margin-left: 10px !important;
 }

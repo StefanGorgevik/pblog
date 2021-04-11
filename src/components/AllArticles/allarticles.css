@@ -6,7 +6,6 @@
     border-radius: 10px;
     margin: 0 auto;
     margin-top: 60px !important;
-
 }
 
 .all-articles {
@@ -37,11 +36,6 @@
     background-color: #3b2a52b4 !important;
     border-radius: 10px !important;
     cursor: pointer !important;
-
-}
-
-.all-articles::-webkit-scrollbar-thumb:hover {
-    background-color: #455b99 !important;
 }
 
 .article {
@@ -54,13 +48,7 @@
     font-size: 16px;
     letter-spacing: 0.5px;
     font-weight: bold;
-    background-color: #2d3a5f;
     font-family: 'Syne Mono', monospace !important;
-    color: rgb(219, 219, 80) !important;
-}
-
-.article:hover {
-    background-color: #455b99 !important;
 }
 
 .text-articles,
@@ -87,12 +75,6 @@
     min-width: 100% !important;
 }
 
-.active-article {
-    background-color: #5f7ac4;
-    color: black !important;
-}
-
-
 .search-div {
     display: flex;
     align-items: center;
@@ -100,11 +82,8 @@
     margin: 5px !important;
     margin-bottom: -25px !important;
     width: 50%;
-    background-color: #61576eb4 !important;
     border-radius: 10px !important;
     padding-left: 10px !important;
-    color: rgb(219, 219, 80) !important;
-    background-color: #2d3a5f !important;
     font-family: 'Syne Mono', monospace !important;
 }
 
@@ -134,5 +113,12 @@
 
 .MuiInput-input::placeholder {
     opacity: 1;
-    color: yellow !important;
+    color: rgb(219, 219, 80) !important;
+}
+
+.active-article,
+.article:hover,
+.all-articles::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(246, 246, 246, 0.342) !important;
+    border: 1px solid white !important;
 }

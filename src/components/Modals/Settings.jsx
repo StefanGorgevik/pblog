@@ -6,7 +6,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography'
-import CloseButtons from './CloseButtons';
+import CloseButtons from '../Buttons/CloseButtons';
+import CloseIcon from '@material-ui/icons/Close';
 
 const useStyles = makeStyles(() => ({
     modal: {
@@ -18,17 +19,16 @@ const useStyles = makeStyles(() => ({
 }));
 
 export default function Settings() {
-    const { setPage, state, handleSettingsModal } = React.useContext(GlobalContext);
-    const { setCurrentTheme } = React.useContext(ThemeContext);
+    const { state, handleSettingsModal } = React.useContext(GlobalContext);
+    const { setCurrentTheme, ui } = React.useContext(ThemeContext);
     const { settingsClicked } = state;
     const { themes } = React.useContext(ThemeContext);
     const classes = useStyles();
-    const [selectedTheme, setTheme] = useState('');
+    const [selectedTheme, setTheme] = useState(ui);
 
-
-    const submitTheme = () => {
-        console.log('selectedTheme', selectedTheme)
-        setCurrentTheme(selectedTheme)
+    const submitTheme = (theme) => {
+        setCurrentTheme(theme);
+        setTheme(theme)
     }
 
     return (
@@ -40,19 +40,24 @@ export default function Settings() {
                 open={settingsClicked}
                 onClose={handleSettingsModal}
             >
-                <Grid className='modal settings-modal'>
+                <Grid style={{backgroundColor: ui.main}} className='modal settings-modal'>
+                <CloseIcon onClick={handleSettingsModal} className='close-modal-icon'/>
+
                     <Grid item className='themes'>
+                        <Typography style={{color: ui.fontColor1, marginRight: 70}} variant='h4'>Select a theme:</Typography>
 
                         {
                             themes.map((theme, i) => {
-                                return (<Grid key={i} item onClick={() => setTheme(theme.name)}>
-                                    <Typography  variant='subtitle1' className='theme' >{theme.name}</Typography>
+                                return (<Grid key={i} item onClick={() => submitTheme(theme)}>
+                                    <Typography style={{color: ui.fontColor1}}
+                                     className={selectedTheme.name === theme.name ? 'theme theme-active' : 'theme'} 
+                                     variant='subtitle1' >{theme.name.substr(5)}</Typography>
                                 </Grid>)
                             })
                         }
 
                     </Grid>
-                    <CloseButtons close={handleSettingsModal} submit={submitTheme} />
+                    <CloseButtons close={handleSettingsModal} submit={handleSettingsModal} />
                 </Grid>
             </Modal>
         </div>

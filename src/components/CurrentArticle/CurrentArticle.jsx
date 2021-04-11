@@ -1,13 +1,15 @@
-import React, { useEffect, useState, useCallback } from 'react'
+import React, { useEffect, useState, useCallback, useContext } from 'react'
 import './current.css'
 import { Grid  } from '@material-ui/core'
-import Intro from '../parts/intro'
+import Intro from './parts/intro'
 import ParagraphScroll from './ParagraphScroll'
-import Paragraph from '../parts/paragraph'
+import Paragraph from './parts/paragraph'
 import { GlobalContext } from '../../context/Global'
+import { ThemeContext } from '../../context/Theme'
 
 function CurrentArticle() {
-    const {  selectArticle, state, jumpToParagraph } = React.useContext(GlobalContext);
+    const {  selectArticle, state, jumpToParagraph } = useContext(GlobalContext);
+    const { ui } = useContext(ThemeContext);
     const { currentArticle, jumpParagraph } = state;
     const [tempJump, setJump] = useState(false);
 
@@ -32,7 +34,7 @@ function CurrentArticle() {
         // window.addEventListener('scroll', handleScroll);
         if (jumpParagraph !== '') {
             executeScroll()
-            jumpToParagraph('')
+            // jumpToParagraph('')
         }
     }, [jumpParagraph, executeScroll, jumpToParagraph])
 
@@ -40,11 +42,10 @@ function CurrentArticle() {
         <Grid className='current-article'>
             {currentArticle && currentArticle.dropdown &&
                 <Grid className='left-menu'>
-                   
                     <ParagraphScroll />
                 </Grid>}
             <Grid className='article-scroll'>
-                <Intro intro={currentArticle.intro} />
+                <Intro intro={currentArticle.intro} fontColor={ui.fontColor2} />
                 {currentArticle.article.map((item, i) => {
                     return <Paragraph key={i}
                         dropdown={!item.type ? currentArticle.dropdown : false}
