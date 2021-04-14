@@ -1,5 +1,5 @@
 import React, { createContext, useReducer } from 'react'
-import { MainReducer, SET_PAGE, SET_ACTIVE_ARTICLE, SET_CURRENT_ARTICLE, SET_PARAGRAPH_OPENED, SET_REPORT_CLICKED, SET_INFO_MODAL, CLOSE_INFO_MODAL, JUMP_TO_PARAGRAPH, SETTINGS_CLICKED } from '../reducers/MainReducer'
+import { MainReducer, SET_PAGE, SET_ACTIVE_ARTICLE, SET_CURRENT_ARTICLE, SET_PARAGRAPH_OPENED, SET_REPORT_CLICKED, SET_INFO_MODAL, CLOSE_INFO_MODAL, JUMP_TO_PARAGRAPH, SETTINGS_CLICKED, SET_NEW_PARAGRAPH_CLICKED } from '../reducers/MainReducer'
 import { allArticles } from '../data/data'
 
 const initState = {
@@ -15,6 +15,7 @@ const initState = {
     allParagraphsOpened: false,
     jumpParagraph: '',
     settingsClicked: false,
+    newParagraphClicked: false
 }
 
 export const GlobalContext = createContext(initState)
@@ -64,6 +65,7 @@ export const GlobalContextProvider = ({ children }) => {
         setPage(null);
         dispatch({ type: SET_REPORT_CLICKED, payload: !state.reportClicked });
     }
+    
 
     const closeReportModal = () => {
         setReportClicked(false);
@@ -82,11 +84,14 @@ export const GlobalContextProvider = ({ children }) => {
         dispatch({ type: JUMP_TO_PARAGRAPH, payload: title });
     }
 
+    const setNewParagraphClicked = () => {
+        dispatch({ type: SET_NEW_PARAGRAPH_CLICKED, payload: !state.newParagraphClicked });
+    }
 
     return (
         <GlobalContext.Provider value={{
             state, allArticles, dispatch, openAllParagraphs, setPage, selectArticle, setReportClicked, closeReportModal,
-            setInfoModal, closeInfoModal, jumpToParagraph, handleSettingsModal
+            setInfoModal, closeInfoModal, jumpToParagraph, handleSettingsModal, setNewParagraphClicked
         }}>
             {children}
         </GlobalContext.Provider>

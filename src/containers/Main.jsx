@@ -10,11 +10,12 @@ import Settings from '../components/Modals/Settings'
 import { GlobalContext } from '../context/Global'
 import { ThemeContext } from '../context/Theme'
 import Write from '../components/Write/Write'
+import NewParagraph from '../components/Modals/NewParagraph'
 
 export default function Main() {
-    const { state, setReportClicked,  } = React.useContext(GlobalContext);
+    const { state, setReportClicked, } = React.useContext(GlobalContext);
     const { ui } = React.useContext(ThemeContext);
-    const { page, reportClicked, showMessageModal, settingsClicked } = state;
+    const { page, reportClicked, showMessageModal, settingsClicked, newParagraphClicked } = state;
     const [content, setContent] = useState(false);
     console.log('MAIN UI', ui)
     const setPageContent = useCallback(() => {
@@ -48,10 +49,11 @@ export default function Main() {
     }, [page, setPageContent])
 
     return (
-        <Grid className='main' style={{backgroundColor: ui.main}}>
+        <Grid className='main' style={{ backgroundColor: ui.main }}>
             {showMessageModal && <InfoModal />}
-            {reportClicked && <ReportModal/>}
-            {settingsClicked && <Settings/>}
+            {reportClicked && <ReportModal />}
+            {settingsClicked && <Settings />}
+            {newParagraphClicked && <NewParagraph />}
             <TopHeader />
             <Grid className='bottom'>
                 {content}
