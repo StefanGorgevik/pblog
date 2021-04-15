@@ -36,7 +36,6 @@ export const GlobalContextProvider = ({ children }) => {
             setModal('settings');
         } else if(page === 'report') {
             setModal('report');
-
         } else {
             dispatch({ type: SET_PAGE, payload: page });
         }
@@ -71,8 +70,6 @@ export const GlobalContextProvider = ({ children }) => {
     }
 
     const setModal = (modal) => {
-        console.log("SET MODAL", modal)
-        if(modal === 'report') setPage(null);
         dispatch({ type: MODAL_OPEN, payload: modal });
     }
 

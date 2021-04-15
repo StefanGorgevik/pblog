@@ -108,3 +108,21 @@
     border-radius: 10px;
     resize: none;
 }
+
+.increase-paragraphs { 
+    display: flex;
+    width: 70%;
+    justify-content: space-evenly;
+    margin: 0 auto;
+    padding: 1%;
+}
+
+.increase-paragraphs label {
+    font-size: 20px;
+}
+
+.sentences-input {
+    border-radius: 10px;
+    min-width: 50px;
+    padding: 1%;
+}

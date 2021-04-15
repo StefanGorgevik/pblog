@@ -9,10 +9,9 @@ import FormLabel from '@material-ui/core/FormLabel';
 import TextField from '@material-ui/core/TextField';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import Radio from '@material-ui/core/Radio';
-import NewTextButton from '../Buttons/NewTextButton';
 
 export default function NewParagraph() {
-    const { state} = React.useContext(GlobalContext);
+    const { state } = React.useContext(GlobalContext);
     const { ui } = React.useContext(ThemeContext);
     const [gist, setGist] = useState('No');
     const [fullUrl, setFullUrl] = useState('No');
@@ -21,15 +20,32 @@ export default function NewParagraph() {
     const [error, setError] = useState('');
     const [gistUrl, setGistUrl] = useState('');
     const [fullArticleUrl, setFullArticleUrl] = useState('');
+    const [parNum, setParNum] = useState([1])
+    const [nums, setNums] = useState([1])
 
     const addParagraph = () => {
         if (title === '') return setError('title')
     }
 
+    const setSentencesNumber = (e) => {
+        let temp = parNum;
+        let num = Number(e.target.value);
+        setNums(num)
+        let currentNumsLength = Number(temp.length)
+        console.log('eeee', currentNumsLength, num)
+        if(currentNumsLength < num) {
+            temp.push(num)
+        } else if (currentNumsLength > num) {
+            temp.pop()
+        }
+        console.log('teeemp', temp)
+        setParNum(temp);
+    }
+
     return (
         <>
             <div style={{ width: '100%' }}>
-               
+
                 <Grid item className='write-title' >
                     <label className='write-labels' style={{ color: ui.fontColor1 }} htmlFor='title'>
                         Title of article </label>
@@ -102,17 +118,31 @@ export default function NewParagraph() {
                     </Grid>
                 }
 
-                <Grid item className='text-div'>
-                    <textarea onChange={(e) => setText(e.target.value)}
-                        style={{ color: ui.fontColor1 }}
-                        id='textarea'
-                        placeholder='text'
-                        className='textarea-paragraph'
-                        autosize='false'
-                        value={text}>
-                    </textarea>
-                    <NewTextButton />
+                <Grid className='increase-paragraphs' style={{ color: ui.fontColor1 }}>
+                    <label>Add more sentences: </label>
+                    <input type="number"
+                        className='sentences-input'
+                        style={{ backgroundColor: ui.second, color: ui.fontColor1 }}
+                        value={nums}
+                        min='1'
+                        max='3'
+                        onChange={setSentencesNumber}
+                    />
                 </Grid>
+
+                {parNum.map((n) => {
+                    return <Grid key={n} item className='text-div'>
+                        <textarea onChange={(e) => setText(e.target.value)}
+                            style={{ color: ui.fontColor1 }}
+                            id='textarea'
+                            placeholder='text'
+                            className='textarea-paragraph'
+                            autosize='false'
+                            value={text}>
+                        </textarea>
+                    </Grid>
+                })
+                }
             </div>
         </>
     );
