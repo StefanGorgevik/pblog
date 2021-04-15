@@ -1,42 +1,47 @@
 .modal {
     display: flex;
-    justify-content: center;
-    padding: 1%;
-    background-image: url("https://www.transparenttextures.com/patterns/az-subtle.png") !important;
-    min-width: 40% !important;
-    min-height: 40% !important;
-    border-radius: 10px;
-    color: rgb(219, 219, 80) !important;
+    justify-content: center !important;
+    padding: 1% !important;
+    width: 100% !important;
+    /* min-height: 40% !important; */
+    margin: 0 auto !important;
 }
 
+.modal-content {
+    min-width: 50%;
+    margin: 0 auto;
+    display: flex;
+    padding: 1%;
+    justify-content: center;
+    flex-direction: column;
+    background-image: url("https://www.transparenttextures.com/patterns/az-subtle.png") !important;
+    border-radius: 10px;
+
+}
+.report-modal {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0 auto;
+    min-height: 60% !important;
+}
 .select-article-report {
     display: flex;
     flex-direction: column;
     width: 100% !important;
 }
 
-.close-modal-icon {
-    float: right !important;
-    position: relative;
-    left: 510px !important;
-    cursor: pointer;
-    border-radius: 50%;
-    padding: 0.5% !important;
-}
 
 .text-area {
     background-color: #242424;
-    margin: 0 auto;
+    margin: 0 auto !important;
     margin-top: 10px;
     padding: 2%;
     border-radius: 10px;
     resize: none;
-}
-
-.settings-modal {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    width: 85% !important;
+    height: 100px !important;
 }
 
 .themes {
@@ -65,11 +70,27 @@
     transition: 1s;
 }
 
+.close-modal-icon {
+   cursor: pointer;
+   float: right !important;
+   align-self: flex-end;
+   border-radius: 50%;
+   padding: 0.5% !important;
+   font-size: 45px !important;
+   position: relative;
+   bottom: 60px !important;
+   left: 10px !important;
+}
+
+.close-modal-icon:hover {
+    background-color: rgba(246, 246, 246, 0.342) !important;
+} 
+
 .theme:hover,
 .theme-active,
 .close-button:hover {
-    background-color: rgba(246, 246, 246, 0.342) !important;
     border: 1px solid white !important;
+    background-color: rgba(246, 246, 246, 0.342) !important;
 }
 
 .radio-buttons {
@@ -86,9 +107,4 @@
     padding: 2%;
     border-radius: 10px;
     resize: none;
-}
-
-.MuiInput-input::placeholder {
-    opacity: 1;
-    color: rgb(219, 219, 80) !important;
 }

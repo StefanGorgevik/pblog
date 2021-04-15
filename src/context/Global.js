@@ -1,12 +1,11 @@
 import React, { createContext, useReducer } from 'react'
-import { MainReducer, SET_PAGE, SET_ACTIVE_ARTICLE, SET_CURRENT_ARTICLE, SET_PARAGRAPH_OPENED, SET_REPORT_CLICKED, SET_INFO_MODAL, CLOSE_INFO_MODAL, JUMP_TO_PARAGRAPH, SETTINGS_CLICKED, SET_NEW_PARAGRAPH_CLICKED } from '../reducers/MainReducer'
+import { MainReducer, SET_PAGE, SET_ACTIVE_ARTICLE, SET_CURRENT_ARTICLE, SET_PARAGRAPH_OPENED, SET_INFO_MODAL, CLOSE_INFO_MODAL, JUMP_TO_PARAGRAPH, MODAL_OPEN } from '../reducers/MainReducer'
 import { allArticles } from '../data/data'
 
 const initState = {
     page: 'browse',
     currentArticle: null,
-    acrtiveArticle: null,
-    reportClicked: false,
+    activeArticle: null,
     articleToReport: '',
     content: false,
     showMessageModal: false,
@@ -14,8 +13,7 @@ const initState = {
     modalText: '',
     allParagraphsOpened: false,
     jumpParagraph: '',
-    settingsClicked: false,
-    newParagraphClicked: false
+    modal: ''
 }
 
 export const GlobalContext = createContext(initState)
@@ -27,10 +25,6 @@ export const GlobalContextProvider = ({ children }) => {
         dispatch({ type: SET_PARAGRAPH_OPENED, payload: !state.allParagraphsOpened });
     }
 
-    const handleSettingsModal = () => {
-        dispatch({ type: SETTINGS_CLICKED, payload: !state.settingsClicked })
-    }
-
     const setPage = (page) => {
         if (page === 'current-random') {
             let random = Math.floor(Math.random() * allArticles.length);
@@ -39,7 +33,10 @@ export const GlobalContextProvider = ({ children }) => {
             dispatch({ type: SET_CURRENT_ARTICLE, payload: article });
             dispatch({ type: SET_PAGE, payload: 'current' });
         } else if (page === 'settings') {
-            handleSettingsModal();
+            setModal('settings');
+        } else if(page === 'report') {
+            setModal('report');
+
         } else {
             dispatch({ type: SET_PAGE, payload: page });
         }
@@ -61,17 +58,6 @@ export const GlobalContextProvider = ({ children }) => {
         setPage('current');
     }
 
-    const setReportClicked = () => {
-        setPage(null);
-        dispatch({ type: SET_REPORT_CLICKED, payload: !state.reportClicked });
-    }
-    
-
-    const closeReportModal = () => {
-        setReportClicked(false);
-        setPage('browse');
-    }
-
     const setInfoModal = (bool, text, type) => {
         dispatch({ type: SET_INFO_MODAL, payload: { bool, text, type } });
     };
@@ -84,14 +70,16 @@ export const GlobalContextProvider = ({ children }) => {
         dispatch({ type: JUMP_TO_PARAGRAPH, payload: title });
     }
 
-    const setNewParagraphClicked = () => {
-        dispatch({ type: SET_NEW_PARAGRAPH_CLICKED, payload: !state.newParagraphClicked });
+    const setModal = (modal) => {
+        console.log("SET MODAL", modal)
+        if(modal === 'report') setPage(null);
+        dispatch({ type: MODAL_OPEN, payload: modal });
     }
 
     return (
         <GlobalContext.Provider value={{
-            state, allArticles, dispatch, openAllParagraphs, setPage, selectArticle, setReportClicked, closeReportModal,
-            setInfoModal, closeInfoModal, jumpToParagraph, handleSettingsModal, setNewParagraphClicked
+            state, allArticles, dispatch, openAllParagraphs, setPage, selectArticle,
+            setInfoModal, closeInfoModal, jumpToParagraph, setModal
         }}>
             {children}
         </GlobalContext.Provider>

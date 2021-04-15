@@ -16,7 +16,7 @@ function ParagraphScroll({ active }) {
     const classes = useStyles();
     const { openAllParagraphs, state, jumpToParagraph } = React.useContext(GlobalContext);
     const { ui } = React.useContext(ThemeContext);
-    const { currentArticle, allParagraphsOpened, jumpParagraph } = state;
+    const { currentArticle, allParagraphsOpened } = state;
     const [jumpToOpened, setJumpToOpened] = useState(false);
 
     return (

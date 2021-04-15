@@ -2,30 +2,15 @@ import React, { useState } from 'react';
 import './modals.css'
 import { GlobalContext } from '../../context/Global'
 import { ThemeContext } from '../../context/Theme'
-import { makeStyles } from '@material-ui/core/styles';
-import Modal from '@material-ui/core/Modal';
 import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography'
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import InputLabel from '@material-ui/core/InputLabel';
-import CloseIcon from '@material-ui/icons/Close';
-import CloseButtons from '../Buttons/CloseButtons';
-
-const useStyles = makeStyles(() => ({
-    modal: {
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-    }
-}));
 
 export default function ReportModal() {
-    const { state, setPage, setReportClicked, closeReportModal, setInfoModal, closeInfoModal, allArticles } = React.useContext(GlobalContext);
+    const { setPage, setReportClicked, setInfoModal, closeInfoModal, allArticles } = React.useContext(GlobalContext);
     const { ui } = React.useContext(ThemeContext);
-    const { reportClicked } = state;
-    const classes = useStyles();
     const [comments, setComments] = useState('');
     const [articleToReport, setArticleToReport] = useState('');
 
@@ -54,42 +39,33 @@ export default function ReportModal() {
         }, 1500)
     }
     return (
-        <div>
-            <Modal
-                aria-labelledby="transition-modal-title"
-                aria-describedby="transition-modal-description"
-                className={classes.modal}
-                open={reportClicked}
-                onClose={closeReportModal}
-            >
-                <Grid className='modal' style={{ backgroundColor: ui.main }}>
-                    <CloseIcon onClick={closeReportModal} className='close-modal-icon' />
-                    <div>
-                        <Typography style={{ marginBottom: '20px', borderBottom: '1px solid rgb(219, 219, 80)' }}
-                            className='text' variant="h4" color="initial">Report a mistake</Typography>
-                        <FormControl className='select-article-report' fullWidth>
-                            <InputLabel style={{ color: 'rgb(219, 219, 80)' }}>Choose the article</InputLabel>
-                            <Select
-                                labelId="demo-simple-select-label"
-                                id="demo-simple-select"
-                                value={articleToReport ? articleToReport : ''}
-                                onChange={(e) => setArticleToReport(e.target.value)}
-                            >
-                                {allArticles.map((article, i) => (
-                                    <MenuItem key={i} value={article.title}>
-                                        {article.title}
-                                    </MenuItem>
-                                ))}
-                            </Select>
-                        </FormControl>
-                        <Grid>
-                            <textarea onChange={(e) => setComments(e.target.value)} id='textarea' placeholder='Comments' className='text-area' rows="20" cols="50">
-                            </textarea>
-                        </Grid>
-                        <CloseButtons close={closeReportModal} submit={submitReportedArticle} />
-                    </div>
-                </Grid>
-            </Modal>
+        <div className='report-modal'>
+            <FormControl style={{ maxWidth: '60%', margin: '0 auto' }} className='select-article-report' fullWidth>
+                <InputLabel style={{ color: ui.fontColor1, }}>Choose the article</InputLabel>
+                <Select
+                    labelId="demo-simple-select-label"
+                    id="demo-simple-select"
+                    value={articleToReport ? articleToReport : ''}
+                    onChange={(e) => setArticleToReport(e.target.value)}
+                >
+                    {allArticles.map((article, i) => (
+                        <MenuItem key={i} value={article.title}>
+                            {article.title}
+                        </MenuItem>
+                    ))}
+                </Select>
+            </FormControl>
+            <Grid style={{
+                width: '100%',
+                margin: '0 auto',
+                marginTop: '20px',
+                display: 'flex',
+                justifyContent: 'center'
+            }}>
+                <textarea onChange={(e) => setComments(e.target.value)} id='textarea' placeholder='Comments' className='text-area'
+                    style={{ color: ui.fontColor1 }} >
+                </textarea>
+            </Grid>
         </div>
     );
 }

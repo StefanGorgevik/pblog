@@ -7,7 +7,7 @@ import SettingsIcon from '@material-ui/icons/Settings';
 import CreateIcon from '@material-ui/icons/Create';
 
 function HeaderMenu() {
-    const { state, setPage } = useContext(GlobalContext);
+    const { state, setPage, setModal } = useContext(GlobalContext);
     const { ui } = useContext(ThemeContext);
     const { page, currentArticle } = state;
 
@@ -26,7 +26,7 @@ function HeaderMenu() {
             <MenuItem onClick={() => setPage('report')}
                 style={{ backgroundColor: ui.second, color: ui.fontColor1  }}
                 className={page === "report" ? "menu-item menu-item-active" : "menu-item"}>Report</MenuItem>
-            <MenuItem onClick={() => setPage('settings')}
+            <MenuItem onClick={() => setModal('settings')}
                 style={{ backgroundColor: ui.second }}
                 className={page === "settings" ? "settings-button menu-item menu-item-active" : "menu-item settings-button "}>
                 <SettingsIcon />

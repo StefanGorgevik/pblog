@@ -13,7 +13,7 @@ function Write() {
   const [paragraphs, setParagraphs] = useState([]);
   const [error, setError] = useState('');
   const { ui } = useContext(ThemeContext);
-  const { state, setNewParagraphClicked } = useContext(GlobalContext);
+  const { state, setModal } = useContext(GlobalContext);
   // const { newParagraphClicked } = state;
 
   const saveArticle = () => {
@@ -22,7 +22,7 @@ function Write() {
     console.log('article saving...',)
   }
   const newParagraph = () => {
-    setNewParagraphClicked()
+    setModal('new-paragraph')
   }
 
   return (

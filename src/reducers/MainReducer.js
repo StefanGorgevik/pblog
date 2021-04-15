@@ -1,13 +1,11 @@
 export const SET_PAGE = "SET_PAGE"
 export const SET_ACTIVE_ARTICLE = "SET_ACTIVE_ARTICLE"
 export const SET_CURRENT_ARTICLE = "SET_CURRENT_ARTICLE"
-export const SET_REPORT_CLICKED = "SET_REPORT_CLICKED"
 export const SET_INFO_MODAL = "SET_INFO_MODAL"
 export const CLOSE_INFO_MODAL = "CLOSE_INFO_MODAL"
 export const SET_PARAGRAPH_OPENED = "SET_PARAGRAPH_OPENED"
 export const JUMP_TO_PARAGRAPH = "JUMP_TO_PARAGRAPH"
-export const SETTINGS_CLICKED = " SETTINGS_CLICKED"
-export const SET_NEW_PARAGRAPH_CLICKED = " SET_NEW_PARAGRAPH_CLICKED"
+export const MODAL_OPEN = " MODAL_OPEN"
 
 export const MainReducer = (state, action) => {
     switch (action.type) {
@@ -24,11 +22,6 @@ export const MainReducer = (state, action) => {
         case SET_CURRENT_ARTICLE: {
             return {
                 ...state, currentArticle: action.payload
-            }
-        }
-        case SET_REPORT_CLICKED: {
-            return {
-                ...state, reportClicked: action.payload
             }
         }
         case SET_INFO_MODAL: {
@@ -54,16 +47,12 @@ export const MainReducer = (state, action) => {
                 ...state, jumpParagraph: action.payload
             }
         }
-        case  SETTINGS_CLICKED: {
+        case MODAL_OPEN: {
             return {
-                ...state, settingsClicked: action.payload
+                ...state, modal: action.payload
             }
         }
-        case  SET_NEW_PARAGRAPH_CLICKED: {
-            return {
-                ...state, newParagraphClicked: action.payload
-            }
-        }
+        
         default: {
             return state
         }

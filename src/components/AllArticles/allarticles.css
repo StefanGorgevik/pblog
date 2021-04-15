@@ -95,11 +95,6 @@
     border-bottom:none !important;
 }
 
-.MuiInput-input::placeholder {
-    opacity: 1;
-    color: rgb(219, 219, 80) !important;
-}
-
 .active-article,
 .article:hover,
 .all-articles::-webkit-scrollbar-thumb:hover {

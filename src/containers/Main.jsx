@@ -4,20 +4,17 @@ import { Grid } from '@material-ui/core'
 import TopHeader from '../components/Header/TopHeader'
 import CurrentArticle from '../components/CurrentArticle/CurrentArticle'
 import AllArticles from '../components/AllArticles/AllArticles'
-import ReportModal from '../components/Modals/ReportModal'
-import InfoModal from '../components/Modals/InfoModal'
-import Settings from '../components/Modals/Settings'
 import { GlobalContext } from '../context/Global'
 import { ThemeContext } from '../context/Theme'
 import Write from '../components/Write/Write'
-import NewParagraph from '../components/Modals/NewParagraph'
+import MainModal from '../components/Modals/MainModal'
 
 export default function Main() {
-    const { state, setReportClicked, } = React.useContext(GlobalContext);
+    const { state } = React.useContext(GlobalContext);
     const { ui } = React.useContext(ThemeContext);
-    const { page, reportClicked, showMessageModal, settingsClicked, newParagraphClicked } = state;
+    const { page, modal } = state;
     const [content, setContent] = useState(false);
-    console.log('MAIN UI', ui)
+    
     const setPageContent = useCallback(() => {
         let content = null;
         switch (page) {
@@ -33,16 +30,11 @@ export default function Main() {
                 content = <Write />
                 break;
             }
-            case 'report': {
-                setReportClicked(true);
-                content = null;
-                break;
-            }
             default:
                 break;
         }
         setContent(content);
-    }, [page, setReportClicked])
+    }, [page])
 
     useEffect(() => {
         setPageContent()
@@ -50,10 +42,7 @@ export default function Main() {
 
     return (
         <Grid className='main' style={{ backgroundColor: ui.main }}>
-            {showMessageModal && <InfoModal />}
-            {reportClicked && <ReportModal />}
-            {settingsClicked && <Settings />}
-            {newParagraphClicked && <NewParagraph />}
+            {modal !== '' && <MainModal />}
             <TopHeader />
             <Grid className='bottom'>
                 {content}
