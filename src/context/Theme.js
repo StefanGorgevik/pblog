@@ -2,7 +2,7 @@ import React, {  useState, createContext, useReducer } from 'react'
 import { ThemeReducer, SET_THEME, } from '../reducers/ThemeReducer'
 
 const initState = {
-    theme: 'themeBlue',
+    theme: 'themeBlack',
     themes: [{
         name: 'themeBlue',
         main: '#1f2947',
@@ -38,7 +38,7 @@ export const ThemeContext = createContext(initState)
 
 export const ThemeContextProvider = ({ children }) => {
     const [state, dispatch] = useReducer(ThemeReducer, initState);
-    const [ui, setUI] = useState(state.themes[0])
+    const [ui, setUI] = useState(state.themes[1])
 
     // useEffect(() => {
     //     setUI(state.themes[0])

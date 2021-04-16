@@ -84,6 +84,8 @@
 
 .close-modal-icon:hover {
     background-color: rgba(246, 246, 246, 0.342) !important;
+    color: black !important;
+    transition: 0.5s;
 } 
 
 .theme:hover,
@@ -91,6 +93,8 @@
 .close-button:hover {
     border: 1px solid white !important;
     background-color: rgba(246, 246, 246, 0.342) !important;
+    color: black !important;
+    transition: 0.5s;
 }
 
 .radio-buttons {

@@ -72,6 +72,9 @@ export const GlobalContextProvider = ({ children }) => {
     const setModal = (modal) => {
         dispatch({ type: MODAL_OPEN, payload: modal });
     }
+    const saveNewParagraph = (paragraph) => {
+        
+    }
 
     return (
         <GlobalContext.Provider value={{

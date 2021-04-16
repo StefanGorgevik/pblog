@@ -1,12 +1,19 @@
 .write {
     display: flex;
     justify-content: center !important;
-    flex-direction: column;
+    flex-direction: row;
     width: 100%;
     margin: 0 auto !important;
     margin-top: 85px !important;
     height: 100vh !important;
     overflow-y: auto;
+}
+
+.write-top {
+    width: 100% !important;
+    display: flex;
+    justify-content: flex-end;
+    margin: 0 auto !important;
 }
 
 .write-items { 
@@ -20,6 +27,8 @@
 
 .write-intro,
 .write-title {
+    display: flex;
+    flex-direction: column;
     min-width: 60% !important;
     margin: 0 auto !important;
 }
@@ -28,16 +37,41 @@
     font-size: 22px !important;
     float: left !important;
     margin-bottom: 10px !important;
+    margin-left: 5px !important;
+    margin-right: 20px !important;
 }
-
 
 .intro-textarea {
     width: 100% !important;
     background-color: #242424;
     margin: 0 auto;
     margin-top: 10px;
+    margin-bottom: 10px;
     padding: 2%;
     border-radius: 10px;
     resize: none;
     font-size: 20px;
+}
+
+.save-write-item {
+    margin-left: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 34px !important;
+}
+
+.save-write-item:hover {
+    border: 1px solid white !important;
+    background-color: rgba(246, 246, 246, 0.342) !important;
+    color: black !important;
+    transition: 0.5s;
+}
+
+.item-hover:hover {
+    background-color: rgba(246, 246, 246, 0.342) !important;
+    border-radius: 10px;
+    padding-top: 2% !important;
+    padding-bottom: 2% !important;
+    transition: 0.2s !important;
+    font-size: 34px !important;
 }

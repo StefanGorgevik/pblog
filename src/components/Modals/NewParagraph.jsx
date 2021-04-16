@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './modals.css'
 import { GlobalContext } from '../../context/Global'
 import { ThemeContext } from '../../context/Theme'
@@ -11,21 +11,39 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 import Radio from '@material-ui/core/Radio';
 
 export default function NewParagraph() {
-    const { state } = React.useContext(GlobalContext);
+    const { state, saveNewParagraph } = React.useContext(GlobalContext);
     const { ui } = React.useContext(ThemeContext);
     const [gist, setGist] = useState('No');
     const [fullUrl, setFullUrl] = useState('No');
     const [title, setTitle] = useState('');
-    const [text, setText] = useState('');
+    const [sentences, setSentences] = useState([{id: 0, value: ''},{id: 1, value: ''},{id: 2, value: ''}]);
     const [error, setError] = useState('');
     const [gistUrl, setGistUrl] = useState('');
     const [fullArticleUrl, setFullArticleUrl] = useState('');
     const [parNum, setParNum] = useState([1])
     const [nums, setNums] = useState([1])
 
-    const addParagraph = () => {
-        if (title === '') return setError('title')
+    const save = () => {
+        let newParagraph = {}
+        if (title === '') return setError('title');
+        newParagraph['title'] = title;
+        newParagraph['text'] = [];
+        for(let s of sentences) {
+            newParagraph.text.push(s)
+        }
+        if(gistUrl !== '') newParagraph['include'] = gistUrl;
+        if(fullArticleUrl !== '') newParagraph['more'] = gistUrl;
+        console.log('newParagraph', newParagraph);
+        return newParagraph;
     }
+
+    useEffect(() => {
+        
+        return () => {
+            console.log("unmountingggg")
+            save()
+        }
+    }, [save])
 
     const setSentencesNumber = (e) => {
         let temp = parNum;
@@ -40,6 +58,17 @@ export default function NewParagraph() {
         }
         console.log('teeemp', temp)
         setParNum(temp);
+    }
+
+    const setSentenceText = (value, id) => {
+        let ss = sentences;
+        console.log('vale', id, value)
+        console.log(ss[id]) 
+        ss[id].value = value;
+        console.log('after', ss[id]) 
+        setSentences(ss);
+        
+        console.log('affff', sentences)
     }
 
     return (
@@ -67,8 +96,8 @@ export default function NewParagraph() {
                         }} >Gist</FormLabel>
                         <RadioGroup style={{ display: 'flex', flexDirection: 'row' }} aria-label="gist"
                             name="Gist" value={gist} onChange={(e) => setGist(e.target.value)}>
-                            <FormControlLabel value="Yes" control={<Radio />} label="Yes" />
-                            <FormControlLabel value="No" control={<Radio />} label="No" />
+                            <FormControlLabel value="Yes" control={<Radio />} label="Yes" style={{ color: ui.fontColor1 }} />
+                            <FormControlLabel value="No" control={<Radio />} label="No" style={{ color: ui.fontColor1 }} />
                         </RadioGroup>
                     </FormControl>
 
@@ -79,8 +108,8 @@ export default function NewParagraph() {
                         }} >Full article URL</FormLabel>
                         <RadioGroup style={{ display: 'flex', flexDirection: 'row' }} aria-label="gist"
                             name="Full article" value={fullUrl} onChange={(e) => setFullUrl(e.target.value)}>
-                            <FormControlLabel value="Yes" control={<Radio />} label="Yes" />
-                            <FormControlLabel value="No" control={<Radio />} label="No" />
+                            <FormControlLabel value="Yes" control={<Radio />} style={{ color: ui.fontColor1 }} label="Yes" />
+                            <FormControlLabel value="No" control={<Radio />} style={{ color: ui.fontColor1 }} label="No" />
                         </RadioGroup>
                     </FormControl>
                 </Grid>
@@ -132,13 +161,13 @@ export default function NewParagraph() {
 
                 {parNum.map((n) => {
                     return <Grid key={n} item className='text-div'>
-                        <textarea onChange={(e) => setText(e.target.value)}
+                        <textarea onChange={(e) => setSentenceText(e.target.value, n)}
                             style={{ color: ui.fontColor1 }}
                             id='textarea'
                             placeholder='text'
                             className='textarea-paragraph'
                             autosize='false'
-                            value={text}>
+                            value={sentences[n].value}>
                         </textarea>
                     </Grid>
                 })

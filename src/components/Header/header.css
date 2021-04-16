@@ -81,6 +81,8 @@
 .menu-item:hover {
     background-color: rgba(246, 246, 246, 0.342) !important;
     border: 1px solid white !important;
+    color: black !important;
+    transition: 0.5s;
 }
 
 .title-span {
