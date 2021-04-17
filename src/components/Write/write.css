@@ -39,6 +39,7 @@
     margin-bottom: 10px !important;
     margin-left: 5px !important;
     margin-right: 20px !important;
+    width: 10% !important;
 }
 
 .intro-textarea {
@@ -75,3 +76,44 @@
     transition: 0.2s !important;
     font-size: 34px !important;
 }
+
+.new-paragraphs {
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+.paragraph-write {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    text-align: start;
+    margin-left: 20px;
+    padding: 1%;
+    border-radius: 10px !important;
+    cursor: cell;
+}
+
+.write-paragraph-title-wrapper {
+    display: flex;
+    border-radius: 10px !important;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.write-paragraph-title {
+    padding: 1%;
+    padding-left: 40px;
+}
+
+.write-paragraph-text {
+    padding-left: 55px;
+    max-width: 90%;
+}
+/* 
+.paragraph-write:hover,
+.write-paragraph-title-wrapper:hover {
+    border: 1px solid white !important;
+    background-color: rgba(246, 246, 246, 0.342) !important;
+    color: black !important;
+    transition: 0.5s;
+} */

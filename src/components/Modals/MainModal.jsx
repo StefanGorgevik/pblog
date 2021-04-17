@@ -8,7 +8,6 @@ import { ThemeContext } from '../../context/Theme'
 import NewParagraph from './NewParagraph';
 import Settings from './Settings';
 import ReportModal from './ReportModal';
-import CloseButtons from '../Buttons/CloseButtons';
 
 const useStyles = makeStyles(() => ({
     div: {
@@ -84,7 +83,6 @@ export default function MainModal(s) {
                     <Grid className='modal'>
                         {content}
                     </Grid>
-                    <CloseButtons close={() => setModal('')} submit={() => setModal('')} />
                 </Grid>
             </Modal>
         </div >

@@ -1,3 +1,4 @@
+export const SAVE_ARTICLES_STARTUP = "SAVE_ARTICLES_STARTUP"
 export const SET_PAGE = "SET_PAGE"
 export const SET_ACTIVE_ARTICLE = "SET_ACTIVE_ARTICLE"
 export const SET_CURRENT_ARTICLE = "SET_CURRENT_ARTICLE"
@@ -6,9 +7,17 @@ export const CLOSE_INFO_MODAL = "CLOSE_INFO_MODAL"
 export const SET_PARAGRAPH_OPENED = "SET_PARAGRAPH_OPENED"
 export const JUMP_TO_PARAGRAPH = "JUMP_TO_PARAGRAPH"
 export const MODAL_OPEN = " MODAL_OPEN"
+export const ADD_NEW_PARAPGRAPH = " ADD_NEW_PARAPGRAPH"
+export const EDIT_PARAPGRAPH = "EDIT_PARAPGRAPH"
+export const SAVE_NEW_ARTICLE = "SAVE_NEW_ARTICLE"
 
 export const MainReducer = (state, action) => {
     switch (action.type) {
+        case SAVE_ARTICLES_STARTUP: {
+            return {
+                ...state, articles: action.payload
+            }
+        }
         case SET_PAGE: {
             return {
                 ...state, page: action.payload
@@ -50,6 +59,21 @@ export const MainReducer = (state, action) => {
         case MODAL_OPEN: {
             return {
                 ...state, modal: action.payload
+            }
+        }
+        case ADD_NEW_PARAPGRAPH: {
+            return {
+                ...state, newParagraphs: [...state.newParagraphs, action.payload]
+            }
+        }
+        case SAVE_NEW_ARTICLE: {
+            return {
+                ...state, articles: [...state.articles, action.payload]
+            }
+        }
+        case EDIT_PARAPGRAPH: {
+            return {
+                ...state, paragraphToEdit: action.payload
             }
         }
         

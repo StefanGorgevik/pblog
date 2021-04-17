@@ -8,11 +8,12 @@ import { GlobalContext } from '../context/Global'
 import { ThemeContext } from '../context/Theme'
 import Write from '../components/Write/Write'
 import MainModal from '../components/Modals/MainModal'
+import InfoModal from '../components/Modals/InfoModal'
 
 export default function Main() {
     const { state } = React.useContext(GlobalContext);
     const { ui } = React.useContext(ThemeContext);
-    const { page, modal } = state;
+    const { page, modal, showMessageModal } = state;
     const [content, setContent] = useState(false);
     
     const setPageContent = useCallback(() => {
@@ -43,6 +44,7 @@ export default function Main() {
     return (
         <Grid className='main' style={{ backgroundColor: ui.main }}>
             {modal !== '' && <MainModal />}
+            {showMessageModal !== '' && <InfoModal />}
             <TopHeader />
             <Grid className='bottom'>
                 {content}

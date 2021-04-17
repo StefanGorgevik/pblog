@@ -1,178 +1,146 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import './modals.css'
 import { GlobalContext } from '../../context/Global'
 import { ThemeContext } from '../../context/Theme'
 import Grid from '@material-ui/core/Grid';
-import FormControl from '@material-ui/core/FormControl';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FormLabel from '@material-ui/core/FormLabel';
 import TextField from '@material-ui/core/TextField';
-import RadioGroup from '@material-ui/core/RadioGroup';
-import Radio from '@material-ui/core/Radio';
+import CloseButtons from '../Buttons/CloseButtons';
+import RadioChoices from '../Write/RadioChoices'
 
 export default function NewParagraph() {
-    const { state, saveNewParagraph } = React.useContext(GlobalContext);
+    const { state, addNewParagraph, setModal, dispatch } = React.useContext(GlobalContext);
     const { ui } = React.useContext(ThemeContext);
+    const { paragraphToEdit } = state;
     const [gist, setGist] = useState('No');
     const [fullUrl, setFullUrl] = useState('No');
     const [title, setTitle] = useState('');
-    const [sentences, setSentences] = useState([{id: 0, value: ''},{id: 1, value: ''},{id: 2, value: ''}]);
+    const [sentences, setSentences] = useState([{ id: 1, value: '' }, { id: 2, value: '' }, { id: 3, value: '' }]);
     const [error, setError] = useState('');
-    const [gistUrl, setGistUrl] = useState('');
+    const [gistItem, setGistItemTitle] = useState('');
     const [fullArticleUrl, setFullArticleUrl] = useState('');
-    const [parNum, setParNum] = useState([1])
-    const [nums, setNums] = useState([1])
+
+    const setSentenceText = useCallback(
+        (value, id) => {
+            let ss = sentences;
+        ss[id - 1].value += value;
+        setSentences(ss);
+        },
+        [sentences,setSentences],
+    )
 
     const save = () => {
         let newParagraph = {}
         if (title === '') return setError('title');
         newParagraph['title'] = title;
         newParagraph['text'] = [];
-        for(let s of sentences) {
-            newParagraph.text.push(s)
+        for (let s of sentences) {
+            newParagraph.text.push(s.value)
         }
-        if(gistUrl !== '') newParagraph['include'] = gistUrl;
-        if(fullArticleUrl !== '') newParagraph['more'] = gistUrl;
-        console.log('newParagraph', newParagraph);
-        return newParagraph;
+        if (gistItem !== '') newParagraph['include'] = gistItem;
+        if (fullArticleUrl !== '') newParagraph['more'] = gistItem;
+        console.log('newParagraph SAVING', newParagraph);
+        setModal('')
+        return addNewParagraph(newParagraph)
     }
 
     useEffect(() => {
-        
         return () => {
-            console.log("unmountingggg")
-            save()
+            console.log("UNMOUNTING")
+            dispatch({ type: 'EDIT_PARAPGRAPH', payload: {} });
         }
-    }, [save])
+    }, [dispatch])
 
-    const setSentencesNumber = (e) => {
-        let temp = parNum;
-        let num = Number(e.target.value);
-        setNums(num)
-        let currentNumsLength = Number(temp.length)
-        console.log('eeee', currentNumsLength, num)
-        if(currentNumsLength < num) {
-            temp.push(num)
-        } else if (currentNumsLength > num) {
-            temp.pop()
+    useEffect(() => {
+        if (paragraphToEdit !== null) {
+            setTitle(paragraphToEdit.title);
+            let id = 1;
+            if(paragraphToEdit.text){
+            for (let text of paragraphToEdit.text) {
+                setSentenceText(text, id);
+                id++;
+            }}
+            if (paragraphToEdit.include) {
+                setGistItemTitle(paragraphToEdit.include);
+                setGist('Yes');
+            }
+            if (paragraphToEdit.more) {
+                setFullUrl('No');
+                setFullArticleUrl(paragraphToEdit.more);
+            }
         }
-        console.log('teeemp', temp)
-        setParNum(temp);
-    }
 
-    const setSentenceText = (value, id) => {
-        let ss = sentences;
-        console.log('vale', id, value)
-        console.log(ss[id]) 
-        ss[id].value = value;
-        console.log('after', ss[id]) 
-        setSentences(ss);
-        
-        console.log('affff', sentences)
-    }
+    }, [paragraphToEdit, setSentenceText])
 
+    
     return (
-        <>
-            <div style={{ width: '100%' }}>
+        <div style={{ width: '100%' }}>
 
+            <Grid item className='write-title' >
+                <label className='write-labels' style={{ color: ui.fontColor1 }} htmlFor='title'>
+                    Paragraph title </label>
+                <TextField
+                    fullWidth
+                    style={{ backgroundColor: ui.second, color: ui.fontColor1 }}
+                    id="title"
+                    value={title}
+                    onChange={(e) => setTitle(e.target.value)}
+                    error={error === 'title'}
+                />
+            </Grid>
+
+            <Grid className='radio-buttons'>
+                <RadioChoices setGist={setGist} labelText='Gist' name='Gist' value={gist}/>
+                <RadioChoices setGist={setFullUrl} labelText='Full article URL' name="Full article" value={fullUrl} />
+            </Grid>
+            {
+                gist === 'Yes' &&
                 <Grid item className='write-title' >
-                    <label className='write-labels' style={{ color: ui.fontColor1 }} htmlFor='title'>
-                        Title of article </label>
+                    <label className='write-labels' style={{ color: ui.fontColor1 }} htmlFor='gist-url'>
+                        Git Gist Url </label>
                     <TextField
                         fullWidth
                         style={{ backgroundColor: ui.second, color: ui.fontColor1 }}
-                        id="title"
-                        value={title}
-                        onChange={(e) => setTitle(e.target.value)}
-                        error={error === 'title'}
+                        id="gist-url"
+                        label=" Git Gist Url"
+                        value={gistItem}
+                        onChange={(e) => setGistItemTitle(e.target.value)}
+                        error={error === 'gist-url'}
                     />
                 </Grid>
+            }
 
-                <Grid className='radio-buttons'>
-                    <FormControl style={{ margin: '1%' }} component="fieldset">
-                        <FormLabel component="legend" style={{
-                            color: ui.fontColor1,
-                            fontSize: '20px'
-                        }} >Gist</FormLabel>
-                        <RadioGroup style={{ display: 'flex', flexDirection: 'row' }} aria-label="gist"
-                            name="Gist" value={gist} onChange={(e) => setGist(e.target.value)}>
-                            <FormControlLabel value="Yes" control={<Radio />} label="Yes" style={{ color: ui.fontColor1 }} />
-                            <FormControlLabel value="No" control={<Radio />} label="No" style={{ color: ui.fontColor1 }} />
-                        </RadioGroup>
-                    </FormControl>
-
-                    <FormControl style={{ margin: '1%' }} component="fieldset">
-                        <FormLabel component="legend" style={{
-                            color: ui.fontColor1,
-                            fontSize: '20px'
-                        }} >Full article URL</FormLabel>
-                        <RadioGroup style={{ display: 'flex', flexDirection: 'row' }} aria-label="gist"
-                            name="Full article" value={fullUrl} onChange={(e) => setFullUrl(e.target.value)}>
-                            <FormControlLabel value="Yes" control={<Radio />} style={{ color: ui.fontColor1 }} label="Yes" />
-                            <FormControlLabel value="No" control={<Radio />} style={{ color: ui.fontColor1 }} label="No" />
-                        </RadioGroup>
-                    </FormControl>
-                </Grid>
-                {
-                    gist === 'Yes' &&
-                    <Grid item className='write-title' >
-                        <label className='write-labels' style={{ color: ui.fontColor1 }} htmlFor='gist-url'>
-                            Git Gist Url </label>
-                        <TextField
-                            fullWidth
-                            style={{ backgroundColor: ui.second, color: ui.fontColor1 }}
-                            id="gist-url"
-                            label=" Git Gist Url"
-                            value={gistUrl}
-                            onChange={(e) => setGistUrl(e.target.value)}
-                            error={error === 'gist-url'}
-                        />
-                    </Grid>
-                }
-
-                {
-                    fullUrl === 'Yes' &&
-                    <Grid item className='write-title' >
-                        <label className='write-labels' style={{ color: ui.fontColor1 }} htmlFor='full-url'>
-                            Full article URL </label>
-                        <TextField
-                            fullWidth
-                            style={{ backgroundColor: ui.second, color: ui.fontColor1 }}
-                            id="full-url"
-                            label="Full article URL"
-                            value={fullArticleUrl}
-                            onChange={(e) => setFullArticleUrl(e.target.value)}
-                            error={error === 'full-url'}
-                        />
-                    </Grid>
-                }
-
-                <Grid className='increase-paragraphs' style={{ color: ui.fontColor1 }}>
-                    <label>Add more sentences: </label>
-                    <input type="number"
-                        className='sentences-input'
+            {
+                fullUrl === 'Yes' &&
+                <Grid item className='write-title' >
+                    <label className='write-labels' style={{ color: ui.fontColor1 }} htmlFor='full-url'>
+                        Full article URL </label>
+                    <TextField
+                        fullWidth
                         style={{ backgroundColor: ui.second, color: ui.fontColor1 }}
-                        value={nums}
-                        min='1'
-                        max='3'
-                        onChange={setSentencesNumber}
+                        id="full-url"
+                        label="Full article URL"
+                        value={fullArticleUrl}
+                        onChange={(e) => setFullArticleUrl(e.target.value)}
+                        error={error === 'full-url'}
                     />
                 </Grid>
+            }
 
-                {parNum.map((n) => {
-                    return <Grid key={n} item className='text-div'>
-                        <textarea onChange={(e) => setSentenceText(e.target.value, n)}
-                            style={{ color: ui.fontColor1 }}
-                            id='textarea'
-                            placeholder='text'
-                            className='textarea-paragraph'
-                            autosize='false'
-                            value={sentences[n].value}>
-                        </textarea>
-                    </Grid>
-                })
-                }
-            </div>
-        </>
+
+            {[1, 2, 3].map((n) => {
+                return <Grid key={n} item className='text-div'>
+                    <textarea onChange={(e) => setSentenceText(e.target.value, n)}
+                        style={{ color: ui.fontColor1 }}
+                        id='textarea'
+                        placeholder={'Sentence ' + (n)}
+                        className='textarea-paragraph'
+                        autosize='false'
+                        defaultValue={sentences.find(s => s.id === n).value}>
+                    </textarea>
+                </Grid>
+            })
+            }
+            <CloseButtons close={() => setModal('')} submit={() => save()} />
+        </div>
     );
 }

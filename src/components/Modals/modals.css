@@ -124,9 +124,3 @@
 .increase-paragraphs label {
     font-size: 20px;
 }
-
-.sentences-input {
-    border-radius: 10px;
-    min-width: 50px;
-    padding: 1%;
-}

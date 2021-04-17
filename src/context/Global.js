@@ -1,8 +1,9 @@
-import React, { createContext, useReducer } from 'react'
-import { MainReducer, SET_PAGE, SET_ACTIVE_ARTICLE, SET_CURRENT_ARTICLE, SET_PARAGRAPH_OPENED, SET_INFO_MODAL, CLOSE_INFO_MODAL, JUMP_TO_PARAGRAPH, MODAL_OPEN } from '../reducers/MainReducer'
+import React, { createContext, useReducer, useEffect } from 'react'
+import { MainReducer, SAVE_ARTICLES_STARTUP, SET_PAGE, SET_ACTIVE_ARTICLE, SET_CURRENT_ARTICLE, SET_PARAGRAPH_OPENED, SET_INFO_MODAL, CLOSE_INFO_MODAL, JUMP_TO_PARAGRAPH, MODAL_OPEN, ADD_NEW_PARAPGRAPH, EDIT_PARAPGRAPH, SAVE_NEW_ARTICLE } from '../reducers/MainReducer'
 import { allArticles } from '../data/data'
 
 const initState = {
+    articles: [],
     page: 'browse',
     currentArticle: null,
     activeArticle: null,
@@ -13,13 +14,20 @@ const initState = {
     modalText: '',
     allParagraphsOpened: false,
     jumpParagraph: '',
-    modal: ''
+    modal: '',
+    newParagraphs: [],
+    paragraphToEdit: null
 }
 
 export const GlobalContext = createContext(initState)
 
 export const GlobalContextProvider = ({ children }) => {
     const [state, dispatch] = useReducer(MainReducer, initState);
+    const ARTICLES = state.articles;
+
+    useEffect(() => {
+        dispatch({ type: SAVE_ARTICLES_STARTUP, payload: allArticles });
+    }, [])
 
     const openAllParagraphs = () => {
         dispatch({ type: SET_PARAGRAPH_OPENED, payload: !state.allParagraphsOpened });
@@ -72,14 +80,34 @@ export const GlobalContextProvider = ({ children }) => {
     const setModal = (modal) => {
         dispatch({ type: MODAL_OPEN, payload: modal });
     }
-    const saveNewParagraph = (paragraph) => {
-        
+
+    const addNewParagraph = (paragraph) => {
+        console.log('paragraph REPORT', paragraph)
+        dispatch({ type: ADD_NEW_PARAPGRAPH, payload: paragraph });
+    }
+    const saveArticle = (article) => {
+        console.log('article NEW', article)
+        let newID = ARTICLES.length + 1;
+        article.id = newID;
+        dispatch({ type: SAVE_NEW_ARTICLE, payload: article });
+        setPage('browse')
+    }
+    const reportArticle = (article) => {
+        console.log('article REPORT', article)
+        // dispatch({ type: REPORTED_ARTICLE, payload: article });
+    }
+
+    const editParagraph = (paragraph) => {
+        dispatch({ type: EDIT_PARAPGRAPH, payload: paragraph });
+        setModal('new-paragraph')
+
     }
 
     return (
         <GlobalContext.Provider value={{
-            state, allArticles, dispatch, openAllParagraphs, setPage, selectArticle,
-            setInfoModal, closeInfoModal, jumpToParagraph, setModal
+            state, allArticles: ARTICLES, dispatch, openAllParagraphs, setPage, selectArticle,
+            setInfoModal, closeInfoModal, jumpToParagraph, setModal, addNewParagraph, reportArticle, editParagraph, 
+            saveArticle
         }}>
             {children}
         </GlobalContext.Provider>
