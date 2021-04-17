@@ -9,7 +9,7 @@ import Tooltip from '@material-ui/core/Tooltip';
 import { GlobalContext } from '../../../context/Global'
 import { ThemeContext } from '../../../context/Theme'
 
-function Paragraph({ dropdown, more, text, include, selectArticle, bold, gist, between, shouldJump, tempJump, setJump }) {
+function Paragraph({ index, dropdown, more, text, include, selectArticle, bold, gist, between, shouldJump, tempJump, setJump }) {
     const [paragraphOpened, setParagraphOpened] = useState(false);
     const { state, jumpToParagraph } = useContext(GlobalContext)
     const { ui } = useContext(ThemeContext)
@@ -21,7 +21,8 @@ function Paragraph({ dropdown, more, text, include, selectArticle, bold, gist, b
         if (allParagraphsOpened) setParagraphOpened(true)
         else setParagraphOpened(false)
 
-        if (paragraphRef.current === null ) {
+        if (paragraphRef.current === null && !tempJump && !shouldJump) {
+            console.log('CALLED')
             return jumpToParagraph(jumpParagraph);
         } else if (paragraphRef.current && tempJump && shouldJump) {
             setParagraphOpened(true)

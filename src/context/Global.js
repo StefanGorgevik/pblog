@@ -26,6 +26,7 @@ export const GlobalContextProvider = ({ children }) => {
     const ARTICLES = state.articles;
 
     useEffect(() => {
+        // window.localStorage.setItem('articles', JSON.stringify(ARTICLES));
         dispatch({ type: SAVE_ARTICLES_STARTUP, payload: allArticles });
     }, [])
 
@@ -100,7 +101,6 @@ export const GlobalContextProvider = ({ children }) => {
     const editParagraph = (paragraph) => {
         dispatch({ type: EDIT_PARAPGRAPH, payload: paragraph });
         setModal('new-paragraph')
-
     }
 
     return (

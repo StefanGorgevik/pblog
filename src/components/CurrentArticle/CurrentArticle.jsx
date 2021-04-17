@@ -34,9 +34,8 @@ function CurrentArticle() {
         // window.addEventListener('scroll', handleScroll);
         if (jumpParagraph !== '') {
             executeScroll()
-            // jumpToParagraph('')
         }
-    }, [jumpParagraph, executeScroll, jumpToParagraph])
+    }, [jumpParagraph, executeScroll])
 
     return (
         <Grid className='current-article'>
@@ -48,6 +47,7 @@ function CurrentArticle() {
                 <Intro intro={currentArticle.intro} fontColor={ui.fontColor2} />
                 {currentArticle.article.map((item, i) => {
                     return <Paragraph key={i}
+                        index={i}
                         dropdown={!item.type ? currentArticle.dropdown : false}
                         bold={item.title}
                         text={item.text}

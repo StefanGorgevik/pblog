@@ -13,7 +13,6 @@ const useStyles = makeStyles({
 
 function Intro({intro,  fontColor}) {
     const classes = useStyles();
-    console.log('fontco', fontColor)
     return (
         <Typography style={{color: fontColor}} className={classes.intro}>{intro}</Typography>
     )

@@ -40,6 +40,7 @@
     margin-left: 5px !important;
     margin-right: 20px !important;
     width: 10% !important;
+    text-align: start;
 }
 
 .intro-textarea {
@@ -65,7 +66,7 @@
     border: 1px solid white !important;
     background-color: rgba(246, 246, 246, 0.342) !important;
     color: black !important;
-    transition: 0.5s;
+    transition: 0.5s !important;
 }
 
 .item-hover:hover {
@@ -75,6 +76,8 @@
     padding-bottom: 2% !important;
     transition: 0.2s !important;
     font-size: 34px !important;
+    transition: 0.5s !important;
+
 }
 
 .new-paragraphs {
@@ -109,6 +112,11 @@
     padding-left: 55px;
     max-width: 90%;
 }
+
+.write-text {
+    min-height: 50% !important;
+}
+
 /* 
 .paragraph-write:hover,
 .write-paragraph-title-wrapper:hover {

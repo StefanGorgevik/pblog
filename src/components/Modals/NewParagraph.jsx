@@ -45,7 +45,6 @@ export default function NewParagraph() {
 
     useEffect(() => {
         return () => {
-            console.log("UNMOUNTING")
             dispatch({ type: 'EDIT_PARAPGRAPH', payload: {} });
         }
     }, [dispatch])
