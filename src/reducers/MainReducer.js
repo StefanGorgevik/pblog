@@ -10,6 +10,7 @@ export const MODAL_OPEN = " MODAL_OPEN"
 export const ADD_NEW_PARAPGRAPH = " ADD_NEW_PARAPGRAPH"
 export const EDIT_PARAPGRAPH = "EDIT_PARAPGRAPH"
 export const SAVE_NEW_ARTICLE = "SAVE_NEW_ARTICLE"
+export const ADD_TODO = "ADD_TODO"
 
 export const MainReducer = (state, action) => {
     switch (action.type) {
@@ -76,7 +77,11 @@ export const MainReducer = (state, action) => {
                 ...state, paragraphToEdit: action.payload
             }
         }
-        
+        case ADD_TODO: {
+            return {
+                ...state, todos: [...state.todos, action.payload]
+            }
+        }
         default: {
             return state
         }

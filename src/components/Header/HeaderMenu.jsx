@@ -5,6 +5,7 @@ import { GlobalContext } from '../../context/Global'
 import { ThemeContext } from '../../context/Theme'
 import SettingsIcon from '@material-ui/icons/Settings';
 import CreateIcon from '@material-ui/icons/Create';
+import NoteAddIcon from '@material-ui/icons/NoteAdd';
 
 function HeaderMenu() {
     const { state, setPage, setModal } = useContext(GlobalContext);
@@ -35,6 +36,11 @@ function HeaderMenu() {
                 style={{ backgroundColor: ui.second, color: ui.fontColor1  }}
                 className={page === "write" ? "settings-button menu-item menu-item-active" : "menu-item settings-button "}>
                 <CreateIcon />
+            </MenuItem>
+            <MenuItem onClick={() => setModal('todos')}
+                style={{ backgroundColor: ui.second, color: ui.fontColor1  }}
+                className={page === "todos" ? "settings-button menu-item menu-item-active" : "menu-item settings-button "}>
+                <NoteAddIcon />
             </MenuItem>
         </Grid>
     )

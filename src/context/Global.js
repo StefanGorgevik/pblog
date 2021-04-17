@@ -1,5 +1,5 @@
 import React, { createContext, useReducer, useEffect } from 'react'
-import { MainReducer, SAVE_ARTICLES_STARTUP, SET_PAGE, SET_ACTIVE_ARTICLE, SET_CURRENT_ARTICLE, SET_PARAGRAPH_OPENED, SET_INFO_MODAL, CLOSE_INFO_MODAL, JUMP_TO_PARAGRAPH, MODAL_OPEN, ADD_NEW_PARAPGRAPH, EDIT_PARAPGRAPH, SAVE_NEW_ARTICLE } from '../reducers/MainReducer'
+import { MainReducer, SAVE_ARTICLES_STARTUP, SET_PAGE, SET_ACTIVE_ARTICLE, SET_CURRENT_ARTICLE, SET_PARAGRAPH_OPENED, SET_INFO_MODAL, CLOSE_INFO_MODAL, JUMP_TO_PARAGRAPH, MODAL_OPEN, ADD_NEW_PARAPGRAPH, EDIT_PARAPGRAPH, SAVE_NEW_ARTICLE, ADD_TODO } from '../reducers/MainReducer'
 import { allArticles } from '../data/data'
 
 const initState = {
@@ -16,7 +16,8 @@ const initState = {
     jumpParagraph: '',
     modal: '',
     newParagraphs: [],
-    paragraphToEdit: null
+    paragraphToEdit: null,
+    todos: [{id: 1, text: 'useCallback'}, {id: 2, text: 'useCallback'}, {id: 3, text: 'useCallback'}]
 }
 
 export const GlobalContext = createContext(initState)
@@ -103,11 +104,20 @@ export const GlobalContextProvider = ({ children }) => {
         setModal('new-paragraph')
     }
 
+    const addTodo = (todo) => {
+        let newTodo = {
+            id: state.todos.length + 1,
+            text: todo
+        }
+        console.log('new todo', newTodo)
+        dispatch({ type: ADD_TODO, payload: newTodo });
+    }
+
     return (
         <GlobalContext.Provider value={{
             state, allArticles: ARTICLES, dispatch, openAllParagraphs, setPage, selectArticle,
             setInfoModal, closeInfoModal, jumpToParagraph, setModal, addNewParagraph, reportArticle, editParagraph, 
-            saveArticle
+            saveArticle, addTodo
         }}>
             {children}
         </GlobalContext.Provider>

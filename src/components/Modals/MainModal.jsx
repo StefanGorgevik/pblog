@@ -8,6 +8,7 @@ import { ThemeContext } from '../../context/Theme'
 import NewParagraph from './NewParagraph';
 import Settings from './Settings';
 import ReportModal from './ReportModal';
+import TodoList from './TodoList';
 
 const useStyles = makeStyles(() => ({
     div: {
@@ -47,6 +48,11 @@ export default function MainModal(s) {
             case 'settings': {
                 comp = <Settings />
                 setTitle('Settings')
+                break;
+            }
+            case 'todos': {
+                comp = <TodoList />
+                setTitle('Todo List')
                 break;
             }
             default:

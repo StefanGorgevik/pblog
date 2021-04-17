@@ -54,7 +54,7 @@ export default function Write() {
         <Typography variant="h3"
           style={{ color: ui.fontColor1, margin: '0 auto', borderBottom: `1px solid ${ui.fontColor1}` }}>
           Write an article</Typography>
-        <WriteButton fixed={true} click={saveArticleHandler} width={false} text='Save article' />
+        <WriteButton fixed={true} click={saveArticleHandler} text='Save article' />
       </Grid>
       <Grid container className='write-items'>
         <Grid item className='write-title'  >
@@ -122,7 +122,7 @@ export default function Write() {
               className='text-area write-text'
               value={regularText}
               style={{ color: ui.fontColor1, backgroundColor: ui.second }} />
-            : <WriteButton fixed={false} click={() => setModal('new-paragraph')} width={true} text='Add new paragraph' />}
+            : <WriteButton fixed={false} click={() => setModal('new-paragraph')} text='Add new paragraph' />}
         <Grid className='new-paragraphs'>
           {newParagraphs.map((p, i) => {
             return <Paragraph paragraph={p} key={i} />
