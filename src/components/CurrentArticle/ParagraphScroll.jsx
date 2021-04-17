@@ -17,7 +17,7 @@ function ParagraphScroll({ active }) {
     const { openAllParagraphs, state, jumpToParagraph } = React.useContext(GlobalContext);
     const { ui } = React.useContext(ThemeContext);
     const { currentArticle, allParagraphsOpened } = state;
-    const [jumpToOpened, setJumpToOpened] = useState(false);
+    const [jumpToOpened, setJumpToOpened] = useState(true);
 
     return (
         <Grid className='paragraph-scroll-wrapper'>
