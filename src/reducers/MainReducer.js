@@ -11,6 +11,7 @@ export const ADD_NEW_PARAPGRAPH = " ADD_NEW_PARAPGRAPH"
 export const EDIT_PARAPGRAPH = "EDIT_PARAPGRAPH"
 export const SAVE_NEW_ARTICLE = "SAVE_NEW_ARTICLE"
 export const ADD_TODO = "ADD_TODO"
+export const COMPLETE_TODO = "COMPLETE_TODO"
 
 export const MainReducer = (state, action) => {
     switch (action.type) {
@@ -80,6 +81,14 @@ export const MainReducer = (state, action) => {
         case ADD_TODO: {
             return {
                 ...state, todos: [...state.todos, action.payload]
+            }
+        }
+        case COMPLETE_TODO: {
+            let todo = state.todos.findIndex(t => t.id === action.payload.id);
+            let newTodos = state.todos;
+            newTodos[todo].completed = true;
+            return {
+                ...state, todos: newTodos
             }
         }
         default: {

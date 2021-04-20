@@ -1,5 +1,5 @@
 import React, { createContext, useReducer, useEffect } from 'react'
-import { MainReducer, SAVE_ARTICLES_STARTUP, SET_PAGE, SET_ACTIVE_ARTICLE, SET_CURRENT_ARTICLE, SET_PARAGRAPH_OPENED, SET_INFO_MODAL, CLOSE_INFO_MODAL, JUMP_TO_PARAGRAPH, MODAL_OPEN, ADD_NEW_PARAPGRAPH, EDIT_PARAPGRAPH, SAVE_NEW_ARTICLE, ADD_TODO } from '../reducers/MainReducer'
+import { MainReducer, SAVE_ARTICLES_STARTUP, SET_PAGE, SET_ACTIVE_ARTICLE, SET_CURRENT_ARTICLE, SET_PARAGRAPH_OPENED, SET_INFO_MODAL, CLOSE_INFO_MODAL, JUMP_TO_PARAGRAPH, MODAL_OPEN, ADD_NEW_PARAPGRAPH, EDIT_PARAPGRAPH, SAVE_NEW_ARTICLE, ADD_TODO, COMPLETE_TODO } from '../reducers/MainReducer'
 import { allArticles } from '../data/data'
 
 const initState = {
@@ -12,12 +12,12 @@ const initState = {
     showMessageModal: false,
     comments: '',
     modalText: '',
-    allParagraphsOpened: false,
+    allParagraphsOpened: true,
     jumpParagraph: '',
     modal: '',
     newParagraphs: [],
     paragraphToEdit: null,
-    todos: [{id: 1, text: 'useCallback'}, {id: 2, text: 'useCallback'}, {id: 3, text: 'useCallback'}]
+    todos: [{id: 1, text: 'useCallback', completed: true}, {id: 2, text: 'useCallback', completed: false}, {id: 3, text: 'useCallback', completed: false}]
 }
 
 export const GlobalContext = createContext(initState)
@@ -37,8 +37,8 @@ export const GlobalContextProvider = ({ children }) => {
 
     const setPage = (page) => {
         if (page === 'current-random') {
-            let random = Math.floor(Math.random() * allArticles.length);
-            let article = allArticles[random];
+            let random = Math.floor(Math.random() * ARTICLES.length);
+            let article = ARTICLES[random];
             dispatch({ type: SET_ACTIVE_ARTICLE, payload: article.id });
             dispatch({ type: SET_CURRENT_ARTICLE, payload: article });
             dispatch({ type: SET_PAGE, payload: 'current' });
@@ -107,17 +107,22 @@ export const GlobalContextProvider = ({ children }) => {
     const addTodo = (todo) => {
         let newTodo = {
             id: state.todos.length + 1,
-            text: todo
+            text: todo,
+            completed: false
         }
         console.log('new todo', newTodo)
         dispatch({ type: ADD_TODO, payload: newTodo });
+    }
+
+    const completeToDo = (todo) => {
+        dispatch({ type: COMPLETE_TODO, payload: todo });
     }
 
     return (
         <GlobalContext.Provider value={{
             state, allArticles: ARTICLES, dispatch, openAllParagraphs, setPage, selectArticle,
             setInfoModal, closeInfoModal, jumpToParagraph, setModal, addNewParagraph, reportArticle, editParagraph, 
-            saveArticle, addTodo
+            saveArticle, addTodo,completeToDo
         }}>
             {children}
         </GlobalContext.Provider>

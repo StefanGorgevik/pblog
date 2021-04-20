@@ -28,7 +28,7 @@ export default function Settings() {
                 {
                     themes.map((theme, i) => {
                         return (<Grid key={i} item onClick={() => selectTheme(theme)}>
-                            <Typography style={{ color: ui.fontColor1 }}
+                            <Typography style={{ color: ui.fontColor1, backgroundColor: ui.second }}
                                 className={selectedTheme.name === theme.name ? 'theme theme-active' : 'theme'}
                                 variant='subtitle1' >{theme.name.substr(5)}</Typography>
                         </Grid>)
