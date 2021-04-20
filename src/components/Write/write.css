@@ -115,6 +115,7 @@
 
 .write-text {
     min-height: 50% !important;
+    white-space: pre-wrap !important;
 }
 
 /* 

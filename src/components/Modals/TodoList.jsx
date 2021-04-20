@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState } from 'react';
 import './modals.css'
 import { GlobalContext } from '../../context/Global'
 import { ThemeContext } from '../../context/Theme'

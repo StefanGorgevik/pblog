@@ -41,7 +41,7 @@ export default function Write() {
       dropdown: includeDropdown === 'Yes',
       title,
       intro,
-      article: newParagraphs,
+      article: includeDropdown === 'Yes' ? newParagraphs : [{title: title, text: [regularText]}],
     }
     if (gistUrl === '') newArticle['gist'] = gistUrl;
     console.log('article saving...', newArticle)

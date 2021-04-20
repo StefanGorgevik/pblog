@@ -17,7 +17,7 @@ const initState = {
     modal: '',
     newParagraphs: [],
     paragraphToEdit: null,
-    todos: [{id: 1, text: 'useCallback', completed: true}, {id: 2, text: 'useCallback', completed: false}, {id: 3, text: 'useCallback', completed: false}]
+    todos: [{ id: 1, text: 'useCallback', completed: true }, { id: 2, text: 'useCallback', completed: false }, { id: 3, text: 'useCallback', completed: false }]
 }
 
 export const GlobalContext = createContext(initState)
@@ -44,7 +44,7 @@ export const GlobalContextProvider = ({ children }) => {
             dispatch({ type: SET_PAGE, payload: 'current' });
         } else if (page === 'settings') {
             setModal('settings');
-        } else if(page === 'report') {
+        } else if (page === 'report') {
             setModal('report');
         } else {
             dispatch({ type: SET_PAGE, payload: page });
@@ -52,6 +52,7 @@ export const GlobalContextProvider = ({ children }) => {
     }
 
     const selectArticle = (article, type) => {
+        console.log(article, type)
         let current = null;
         if (type === 'more') {
             let found = allArticles.find(a => a.title === article.title);
@@ -88,7 +89,6 @@ export const GlobalContextProvider = ({ children }) => {
         dispatch({ type: ADD_NEW_PARAPGRAPH, payload: paragraph });
     }
     const saveArticle = (article) => {
-        console.log('article NEW', article)
         let newID = ARTICLES.length + 1;
         article.id = newID;
         dispatch({ type: SAVE_NEW_ARTICLE, payload: article });
@@ -121,8 +121,8 @@ export const GlobalContextProvider = ({ children }) => {
     return (
         <GlobalContext.Provider value={{
             state, allArticles: ARTICLES, dispatch, openAllParagraphs, setPage, selectArticle,
-            setInfoModal, closeInfoModal, jumpToParagraph, setModal, addNewParagraph, reportArticle, editParagraph, 
-            saveArticle, addTodo,completeToDo
+            setInfoModal, closeInfoModal, jumpToParagraph, setModal, addNewParagraph, reportArticle, editParagraph,
+            saveArticle, addTodo, completeToDo
         }}>
             {children}
         </GlobalContext.Provider>

@@ -13,17 +13,6 @@ function CurrentArticle() {
     const { currentArticle, jumpParagraph } = state;
     const [tempJump, setJump] = useState(false);
 
-    // const handleScroll = (event) => {
-    //     console.log('event on scroll', event)
-    //     getScroll()
-    //     // let scrollTop = event.srcElement.body.scrollTop,
-    //     //     itemTranslate = Math.min(0, scrollTop/3 - 60);
-
-    //     // this.setState({
-    //     //   transform: itemTranslate
-    //     // });
-    // }
-
     const executeScroll = useCallback(() => {
         setJump(true)
     },

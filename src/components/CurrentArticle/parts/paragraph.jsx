@@ -21,11 +21,7 @@ function Paragraph({ index, dropdown, more, text, include, selectArticle, bold, 
         if (allParagraphsOpened) setParagraphOpened(true)
         else setParagraphOpened(false)
 
-        if(tempJump && shouldJump) {
-            setParagraphOpened(true)
-        }
         if (paragraphRef.current === null && !tempJump && !shouldJump) {
-            console.log('CALLED')
             return jumpToParagraph(jumpParagraph);
         } else if (paragraphRef.current && tempJump && shouldJump) {
             setParagraphOpened(true)

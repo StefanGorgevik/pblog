@@ -18,7 +18,7 @@ function ParagraphScroll({ active }) {
     const { ui } = React.useContext(ThemeContext);
     const { currentArticle, allParagraphsOpened } = state;
     const [jumpToOpened, setJumpToOpened] = useState(true);
-
+    console.log(currentArticle)
     return (
         <Grid className='paragraph-scroll-wrapper'>
             <Grid item className='open-buttons'>
@@ -32,14 +32,14 @@ function ParagraphScroll({ active }) {
                 <Grid item className='paragraph-scroll'>
                     {
                         currentArticle && currentArticle.article.map((article, index) => {
-                            return  ( <Tooltip  key={index} title={article.title} classes={{ tooltip: classes.customWidth }}>
+                            return  (article.title ? <Tooltip  key={index} title={article.title} classes={{ tooltip: classes.customWidth }}>
                             <MenuItem
                                 style={{backgroundColor: ui.second, color: ui.fontColor1}}
                                 className={jumpToParagraph !== article.title ? 'paragraph-scroll-to' :
                                     'paragraph-scroll-to paragraph-scroll-to-active'}
                                 onClick={() => jumpToParagraph(article.title)}
                                 >{article.title.substr(0, 20)}</MenuItem>
-                                </Tooltip>)
+                                </Tooltip> : null)
                         })
                     }
                 </Grid>}

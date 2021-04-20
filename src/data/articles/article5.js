@@ -73,8 +73,7 @@ const article4 = [
     },
     {
         title: 'componentWillReceiveProps',
-        text: ["componentWillReceiveProps() runs when props are received and before render takes place. "],
-        include: 'componentWillReceiveProps',
+        text: ["componentWillReceiveProps() runs when props are received and before render takes place. "]
     },
 ]
 

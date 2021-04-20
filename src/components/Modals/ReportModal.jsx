@@ -45,8 +45,8 @@ export default function ReportModal() {
 
     return (
         <div className='report-modal'>
-            <FormControl style={{ maxWidth: '60%', margin: '0 auto' }} className='select-article-report' fullWidth>
-                <InputLabel style={{ color: ui.fontColor1, }}>Choose the article</InputLabel>
+            <FormControl style={{ maxWidth: '60%', margin: '0 auto', backgroundColor: ui.second }} className='select-article-report' fullWidth>
+                <InputLabel style={{ color: ui.fontColor1 }}>Choose the article</InputLabel>
                 <Select
                     labelId="demo-simple-select-label"
                     id="demo-simple-select"
