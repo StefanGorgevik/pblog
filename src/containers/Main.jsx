@@ -9,9 +9,10 @@ import { ThemeContext } from '../context/Theme'
 import Write from '../components/Write/Write'
 import MainModal from '../components/Modals/MainModal'
 import InfoModal from '../components/Modals/InfoModal'
+import Error from '../components/Error'
 
 export default function Main() {
-    const { state } = React.useContext(GlobalContext);
+    const { state} = React.useContext(GlobalContext);
     const { ui } = React.useContext(ThemeContext);
     const { page, modal, showMessageModal } = state;
     const [content, setContent] = useState(false);
@@ -32,6 +33,7 @@ export default function Main() {
                 break;
             }
             default:
+                content = <Error/>
                 break;
         }
         setContent(content);
