@@ -13,7 +13,7 @@ function TopHeader() {
 
     return (
         <Grid container className='header-main' >
-            <Grid className='top-header' onClick={() => setPage('browse-all')} style={{backgroundColor: ui.second}}>
+            <Grid className='top-header' onClick={() => setPage('browse')} style={{backgroundColor: ui.second}}>
                 <img className="logo-image-1" src={Logo} alt="logo" />
                 <Typography className='main-title' variant="h4" color="initial">The Javascript Supply</Typography>
                 <img className="logo-image-2" src={Logo2} alt="second logo" />
