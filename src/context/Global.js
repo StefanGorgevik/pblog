@@ -1,130 +1,153 @@
-import React, { createContext, useReducer, useEffect } from 'react'
-import { MainReducer, SAVE_ARTICLES_STARTUP, SET_PAGE, SET_ACTIVE_ARTICLE, SET_CURRENT_ARTICLE, SET_PARAGRAPH_OPENED, SET_INFO_MODAL, CLOSE_INFO_MODAL, JUMP_TO_PARAGRAPH, MODAL_OPEN, ADD_NEW_PARAPGRAPH, EDIT_PARAPGRAPH, SAVE_NEW_ARTICLE, ADD_TODO, COMPLETE_TODO } from '../reducers/MainReducer'
-import { allArticles } from '../data/data'
+import React, { createContext, useReducer, useEffect } from "react";
+import {
+  MainReducer,
+  SAVE_ARTICLES_STARTUP,
+  SET_PAGE,
+  SET_ACTIVE_ARTICLE,
+  SET_CURRENT_ARTICLE,
+  SET_PARAGRAPH_OPENED,
+  SET_INFO_MODAL,
+  CLOSE_INFO_MODAL,
+  JUMP_TO_PARAGRAPH,
+  MODAL_OPEN,
+  ADD_NEW_PARAPGRAPH,
+  EDIT_PARAPGRAPH,
+  SAVE_NEW_ARTICLE,
+  ADD_TODO,
+  COMPLETE_TODO,
+} from "../reducers/MainReducer";
+import { allArticles } from "../data/data";
 
 const initState = {
-    articles: [],
-    page: 'browse',
-    currentArticle: null,
-    activeArticle: null,
-    articleToReport: '',
-    content: false,
-    showMessageModal: false,
-    comments: '',
-    modalText: '',
-    allParagraphsOpened: true,
-    jumpParagraph: '',
-    modal: '',
-    newParagraphs: [],
-    paragraphToEdit: null,
-    todos: [{ id: 1, text: 'useCallback', completed: true }, { id: 2, text: 'useCallback', completed: false }, { id: 3, text: 'useCallback', completed: false }]
-}
+  articles: [],
+  page: "browse",
+  currentArticle: null,
+  activeArticle: null,
+  articleToReport: "",
+  content: false,
+  showMessageModal: false,
+  comments: "",
+  modalText: "",
+  allParagraphsOpened: true,
+  jumpParagraph: "",
+  modal: "",
+  newParagraphs: [],
+  paragraphToEdit: null,
+};
 
-export const GlobalContext = createContext(initState)
+export const GlobalContext = createContext(initState);
 
 export const GlobalContextProvider = ({ children }) => {
-    const [state, dispatch] = useReducer(MainReducer, initState);
-    const ARTICLES = state.articles;
+  const [state, dispatch] = useReducer(MainReducer, initState);
+  const ARTICLES = state.articles;
 
-    useEffect(() => {
-        // window.localStorage.setItem('articles', JSON.stringify(ARTICLES));
-        dispatch({ type: SAVE_ARTICLES_STARTUP, payload: allArticles });
-    }, [])
+  useEffect(() => {
+    // window.localStorage.setItem('articles', JSON.stringify(ARTICLES));
+    dispatch({ type: SAVE_ARTICLES_STARTUP, payload: allArticles });
+  }, []);
 
-    const openAllParagraphs = () => {
-        dispatch({ type: SET_PARAGRAPH_OPENED, payload: !state.allParagraphsOpened });
+  const openAllParagraphs = () => {
+    dispatch({
+      type: SET_PARAGRAPH_OPENED,
+      payload: !state.allParagraphsOpened,
+    });
+  };
+
+  const setPage = (page) => {
+    if (page === "current-random") {
+      let random = Math.floor(Math.random() * ARTICLES.length);
+      let article = ARTICLES[random];
+      dispatch({ type: SET_ACTIVE_ARTICLE, payload: article.id });
+      dispatch({ type: SET_CURRENT_ARTICLE, payload: article });
+      dispatch({ type: SET_PAGE, payload: "current" });
+    } else if (page === "settings") {
+      setModal("settings");
+    } else if (page === "report") {
+      setModal("report");
+    } else {
+      dispatch({ type: SET_PAGE, payload: page });
     }
+  };
 
-    const setPage = (page) => {
-        if (page === 'current-random') {
-            let random = Math.floor(Math.random() * ARTICLES.length);
-            let article = ARTICLES[random];
-            dispatch({ type: SET_ACTIVE_ARTICLE, payload: article.id });
-            dispatch({ type: SET_CURRENT_ARTICLE, payload: article });
-            dispatch({ type: SET_PAGE, payload: 'current' });
-        } else if (page === 'settings') {
-            setModal('settings');
-        } else if (page === 'report') {
-            setModal('report');
-        } else {
-            dispatch({ type: SET_PAGE, payload: page });
-        }
+  const selectArticle = (article, type) => {
+    console.log(article, type);
+    let current = null;
+    if (type === "more") {
+      let found = allArticles.find((a) => a.title === article.title);
+      if (found) {
+        current = found;
+      }
+    } else if (type === "all") {
+      current = article;
     }
+    window.localStorage.setItem("article", JSON.stringify(current));
+    dispatch({ type: SET_ACTIVE_ARTICLE, payload: current.id });
+    dispatch({ type: SET_CURRENT_ARTICLE, payload: current });
+    setPage("current");
+  };
 
-    const selectArticle = (article, type) => {
-        console.log(article, type)
-        let current = null;
-        if (type === 'more') {
-            let found = allArticles.find(a => a.title === article.title);
-            if (found) {
-                current = found;
-            }
-        } else if (type === 'all') {
-            current = article;
-        }
-        window.localStorage.setItem('article', JSON.stringify(current));
-        dispatch({ type: SET_ACTIVE_ARTICLE, payload: current.id });
-        dispatch({ type: SET_CURRENT_ARTICLE, payload: current });
-        setPage('current');
-    }
+  const setInfoModal = (bool, text, type) => {
+    dispatch({ type: SET_INFO_MODAL, payload: { bool, text, type } });
+  };
 
-    const setInfoModal = (bool, text, type) => {
-        dispatch({ type: SET_INFO_MODAL, payload: { bool, text, type } });
-    };
+  const closeInfoModal = () => {
+    dispatch({ type: CLOSE_INFO_MODAL, payload: false });
+  };
 
-    const closeInfoModal = () => {
-        dispatch({ type: CLOSE_INFO_MODAL, payload: false });
-    };
+  const jumpToParagraph = (title) => {
+    dispatch({ type: JUMP_TO_PARAGRAPH, payload: title });
+  };
 
-    const jumpToParagraph = (title) => {
-        dispatch({ type: JUMP_TO_PARAGRAPH, payload: title });
-    }
+  const setModal = (modal) => {
+    dispatch({ type: MODAL_OPEN, payload: modal });
+  };
 
-    const setModal = (modal) => {
-        dispatch({ type: MODAL_OPEN, payload: modal });
-    }
+  const addNewParagraph = (paragraph) => {
+    console.log("paragraph REPORT", paragraph);
+    dispatch({ type: ADD_NEW_PARAPGRAPH, payload: paragraph });
+  };
+  const saveArticle = (article) => {
+    let newID = ARTICLES.length + 1;
+    article.id = newID;
+    dispatch({ type: SAVE_NEW_ARTICLE, payload: article });
+    setPage("browse");
+  };
+  const reportArticle = (article) => {
+    console.log("article REPORT", article);
+    // dispatch({ type: REPORTED_ARTICLE, payload: article });
+  };
 
-    const addNewParagraph = (paragraph) => {
-        console.log('paragraph REPORT', paragraph)
-        dispatch({ type: ADD_NEW_PARAPGRAPH, payload: paragraph });
-    }
-    const saveArticle = (article) => {
-        let newID = ARTICLES.length + 1;
-        article.id = newID;
-        dispatch({ type: SAVE_NEW_ARTICLE, payload: article });
-        setPage('browse')
-    }
-    const reportArticle = (article) => {
-        console.log('article REPORT', article)
-        // dispatch({ type: REPORTED_ARTICLE, payload: article });
-    }
+  const editParagraph = (paragraph) => {
+    dispatch({ type: EDIT_PARAPGRAPH, payload: paragraph });
+    setModal("new-paragraph");
+  };
 
-    const editParagraph = (paragraph) => {
-        dispatch({ type: EDIT_PARAPGRAPH, payload: paragraph });
-        setModal('new-paragraph')
-    }
+  const completeToDo = (todo) => {
+    dispatch({ type: COMPLETE_TODO, payload: todo });
+  };
 
-    const addTodo = (todo) => {
-        let newTodo = {
-            id: state.todos.length + 1,
-            text: todo,
-            completed: false
-        }
-        console.log('new todo', newTodo)
-        dispatch({ type: ADD_TODO, payload: newTodo });
-    }
-
-    const completeToDo = (todo) => {
-        dispatch({ type: COMPLETE_TODO, payload: todo });
-    }
-
-    return (
-        <GlobalContext.Provider value={{
-            state, allArticles: ARTICLES, dispatch, openAllParagraphs, setPage, selectArticle,
-            setInfoModal, closeInfoModal, jumpToParagraph, setModal, addNewParagraph, reportArticle, editParagraph,
-            saveArticle, addTodo, completeToDo
-        }}>
-            {children}
-        </GlobalContext.Provider>
-    )
-}
+  return (
+    <GlobalContext.Provider
+      value={{
+        state,
+        allArticles: ARTICLES,
+        dispatch,
+        openAllParagraphs,
+        setPage,
+        selectArticle,
+        setInfoModal,
+        closeInfoModal,
+        jumpToParagraph,
+        setModal,
+        addNewParagraph,
+        reportArticle,
+        editParagraph,
+        saveArticle,
+        addTodo,
+        completeToDo,
+      }}
+    >
+      {children}
+    </GlobalContext.Provider>
+  );
+};

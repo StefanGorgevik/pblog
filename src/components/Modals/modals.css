@@ -114,20 +114,6 @@
   font-size: 20px;
 }
 
-.todos {
-  display: flex;
-  width: 85%;
-  margin: 0 auto !important;
-  justify-content: center !important;
-  flex-direction: column;
-  max-height: 50vh !important;
-  overflow-y: auto;
-  margin-left: 55px !important;
-  padding: 1% !important;
-  border-radius: 10px;
-  padding-left: 5% !important;
-}
-
 .add-todo {
   width: 90% !important;
   margin: 0 auto !important;
