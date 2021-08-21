@@ -143,7 +143,6 @@ export const GlobalContextProvider = ({ children }) => {
         reportArticle,
         editParagraph,
         saveArticle,
-        addTodo,
         completeToDo,
       }}
     >

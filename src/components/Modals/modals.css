@@ -122,25 +122,6 @@
   margin-top: 10px !important;
 }
 
-.todo {
-  width: 90%;
-  padding-left: 15px;
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
-}
-
-.todo-completed {
-  text-decoration-line: line-through !important;
-}
-
-.todo-check {
-  margin-left: 10px;
-  border-radius: 10px;
-  cursor: pointer;
-  font-size: 24px !important;
-}
-
 .save-write-item:hover {
   border: 1px solid white !important;
   background-color: rgba(246, 246, 246, 0.342) !important;
