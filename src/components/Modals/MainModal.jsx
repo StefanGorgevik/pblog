@@ -39,11 +39,6 @@ export default function MainModal(s) {
         break;
       }
 
-      case "settings": {
-        comp = <Settings />;
-        setTitle("Settings");
-        break;
-      }
       default:
         break;
     }
@@ -69,12 +64,12 @@ export default function MainModal(s) {
               margin: "0 auto",
               width: "50%",
               textAlign: "center",
-              marginBottom: "20px",
               color: ui.fontColor1,
               borderBottom: "1px solid rgb(219, 219, 80)",
             }}
             className="text"
             variant="h4"
+            gutterBottom={false}
             color="initial"
           >
             {title}

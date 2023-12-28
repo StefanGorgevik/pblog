@@ -3,13 +3,24 @@ import "./header.css";
 import { Grid, MenuItem, Tooltip } from "@material-ui/core";
 import { GlobalContext } from "../../context/Global";
 import { ThemeContext } from "../../context/Theme";
-import SettingsIcon from "@material-ui/icons/Settings";
 import BugReportIcon from "@material-ui/icons/BugReport";
+import SettingsBrightnessIcon from "@material-ui/icons/SettingsBrightness";
 
 function HeaderMenu() {
-  const { state, setPage, setModal } = useContext(GlobalContext);
-  const { ui } = useContext(ThemeContext);
+  const { state, setPage } = useContext(GlobalContext);
+  const { themes, setCurrentTheme, ui } = useContext(ThemeContext);
   const { page, currentArticle } = state;
+
+  console.log("theme", themes, ui);
+  const saveSettings = () => {
+    setCurrentTheme((prevSelectedTheme) => {
+      if (prevSelectedTheme.name === "themeBlack") {
+        return themes[0];
+      } else {
+        return themes[1];
+      }
+    });
+  };
 
   return (
     <Grid className="header">
@@ -55,9 +66,9 @@ function HeaderMenu() {
           <BugReportIcon />
         </MenuItem>
       </Tooltip>
-      <Tooltip title="settings">
+      <Tooltip title="theme">
         <MenuItem
-          onClick={() => setModal("settings")}
+          onClick={() => saveSettings()}
           style={{ backgroundColor: ui.second }}
           className={
             page === "settings"
@@ -65,7 +76,7 @@ function HeaderMenu() {
               : "menu-item settings-button "
           }
         >
-          <SettingsIcon />
+          <SettingsBrightnessIcon />
         </MenuItem>
       </Tooltip>
     </Grid>
